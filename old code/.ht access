@@ -1,0 +1,9 @@
+AuthType Basic
+AuthName "Red Login" 
+
+AuthUserFile "c:\server\pass.txt"
+AuthGroupFile /dev/null 
+
+<Limit GET POST PUT>
+require valid-user
+</Limit>

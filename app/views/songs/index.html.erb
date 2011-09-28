@@ -1,0 +1,11 @@
+<% 3.times do %>
+    <%= 'test' %>
+<% end %>
+
+<%= link_to('go here',{:action => 'show', :id => 20, :page => 5}) %>
+
+<%= form_tag("/songs/search", :method => "get") do %>
+  <%= label_tag(:q, "Search for:") %>
+  <%= text_field_tag(:q) %>
+  <%= submit_tag("Search") %>
+<% end %>

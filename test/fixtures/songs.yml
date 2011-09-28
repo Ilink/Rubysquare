@@ -1,0 +1,8 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  title: some title
+  artist: some artist
+  album: some album
+  location: test.mp3
+
