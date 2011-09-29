@@ -2,3 +2,7 @@ Temp template!
 
 <%= @id %><br/>
 <%= @query %>
+<br/><br/>
+<% @search_results.each do |result| %>
+  <%= result.title %>
+<% end %>

@@ -13,17 +13,26 @@ class SongsController < ApplicationController
     @query = params[:q]
 
     respond_to do |type|
-      type.all {
+      type.all do
+        @search_results = Song.all
         render ('songs/temp')
-      }
-      type.json {
-        render :json => {'test'=>'yes i am'}.to_json
-      }
+      end
+      type.json do
+        @search_results = Song.all
+        #render :json => {'test'=>'yes i am'}.to_json
+        render :json => @search_results
+      end
     end
   end
 
   private
   def search_db
-    @seach_results = Song
+    @seach_results = Song.all;
+
+    if @search_results
+      @search_results
+    else
+      nil
+    end
   end
 end
