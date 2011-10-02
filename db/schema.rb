@@ -11,11 +11,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110928172625) do
+ActiveRecord::Schema.define(:version => 20110930190415) do
 
   create_table "songs", :force => true do |t|
     t.string   "title",      :null => false
-    t.string   "artist",     :null => false
+    t.string   "artist"
     t.string   "album",      :null => false
     t.string   "location",   :null => false
     t.datetime "created_at"
@@ -23,9 +23,9 @@ ActiveRecord::Schema.define(:version => 20110928172625) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "email"
-    t.string   "password_hash"
-    t.string   "password_salt"
+    t.string   "email",         :null => false
+    t.string   "password_hash", :null => false
+    t.string   "password_salt", :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -15,7 +15,7 @@ development:
   database: rubysquare
   pool: 5
   username: root
-  password:
+  password: root
   socket: /tmp/mysql.sock
 
 

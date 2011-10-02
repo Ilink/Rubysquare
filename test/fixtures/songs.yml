@@ -1,8 +1,8 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
-
-one:
-  title: some title
-  artist: some artist
-  album: some album
-  location: test.mp3
-
+<% 100.times do |i|%>
+  record_<%= i %>:
+    title: title_<%= i %>
+    artist: artist_<%= i %>
+    album: album<%= i %>
+    location: test<%= i %>.mp3
+<% end %>
