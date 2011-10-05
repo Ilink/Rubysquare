@@ -1,12 +1,19 @@
 Rubysquare::Application.routes.draw do
+
   get "search/show"
-
   get "search/index"
-
-  root :to => "songs#index"
+  
   #root :to => "users#new"
   get "songs/search" => "songs#search", :as => "search"
+
+  get "log_out" => "sessions#destroy", :as => "log_out"
+  get "log_in" => "sessions#new", :as => "log_in"
+  get "sign_up" => "users#new", :as => "sign_up"
+
   resources :songs
+  resources :users
+  resources :sessions
+  
   #get "sessions/new"
   #get "sessions/create"
   #get "sessions/destroy"
@@ -14,14 +21,6 @@ Rubysquare::Application.routes.draw do
   #get "users/create"
   #get "songs/index"
   #get "songs/show"
-  get "log_out" => "sessions#destroy", :as => "log_out"
-  get "log_in" => "sessions#new", :as => "log_in"
-  get "sign_up" => "users#new", :as => "sign_up"
-  
-
-
-  resources :users
-  resources :sessions
 
 
   # The priority is based upon order of creation:
@@ -80,4 +79,7 @@ Rubysquare::Application.routes.draw do
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id(.:format)))'
+
+
+  root :to => "songs#index"
 end

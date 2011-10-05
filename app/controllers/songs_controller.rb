@@ -1,38 +1,123 @@
 class SongsController < ApplicationController
+  # GET /songs
+  # GET /songs.json
   def index
-    #render('songs/temp') #render file views/temp.html.erb
+    @songs = Song.all
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @songs }
+    end
   end
 
+  # GET /songs/1
+  # GET /songs/1.json
   def show
-    @id = params['id']
-    @page = params['page']
-    render('songs/temp')
+    @song = Song.find(params[:id])
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @song }
+    end
+  end
+
+  # GET /songs/new
+  # GET /songs/new.json
+  def new
+    @song = Song.new
+
+    respond_to do |format|
+      format.html # new.html.erb
+      format.json { render json: @song }
+    end
+  end
+
+  # GET /songs/1/edit
+  def edit
+    @song = Song.find(params[:id])
+  end
+
+  # POST /songs
+  # POST /songs.json
+  def create
+    @song = Song.new(params[:song])
+
+    respond_to do |format|
+      if @song.save
+        format.html { redirect_to @song, notice: 'Song was successfully created.' }
+        format.json { render json: @song, status: :created, location: @song }
+      else
+        format.html { render action: "new" }
+        format.json { render json: @song.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # PUT /songs/1
+  # PUT /songs/1.json
+  def update
+    @song = Song.find(params[:id])
+
+    respond_to do |format|
+      if @song.update_attributes(params[:song])
+        format.html { redirect_to @song, notice: 'Song was successfully updated.' }
+        format.json { head :ok }
+      else
+        format.html { render action: "edit" }
+        format.json { render json: @song.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # DELETE /songs/1
+  # DELETE /songs/1.json
+  def destroy
+    @song = Song.find(params[:id])
+    @song.destroy
+
+    respond_to do |format|
+      format.html { redirect_to songs_url }
+      format.json { head :ok }
+    end
   end
 
   def search
-    @query = params[:q]
+    #@query = params[:q]
+    @songs = Song.find_all_by_title(params[:q])
+    respond_to do |format|
+      format.html
+      format.json {
 
-    respond_to do |type|
-      type.all do
-        @search_results = Song.all
-        render ('songs/temp')
-      end
-      type.json do
-        @search_results = Song.all
         #render :json => {'test'=>'yes i am'}.to_json
-        render :json => @search_results
-      end
+        render :json => @song
+      }
     end
   end
-
-  private
-  def search_db
-    @seach_results = Song.all;
-
-    if @search_results
-      @search_results
-    else
-      nil
-    end
-  end
+  
 end
+
+  #
+  #def index
+  #  #render('songs/temp') #render file views/temp.html.erb
+  #end
+  #
+  #def show
+  #  @id = params['id']
+  #  @page = params['page']
+  #  render('songs/temp')
+  #end
+  #
+
+  #
+  #private
+  #def search_db
+  #  @seach_results = Song.all;
+  #
+  #  if @search_results
+  #    @search_results
+  #  else
+  #    nil
+  #  end
+  #end
+
+
