@@ -9,6 +9,7 @@ gem 'sqlite3'
 gem 'mysql2', '0.3.7'
 gem 'bcrypt-ruby'
 gem 'devise', '1.4.7'
+gem 'meta_search'
 
 
 # Gems used only for assets and not required

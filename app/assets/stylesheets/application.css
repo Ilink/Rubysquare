@@ -5,3 +5,9 @@
  *= require_self
  *= require_tree . 
 */
+
+#menu ul{
+    list-style-type: none;
+    display:inline;
+    
+}

@@ -9,14 +9,21 @@
 #  pool: 5
 #  timeout: 5000
 
+#mysql environment
+#development:
+#  adapter: mysql2
+#  encoding: utf8
+#  database: rubysquare
+#  pool: 5
+#  username: root
+#  password: root
+#  socket: /tmp/mysql.sock
+
 development:
-  adapter: mysql2
-  encoding: utf8
-  database: rubysquare
+  adapter: sqlite3
+  database: db/production.sqlite3
   pool: 5
-  username: root
-  password: root
-  socket: /tmp/mysql.sock
+  timeout: 5000
 
 
 # Warning: The database defined as "test" will be erased and

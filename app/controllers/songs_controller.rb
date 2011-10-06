@@ -53,6 +53,22 @@ class SongsController < ApplicationController
     end
   end
 
+  #POST /songs/add_to_playlist
+  def add_to_playlist
+    params[:song_id].each do |param|
+      
+    end
+    @song = Song.new(params[:song_id]) # not sure if :id is really right, given that there will most likely be lots of IDs
+    playlist_id = params[:playlist_id] # not really :playlist_id, i think
+
+    respond_to do |format|
+      
+    end
+  #  Add the songs described by some form to the specified playlist
+  #  data to pass: list of songs by ID, playlist ID
+  #  add to the join table: songs_playlists
+  end
+
   # PUT /songs/1
   # PUT /songs/1.json
   def update
