@@ -3,7 +3,7 @@ class SongsController < ApplicationController
   # GET /songs.json
   def index
     @songs = Song.all
-
+    @playlists = Playlist.all
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @songs }
@@ -41,7 +41,7 @@ class SongsController < ApplicationController
   # POST /songs.json
   def create
     @song = Song.new(params[:song])
-
+    
     respond_to do |format|
       if @song.save
         format.html { redirect_to @song, notice: 'Song was successfully created.' }
@@ -55,18 +55,14 @@ class SongsController < ApplicationController
 
   #POST /songs/add_to_playlist
   def add_to_playlist
-    params[:song_id].each do |param|
-      
-    end
-    @song = Song.new(params[:song_id]) # not sure if :id is really right, given that there will most likely be lots of IDs
-    playlist_id = params[:playlist_id] # not really :playlist_id, i think
-
+    @playlist = Playlist.find(params[:playlist][:id])
+    @songs = Song.find(params[:song_ids])
+    @playlist.songs << @songs #add to join table
+    
     respond_to do |format|
-      
+      format.html { redirect_to songs_url, notice: 'Selected songs succesfully added' }
+      format.json { head :ok }
     end
-  #  Add the songs described by some form to the specified playlist
-  #  data to pass: list of songs by ID, playlist ID
-  #  add to the join table: songs_playlists
   end
 
   # PUT /songs/1
@@ -109,7 +105,6 @@ class SongsController < ApplicationController
       }
     end
   end
-  
 end
 
   #

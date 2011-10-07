@@ -1,6 +1,5 @@
-<h1>Listing songs</h1>
-
-<%= form_tag("/songs/search", :method => "get") do %>
+<h1>Songs</h1>
+<%= form_tag("/songs/search", :method => "get") do |f| %>
   <%= label_tag(:q, "Search for:") %>
   <%= text_field_tag(:q) %>
   <%= submit_tag("Search") %>
@@ -15,20 +14,36 @@
     <th></th>
     <th></th>
     <th></th>
+    <th></th>
   </tr>
 
-<% @songs.each do |song| %>
-  <tr>
-    <td><%= song.title %></td>
-    <td><%= song.artist %></td>
-    <td><%= song.album %></td>
-    <td><%= song.location %></td>
-    <td><%= link_to 'Show', song %></td>
-    <td><%= link_to 'Edit', edit_song_path(song) %></td>
-    <td><%= link_to 'Destroy', song, confirm: 'Are you sure?', method: :delete %></td>
-  </tr>
+<%= form_for @songs, :url => "songs/add_to_playlist", :method => "post" do |f| %>
+
+    <%= f.label('add_to_playlist', 'Add songs to playlist: ') %>
+    <%= collection_select('playlist', 'id', @playlists, :id, :title) %>
+    <%= f.submit("Add Songs") %>
+    ||||||||||
+    <%= link_to 'New Playlist', new_playlist_path %>
+
+    <% @songs.each do |song| %>
+      <tr>
+        <td><%= song.title %></td>
+        <td><%= song.artist %></td>
+        <td><%= song.album %></td>
+        <td><%= song.location %></td>
+        <td><%= link_to 'Show', song %></td>
+        <td><%= link_to 'Edit', edit_song_path(song) %></td>
+        <td><%= link_to 'Destroy', song, confirm: 'Are you sure?', method: :delete %></td>
+
+        <td>
+            <%= f.label(song.id, "Add to playlist") %>
+            <%= check_box_tag "song_ids[]", song.id, false, :id => "song_#{song.id}" %>
+        </td>
+      </tr>
+    <% end %>
+    </table>
+
 <% end %>
-</table>
 
 <br />
 
