@@ -3,6 +3,7 @@ require 'test_helper'
 class SongsControllerTest < ActionController::TestCase
   setup do
     @song = songs(:one)
+    @playlist = Playlist.create(:title=>"test")
   end
 
   test "should get index" do
@@ -46,4 +47,10 @@ class SongsControllerTest < ActionController::TestCase
 
     assert_redirected_to songs_path
   end
+
+  test "create playlist from selected songs" do
+    post :add_to_playlist, {:playlist => { "id" => @playlist.id}, :song_ids =>[@song.id]}
+    assert_not_nil @playlist.songs, "Adding songs to playlist failed. Check the Join table and HABTM relationship"
+  end
+
 end
