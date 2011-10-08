@@ -1,6 +1,13 @@
 Rubysquare::Application.routes.draw do
+
+  devise_for :users
+  root :to => "songs#index"
+
+  #post "/users/sign_in"    => "sessions#create"
+  #delete "/users/sign_out" => "sessions#destroy"
+  #get "sign_up" => "users#new", :as => "sign_up"
+  
   post "/songs/add_to_playlist" => "songs#add_to_playlist"
-  put "/songs/add_to_playlist" => "songs#update_playlist"
 
   get "search/show"
   get "search/index"
@@ -9,17 +16,16 @@ Rubysquare::Application.routes.draw do
   #root :to => "users#new"
   get "songs/search" => "songs#search", :as => "search"
 
-  get "log_out" => "sessions#destroy", :as => "log_out"
-  get "log_in" => "sessions#new", :as => "log_in"
-  get "sign_up" => "users#new", :as => "sign_up"
+  #get "log_out" => "sessions#destroy", :as => "log_out"
+  #get "log_in" => "sessions#new", :as => "log_in"
 
   resources :playlists
   resources :songs
-  resources :users
-  resources :sessions
+  #resources :users
+  #resources :sessions
 
-  
-  
+  #root :to => "songs#index"
+
   #get "sessions/new"
   #get "sessions/create"
   #get "sessions/destroy"
@@ -86,6 +92,4 @@ Rubysquare::Application.routes.draw do
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id(.:format)))'
 
-
-  root :to => "songs#index"
 end

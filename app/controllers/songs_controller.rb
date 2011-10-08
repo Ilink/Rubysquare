@@ -1,9 +1,10 @@
 class SongsController < ApplicationController
+  
   # GET /songs
   # GET /songs.json
   def index
     @songs = Song.all
-    @playlists = Playlist.all
+    @playlists = Playlist.find_all_by_user_id(current_user.id)
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @songs }

@@ -5,5 +5,5 @@ class Playlist < ActiveRecord::Base
   validates :title, :presence => true
 
   @playlists = Playlist.all
-  @test = 'test'
+  #@playlists = Playlist.find_all_by_user_id(current_user.id)
 end

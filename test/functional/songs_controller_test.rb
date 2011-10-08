@@ -2,6 +2,7 @@ require 'test_helper'
 
 class SongsControllerTest < ActionController::TestCase
   setup do
+    sign_in User.first
     @song = songs(:one)
     @playlist = Playlist.create(:title=>"test")
   end

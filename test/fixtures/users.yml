@@ -2,12 +2,5 @@
 
 one:
   id: 1
-  email: MyString
-  password_hash: MyString
-  password_salt: MyString
-
-two:
-  id: 2
-  email: MyString2
-  password_hash: MyString
-  password_salt: MyString
+  email: user1@test.eu
+  encrypted_password: abcdef1
