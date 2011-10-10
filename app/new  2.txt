@@ -1,0 +1,16 @@
+<%= @rexml_data.elements.each('plist/dict/dict/dict') do |element|  %>
+    <%= element.attributes['key'] %>
+<% end %>
+<br/><br/>
+<%= all_elements = @rexml_data.elements.to_a("//dict/dict/dict") %>
+<br/><br/>
+<%= @rexml_data %>
+<br/><br/><br/><br/>
+
+<%@xmlsimple_data['dict'][0]['dict'][0]['dict'][0]['key'] %>
+<br/><br/>
+<%= @xmlsimple_data['dict'][0]['dict'][0]['dict'][0] %>
+<br/><br/><br/>
+<% @xmlsimple_data['dict'][0]['dict'][0]['dict'][0].each do |item|%>
+    <%= item %>
+<% end %>

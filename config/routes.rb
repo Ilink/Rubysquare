@@ -1,40 +1,18 @@
 Rubysquare::Application.routes.draw do
-
+  
   devise_for :users
   root :to => "songs#index"
 
-  #post "/users/sign_in"    => "sessions#create"
-  #delete "/users/sign_out" => "sessions#destroy"
-  #get "sign_up" => "users#new", :as => "sign_up"
-  
   post "/songs/add_to_playlist" => "songs#add_to_playlist"
-
-  get "search/show"
-  get "search/index"
-  #post "songs/add_to_playlist"
-
-  #root :to => "users#new"
+  get "/songs/dashboard" => "songs#dashboard"
   get "songs/search" => "songs#search", :as => "search"
 
-  #get "log_out" => "sessions#destroy", :as => "log_out"
-  #get "log_in" => "sessions#new", :as => "log_in"
+  post "songs/manage/update" => "songs#manage_songs_update"
 
   resources :playlists
   resources :songs
-  #resources :users
-  #resources :sessions
 
-  #root :to => "songs#index"
-
-  #get "sessions/new"
-  #get "sessions/create"
-  #get "sessions/destroy"
-  #get "users/new"
-  #get "users/create"
-  #get "songs/index"
-  #get "songs/show"
-
-
+  #--------------------------------------------------------------------------------------------------------------------------#
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

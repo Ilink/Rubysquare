@@ -1,0 +1,7 @@
+<%@xml_data['dict'][0]['dict'][0]['dict'][0]['key'] %>
+<br/><br/>
+<%= @xml_data['dict'][0]['dict'][0]['dict'][0] %>
+<br/><br/><br/>
+<% @xml_data['dict'][0]['dict'][0]['dict'][0].each do |item|%>
+    <%= item %>
+<% end %>

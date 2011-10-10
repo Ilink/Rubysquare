@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding='UTF-8' standalone="yes"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <key>Major Version</key><integer>1</integer>
+    <key>Minor Version</key><integer>1</integer>
+    <key>Application Version</key><string>7.6.1</string>
+    <key>Tracks</key>
+    <dict>
+      <key>0</key>
+      <dict>
+        <key>Track ID</key><integer>0</integer>
+        <key>Name</key><string>Myth Takes</string>
+        <key>Artist</key><string>!!!</string>
+        <key>Album Artist</key><string>!!!</string>
+        <key>Album</key><string>Myth Takes</string>
+        <key>Genre</key><string>Alternative</string>
+        <key>Kind</key><string>MPEG audio file</string>
+        <key>Size</key><integer>5297</integer>
+        <key>Total Time</key><integer>143000</integer>
+        <key>Track Number</key><integer>1</integer>
+        <key>Year</key><integer>2007</integer>
+        <key>Date Modified</key><date>2009-11-10T18:51:12Z</date>
+        <key>Date Added</key><date>2010-11-30T07:30:08Z</date>
+        <key>Play Date UTC</key><date>2011-04-26T04:24:46Z</date>
+        <key>Bitrate</key><integer>265</integer>
+        <key>Play Count</key><integer>4</integer>
+        <key>Disc Number</key><integer>1</integer>
+        <key>Disc Count</key><integer>1</integer>
+        <key>Track Count</key><integer>10</integer>
+        <key>Location</key><string>file://localhost/L:%5CMusic%5C%21%21%21%5CMyth%20Takes%5C01%20Myth%20Takes.mp3</string>
+        <key>File Folder Count</key><integer>-1</integer>
+        <key>Library Folder Count</key><integer>-1</integer>
+      </dict>
+      <key>1</key>
+      <dict>
+        <key>Track ID</key><integer>0</integer>
+        <key>Name</key><string>Myth Takes</string>
+        <key>Artist</key><string>!!!</string>
+        <key>Album Artist</key><string>!!!</string>
+        <key>Album</key><string>Myth Takes</string>
+        <key>Genre</key><string>Alternative</string>
+        <key>Kind</key><string>MPEG audio file</string>
+        <key>Size</key><integer>5297</integer>
+        <key>Total Time</key><integer>143000</integer>
+        <key>Track Number</key><integer>1</integer>
+        <key>Year</key><integer>2007</integer>
+        <key>Date Modified</key><date>2009-11-10T18:51:12Z</date>
+        <key>Date Added</key><date>2010-11-30T07:30:08Z</date>
+        <key>Play Date UTC</key><date>2011-04-26T04:24:46Z</date>
+        <key>Bitrate</key><integer>265</integer>
+        <key>Play Count</key><integer>4</integer>
+        <key>Disc Number</key><integer>1</integer>
+        <key>Disc Count</key><integer>1</integer>
+        <key>Track Count</key><integer>10</integer>
+        <key>Location</key><string>file://localhost/L:%5CMusic%5C%21%21%21%5CMyth%20Takes%5C01%20Myth%20Takes.mp3</string>
+        <key>File Folder Count</key><integer>-1</integer>
+        <key>Library Folder Count</key><integer>-1</integer>
+      </dict>
+    </dict>
+  </dict>
+</plist>
