@@ -7,7 +7,8 @@ Rubysquare::Application.routes.draw do
   get "/songs/dashboard" => "songs#dashboard"
   get "songs/search" => "songs#search", :as => "search"
 
-  post "songs/manage/update" => "songs#manage_songs_update"
+  #post "songs/manage/update" => "songs#manage_songs_update"
+  post "songs/flush" => "songs#flush"
 
   resources :playlists
   resources :songs

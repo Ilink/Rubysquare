@@ -6,8 +6,8 @@
  *= require_tree . 
 */
 
-#menu ul{
+#menu ul, li{
     list-style-type: none;
     display:inline;
-    
+    margin:0px 5px 0px 5px;
 }

@@ -126,8 +126,8 @@ class SongsController < ApplicationController
   # ==Speed:
   # iTunes libary XML files can be quite large, making speed an important consideration for this parser. Nokogiri's excellent XML Reader class is used for simplicity and speed. The parser doesnt read in the entire XML structure, rather it uses a SAX-like approach. Benchmark stats coming soon, though in my experience, working with 100s of thousands of lines of XML is no problem. Other benchmarks illustrate the speed of Nokogiri quite eloquently.
 
-  def dashboard
-    f = File.open('app/assets/itunes_xml.xml')
+  def itunes_parser (file_location)
+    f = File.open(file_location)
     @xml_data = {}
     @xml_collector = []
     @reader = Nokogiri::XML::Reader(f)
@@ -135,15 +135,12 @@ class SongsController < ApplicationController
     num_dict = 0  # the even <dict> tags represent closing tags, assuming document is well-formed
     @reader.each do |node|
       if node.value !~ /\n/ #remove newlines
-        #iTunes puts in a bunch of extraneous <dict> notes
-        #that we must ignore. Relevent information really begins 3 levels deep
-        if node.name == 'dict' && node.depth == 3
+        if node.name == 'dict' && node.depth == 3 #iTunes puts in a bunch of extraneous <dict> nodes that we must ignore. Relevent information really begins 3 levels deep
           num_dict += 1
           if num_dict % 2 > 0 # the even <dict> tags represent closing tags, assuming document is well-formed
             song_iterator = song_iterator + 1
             @xml_data[song_iterator] = {}
-          else #the reader has encountered a closing </dict> tag
-               #so we place the values of the song into the main hash
+          else #the reader has encountered a closing </dict> tag so we place the values of the song into the main hash
             (0..@xml_collector.length).step(2) do |i|
               if !@xml_collector[i].nil?
                 @xml_data[song_iterator][@xml_collector[i]] = @xml_collector[i + 1]
@@ -152,30 +149,52 @@ class SongsController < ApplicationController
             @xml_collector = [] #get rid of previous values since we already added those to the hash
           end
         end
-
         if node.depth >= 5
           @xml_collector.push(node.value) # get all the name/value pairs in the
         end
       end
     end
-
-    @song = Song.all
+    @xml_data
   end
 
-  #GET /songs/manage
-  def manage
-
-    
-    #doc = REXML::Document.new(xml_data)
-    #doc.elements.each("plist/dict/dict/dict") do |element|
-    #  puts element.attributes["key"]
-    #end
-  end
-
-  #POST /songs/update
-  def manage_songs_update
+  #GET /songs/dashboard
+  def dashboard
+    #@itunes_song_data = itunes_parser('app/assets/itunes_xml.xml')
     
   end
+
+  #POST /songs/flush
+  def flush
+    Song.delete_all
+    @database_input_errors = []
+    @itunes_song_data = itunes_parser('app/assets/itunes_xml.xml')
+
+    #for the song location i need to parse out the beginning of the directory string to make it reflect an accessible location
+
+    #"title" => song['Name'],
+    @itunes_song_data.each do |index, song|
+      new_song = Song.create( "artist" => song['Artist'], "album" => song['Album'],
+                          "genre" => song['Genre'], "location" => 'temp', "file_type" => song['Kind'],
+                          "bitrate" => song['Bitrate'], "year" => song['Year'], "track_count" => song["Track Count"],
+                          "size" => song["Size"], "length" => song["Total Time"], "track_number" => song["Track Number"])
+
+      new_song.errors.each do |attr,msg|
+        @database_input_errors.push("Error updating song ##{index}, title: #{song['Name']} because: #{attr} - #{msg}")
+      end
+      
+    end
+
+    respond_to do |format|
+      if true #change me
+        format.html { render :action => dashboard, notice: 'Database successfully updated' }
+        format.json { head :ok }
+      else
+        format.html { redirect_to songs_dashboard_path, notice: 'Database successfully updated' }
+        format.json { render json: 'error', status: 'error' }
+      end
+    end
+  end
+
 
 end
 

@@ -10,9 +10,8 @@ gem 'sqlite3'
 gem 'bcrypt-ruby'
 gem 'devise', '1.4.7'
 gem 'meta_search'
-gem 'xml-simple'
-gem "libxml-ruby"
 gem "nokogiri"
+gem "simple-navigation"
 
 # Gems used only for assets and not required
 # in production environments by default.

@@ -9,10 +9,8 @@
 <body>
 
 <div id="menu">
-  <%= link_to "Songs", songs_path %>
-  |
-  <%= link_to "Playlists", playlists_path %>
-  |
+
+  <%= render_navigation %>
   <%= render 'devise/menu/auth_nav' %>
 </div>
 
