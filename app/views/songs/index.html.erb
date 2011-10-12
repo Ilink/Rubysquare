@@ -4,46 +4,39 @@
   <%= text_field_tag(:q) %>
   <%= submit_tag("Search") %>
 <% end %>
-
+<%= paginate @songs %>
 <table>
   <tr>
     <th>Title</th>
     <th>Artist</th>
     <th>Album</th>
     <th>Location</th>
-    <th></th>
+    <th>Actions</th>
     <th></th>
     <th></th>
     <th></th>
   </tr>
-
-<%= form_for @songs, :url => "songs/add_to_playlist", :method => "post" do |f| %>
-
-    <%= f.label('add_to_playlist', 'Add songs to playlist: ') %>
+  
+  <%= form_tag(songs_add_to_playlist_path, :method => "post") do %>
+    <%= label_tag('add_to_playlist', 'Add songs to playlist: ') %>
     <%= collection_select('playlist', 'id', @playlists, :id, :title) %>
-    <%= f.submit("Add Songs") %>
+    <%= submit_tag("Add to playlist") %>
     ||||||||||
     <%= link_to 'New Playlist', new_playlist_path %>
-
-    <% @songs.each do |song| %>
-      <tr>
-        <td><%= song.title %></td>
-        <td><%= song.artist %></td>
-        <td><%= song.album %></td>
-        <td><%= song.location %></td>
-        <td><%= link_to 'Show', song %></td>
-        <td><%= link_to 'Edit', edit_song_path(song) %></td>
-        <td><%= link_to 'Destroy', song, confirm: 'Are you sure?', method: :delete %></td>
-
-        <td>
-            <%= f.label(song.id, "Add to playlist") %>
+      <% @songs.each do |song| %>
+        <tr>
+            <td><%= song.title %></td>
+            <td><%= song.artist %></td>
+            <td><%= song.album %></td>
+            <td><%= song.location %></td>
+            <td><%= link_to 'Show', song %></td>
+            <td><%= link_to 'Edit', edit_song_path(song) %></td>
+            <td><%= link_to 'Destroy', song, confirm: 'Are you sure?', method: :delete %></td>
+          <td>
+            <%= label_tag(song.id, "Add to playlist") %>
             <%= check_box_tag "song_ids[]", song.id, false, :id => "song_#{song.id}" %>
-        </td>
-      </tr>
-    <% end %>
-    </table>
-
-<% end %>
-
-<br />
-
+          </td>
+        </tr>
+      <% end %>
+  <% end %>
+</table>

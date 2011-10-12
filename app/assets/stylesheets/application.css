@@ -11,3 +11,11 @@
     display:inline;
     margin:0px 5px 0px 5px;
 }
+
+tr{
+    text-align: left;
+}
+
+td{
+    padding-right:15px;
+}

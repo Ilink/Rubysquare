@@ -12,6 +12,7 @@ gem 'devise', '1.4.7'
 gem 'meta_search'
 gem "nokogiri"
 gem "simple-navigation"
+gem "kaminari"
 
 # Gems used only for assets and not required
 # in production environments by default.

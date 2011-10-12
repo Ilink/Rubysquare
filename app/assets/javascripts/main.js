@@ -110,10 +110,10 @@ name.history = function(){
      */
     return{
         undo:function(){
-            
+
         },
         redo:function(){
-            
+
         },
         add_command:function(){
             //set iterator to the end of the history array

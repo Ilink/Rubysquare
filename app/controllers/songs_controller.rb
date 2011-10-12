@@ -3,7 +3,9 @@ class SongsController < ApplicationController
   # GET /songs
   # GET /songs.json
   def index
-    @songs = Song.all
+    @songs = Song.page(params[:page]).per(50)
+
+    #@songs_for_form = Song.
     @playlists = Playlist.find_all_by_user_id(current_user.id)
     respond_to do |format|
       format.html # index.html.erb
@@ -165,24 +167,19 @@ class SongsController < ApplicationController
 
   #POST /songs/flush
   def flush
-    Song.delete_all
-    @database_input_errors = []
-    @itunes_song_data = itunes_parser('app/assets/itunes_xml.xml')
-
     #for the song location i need to parse out the beginning of the directory string to make it reflect an accessible location
-
-    #"title" => song['Name'],
-    @itunes_song_data.each do |index, song|
-      new_song = Song.create( "artist" => song['Artist'], "album" => song['Album'],
-                          "genre" => song['Genre'], "location" => 'temp', "file_type" => song['Kind'],
-                          "bitrate" => song['Bitrate'], "year" => song['Year'], "track_count" => song["Track Count"],
-                          "size" => song["Size"], "length" => song["Total Time"], "track_number" => song["Track Number"])
-
-      new_song.errors.each do |attr,msg|
-        @database_input_errors.push("Error updating song ##{index}, title: #{song['Name']} because: #{attr} - #{msg}")
+    @itunes_song_data = itunes_parser('app/assets/itunes_xml.xml')
+    Song.transaction do
+      Song.delete_all
+      @itunes_song_data.each do |index, song|
+        new_song = Song.new("title" => song['Name'], "artist" => song['Artist'], "album" => song['Album'],
+                            "genre" => song['Genre'], "location" => 'temp', "file_type" => song['Kind'],
+                            "bitrate" => song['Bitrate'], "year" => song['Year'], "track_count" => song["Track Count"],
+                            "size" => song["Size"], "length" => song["Total Time"], "track_number" => song["Track Number"])
+        new_song.save!
       end
-      
     end
+
 
     respond_to do |format|
       if true #change me
