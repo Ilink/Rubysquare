@@ -36,10 +36,46 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html.erb" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="index.html.erb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/songs/index.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="22" selection-start="201" selection-end="201" vertical-scroll-proportion="0.09211873">
+            <state line="6" column="22" selection-start="201" selection-end="201" vertical-scroll-proportion="-3.75">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="song.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/models/song.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="2" column="36" selection-start="69" selection-end="69" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="user.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/models/user.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="playlist.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/models/playlist.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="4" column="37" selection-start="128" selection-end="128" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main.js" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/assets/javascripts/main.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="106" column="21" selection-start="2328" selection-end="2328" vertical-scroll-proportion="0.49050948">
               <folding />
             </state>
           </provider>
@@ -49,33 +85,6 @@
         <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/application.css">
           <provider selected="true" editor-type-id="text-editor">
             <state line="19" column="19" selection-start="496" selection-end="496" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="navigation.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config/navigation.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="25" column="23" selection-start="1294" selection-end="1294" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Gemfile" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Gemfile">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="13" selection-start="291" selection-end="291" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="flush.erb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/songs/flush.erb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="17" selection-start="169" selection-end="169" vertical-scroll-proportion="-5.625">
               <folding />
             </state>
           </provider>
@@ -122,7 +131,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/db/seeds.rb" />
         <option value="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
         <option value="$PROJECT_DIR$/app/views/devise/menu/_auth_nav.erb" />
         <option value="$PROJECT_DIR$/config/environment.rb" />
@@ -136,8 +144,9 @@
         <option value="$PROJECT_DIR$/Gemfile" />
         <option value="$PROJECT_DIR$/app/controllers/songs_controller.rb" />
         <option value="$PROJECT_DIR$/app/assets/stylesheets/application.css" />
-        <option value="$PROJECT_DIR$/app/assets/javascripts/main.js" />
         <option value="$PROJECT_DIR$/app/views/songs/index.html.erb" />
+        <option value="$PROJECT_DIR$/app/models/playlist.rb" />
+        <option value="$PROJECT_DIR$/app/assets/javascripts/main.js" />
       </list>
     </option>
   </component>
@@ -794,20 +803,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/test/functional/search_controller_test.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="0" selection-start="293" selection-end="293" vertical-scroll-proportion="0.26973027">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/environment.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/devise/menu/_auth_nav.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="6" selection-start="6" selection-end="21" vertical-scroll-proportion="0.0">
@@ -836,23 +831,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/song.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="36" selection-start="69" selection-end="69" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/navigation.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="25" column="23" selection-start="1294" selection-end="1294" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/application.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="19" selection-start="496" selection-end="496" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -885,13 +866,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="17" selection-start="472" selection-end="472" vertical-scroll-proportion="-0.9330669">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/songs_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="4" column="11" selection-start="113" selection-end="113" vertical-scroll-proportion="0.0">
@@ -901,7 +875,42 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/songs/index.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="22" selection-start="201" selection-end="201" vertical-scroll-proportion="0.09211873">
+        <state line="6" column="22" selection-start="201" selection-end="201" vertical-scroll-proportion="-3.75">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/song.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="36" selection-start="69" selection-end="69" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/user.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/application.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="19" selection-start="496" selection-end="496" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/playlist.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="37" selection-start="128" selection-end="128" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="106" column="21" selection-start="2328" selection-end="2328" vertical-scroll-proportion="0.49050948">
           <folding />
         </state>
       </provider>

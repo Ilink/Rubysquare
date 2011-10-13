@@ -105,15 +105,22 @@ history[1].get_arg();
 name.history = function(){
     var command_history = [];
     var iterator = 0;
-    /*
-        i need an iterator
-     */
     return{
         undo:function(){
-
+            if (iterator > 0){
+                command_history[iterator].unexecute();
+                iterator--;
+            }
+            else
+                return false
         },
         redo:function(){
-
+            if (iterator < command_history.length){
+                iterator++;
+                command_history[iterator].execute();
+            }
+            else
+                return false
         },
         add_command:function(){
             //set iterator to the end of the history array
