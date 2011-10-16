@@ -11,14 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111011202716) do
+ActiveRecord::Schema.define(:version => 20111016212439) do
 
   create_table "playlists", :force => true do |t|
-    t.string   "title",       :null => false
+    t.string   "title",                          :null => false
     t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "user_id"
+    t.boolean  "active",      :default => false
   end
 
   create_table "playlists_songs", :id => false, :force => true do |t|

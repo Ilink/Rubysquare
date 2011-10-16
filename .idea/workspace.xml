@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d13dcd32-c0ca-41c1-b3d0-8e2867947669" name="Default" comment="" />
+    <list default="true" id="d13dcd32-c0ca-41c1-b3d0-8e2867947669" name="Default" comment="">
+      <change type="DELETED" beforePath="C:\Users\Ian\Documents\htdocs\Rubysquare\.idea\.name" afterPath="" />
+      <change type="MOVED" beforePath="C:\Users\Ian\Documents\htdocs\Rubysquare\Gemfile" afterPath="$PROJECT_DIR$/gemfile" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/rubysquare.iml" afterPath="$PROJECT_DIR$/.idea/rubysquare.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile.lock" afterPath="$PROJECT_DIR$/Gemfile.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/schema.rb" afterPath="$PROJECT_DIR$/db/schema.rb" />
+    </list>
     <ignored path="rubysquare.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -27,35 +37,17 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="songs_controller.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/controllers/songs_controller.rb">
+      <file leaf-file-name="20111016212439_add_active_field_to_playlist.rb" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/db/migrate/20111016212439_add_active_field_to_playlist.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="4" column="11" selection-start="113" selection-end="113" vertical-scroll-proportion="0.0">
+            <state line="2" column="54" selection-start="124" selection-end="124" vertical-scroll-proportion="0.03846154">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html.erb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/songs/index.html.erb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="22" selection-start="201" selection-end="201" vertical-scroll-proportion="-3.75">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="song.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models/song.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="36" selection-start="69" selection-end="69" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="user.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models/user.rb">
+      <file leaf-file-name="20111011202716_add_songs_columns.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/db/migrate/20111011202716_add_songs_columns.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
               <folding />
@@ -63,55 +55,73 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="playlist.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models/playlist.rb">
+      <file leaf-file-name="20111007225730_create_users_table_again.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/db/migrate/20111007225730_create_users_table_again.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="4" column="37" selection-start="128" selection-end="128" vertical-scroll-proportion="0.0">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.js" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/assets/javascripts/main.js">
+      <file leaf-file-name="20111007225153_remove_old_users_table.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/db/migrate/20111007225153_remove_old_users_table.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="106" column="21" selection-start="2328" selection-end="2328" vertical-scroll-proportion="0.49050948">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="application.css" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/application.css">
+      <file leaf-file-name="20111007004116_create_playlist_foreign_key.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/db/migrate/20111007004116_create_playlist_foreign_key.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="19" selection-start="496" selection-end="496" vertical-scroll-proportion="0.0">
+            <state line="5" column="0" selection-start="125" selection-end="125" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="dashboard.erb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/songs/dashboard.erb">
+      <file leaf-file-name="20111006040000_create_playlist_songs_join.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/db/migrate/20111006040000_create_playlist_songs_join.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="5" selection-start="125" selection-end="126" vertical-scroll-proportion="0.0">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html.erb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/playlists/index.html.erb">
+      <file leaf-file-name="20111006030610_create_playlists.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/db/migrate/20111006030610_create_playlists.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="64" selection-start="300" selection-end="300" vertical-scroll-proportion="-8.75">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="playlists_controller.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/controllers/playlists_controller.rb">
+      <file leaf-file-name="20111005024536_create_songs.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/db/migrate/20111005024536_create_songs.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="64" column="16" selection-start="1595" selection-end="1595" vertical-scroll-proportion="0.0">
+            <state line="12" column="0" selection-start="218" selection-end="218" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="20111007230517_add_devise_to_users.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/db/migrate/20111007230517_add_devise_to_users.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="20110926235544_create_users.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/db/migrate/20110926235544_create_users.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -131,8 +141,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/devise/menu/_auth_nav.erb" />
         <option value="$PROJECT_DIR$/config/environment.rb" />
         <option value="$PROJECT_DIR$/test/fixtures/users.yml" />
         <option value="$PROJECT_DIR$/test/functional/songs_controller_test.rb" />
@@ -147,6 +155,8 @@
         <option value="$PROJECT_DIR$/app/views/songs/index.html.erb" />
         <option value="$PROJECT_DIR$/app/models/playlist.rb" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/main.js" />
+        <option value="$PROJECT_DIR$/app/models/user.rb" />
+        <option value="$PROJECT_DIR$/db/migrate/20111016212439_add_active_field_to_playlist.rb" />
       </list>
     </option>
   </component>
@@ -192,20 +202,17 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="RailsProjectView" />
-      <pane id="Favorites" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="rubysquare" />
+              <option name="myItemId" value="Rubysquare" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="rubysquare" />
+              <option name="myItemId" value="Rubysquare" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -215,7 +222,7 @@
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="rubysquare" />
+              <option name="myItemId" value="Rubysquare" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -229,7 +236,7 @@
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="rubysquare" />
+              <option name="myItemId" value="Rubysquare" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -237,173 +244,28 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="config" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="rubysquare" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Rubysquare" />
+              <option name="myItemId" value="db" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="rubysquare" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Rubysquare" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="rubysquare" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Rubysquare" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="songs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="rubysquare" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Rubysquare" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="models" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="rubysquare" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Rubysquare" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="controllers" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="rubysquare" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Rubysquare" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="assets" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="rubysquare" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Rubysquare" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="assets" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="stylesheets" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="rubysquare" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Rubysquare" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="assets" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="javascripts" />
+              <option name="myItemId" value="migrate" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="RailsProjectView" />
+      <pane id="Scope" />
+      <pane id="Favorites" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="recentsLimit" value="5" />
     <property name="options.lastSelected" value="org.jetbrains.plugins.ruby.settings.RubyIdeSdkConfigurable" />
-    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="recentsLimit" value="5" />
     <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -525,13 +387,6 @@
       <RUBY_RUN_CONFIG NAME="SCRIPT_ARGS" VALUE="" />
       <method />
     </configuration>
-    <configuration default="true" type="JavascriptDebugSession" factoryName="Remote">
-      <JSRemoteDebuggerConfigurationSettings>
-        <option name="engineId" value="embedded" />
-        <option name="fileUrl" />
-      </JSRemoteDebuggerConfigurationSettings>
-      <method />
-    </configuration>
     <configuration default="true" type="CucumberRunConfigurationType" factoryName="Cucumber">
       <predefined_log_file id="RUBY_CUCUMBER" enabled="true" />
       <module name="" />
@@ -563,6 +418,13 @@
       <CUCUMBER_RUN_CONFIG_SETTINGS_ID NAME="CUCUMBER_RUNNER_PATH" VALUE="" />
       <CUCUMBER_RUN_CONFIG_SETTINGS_ID NAME="USE_CUSTOM_RUNNER" VALUE="false" />
       <CUCUMBER_RUN_CONFIG_SETTINGS_ID NAME="SETTINGS_VERSION" VALUE="2" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugSession" factoryName="Remote">
+      <JSRemoteDebuggerConfigurationSettings>
+        <option name="engineId" value="embedded" />
+        <option name="fileUrl" />
+      </JSRemoteDebuggerConfigurationSettings>
       <method />
     </configuration>
     <configuration default="true" type="TestUnitRunConfigurationType" factoryName="Test::Unit/Shoulda">
@@ -706,7 +568,7 @@
     <option name="IGNORE_SPACES_IN_ANNOTATE" value="true" />
     <option name="SHOW_MERGE_SOURCES_IN_ANNOTATE" value="true" />
     <option name="FORCE_UPDATE" value="false" />
-    <configuration useDefault="true">$USER_HOME$/.subversion_IDEA</configuration>
+    <configuration useDefault="true">C:\Users\Ian\AppData\Roaming\Subversion</configuration>
     <myIsUseDefaultProxy>false</myIsUseDefaultProxy>
   </component>
   <component name="TaskManager">
@@ -738,23 +600,23 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="22" width="1920" height="1097" extended-state="0" />
+    <frame x="657" y="0" width="1263" height="1040" extended-state="1" />
     <editor active="true" />
     <layout>
-      <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Data Sources" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32979593" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32930845" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.14698023" sideWeight="0.3265306" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.14698023" sideWeight="0.3313897" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14698023" sideWeight="0.66083574" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26040816" sideWeight="0.6783754" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32167152" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32162458" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32930845" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32901832" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3290461" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32930845" sideWeight="0.98375636" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32969216" sideWeight="0.0" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -803,114 +665,104 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/views/devise/menu/_auth_nav.erb">
+    <entry file="file://$PROJECT_DIR$/app/models/playlist.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="6" selection-start="6" selection-end="21" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="4" column="37" selection-start="128" selection-end="128" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/routes.rb">
+    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/application.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="0" selection-start="612" selection-end="612" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db/seeds.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="0" selection-start="343" selection-end="358" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Gemfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="13" selection-start="291" selection-end="291" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/navigation.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="23" selection-start="1294" selection-end="1294" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/songs/flush.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="17" selection-start="169" selection-end="169" vertical-scroll-proportion="-5.625">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/playlists_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="64" column="16" selection-start="1595" selection-end="1595" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="19" column="19" selection-start="496" selection-end="496" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/songs/dashboard.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="5" selection-start="125" selection-end="126" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="8" column="5" selection-start="125" selection-end="126" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/playlists/index.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="64" selection-start="300" selection-end="300" vertical-scroll-proportion="-8.75">
-          <folding />
-        </state>
+        <state line="14" column="64" selection-start="300" selection-end="300" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/songs_controller.rb">
+    <entry file="file://$PROJECT_DIR$/app/controllers/playlists_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="11" selection-start="113" selection-end="113" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/songs/index.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="22" selection-start="201" selection-end="201" vertical-scroll-proportion="-3.75">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/song.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="36" selection-start="69" selection-end="69" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="64" column="16" selection-start="1595" selection-end="1595" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/models/user.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="21" selection-start="631" selection-end="631" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/migrate/20110926235544_create_users.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/application.css">
+    <entry file="file://$PROJECT_DIR$/db/migrate/20111007230517_add_devise_to_users.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="19" selection-start="496" selection-end="496" vertical-scroll-proportion="0.0">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/playlist.rb">
+    <entry file="file://$PROJECT_DIR$/db/migrate/20111007225730_create_users_table_again.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="37" selection-start="128" selection-end="128" vertical-scroll-proportion="0.0">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/main.js">
+    <entry file="file://$PROJECT_DIR$/db/migrate/20111007225153_remove_old_users_table.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="106" column="21" selection-start="2328" selection-end="2328" vertical-scroll-proportion="0.49050948">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/migrate/20111007004116_create_playlist_foreign_key.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="0" selection-start="125" selection-end="125" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/migrate/20111006040000_create_playlist_songs_join.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/migrate/20111006030610_create_playlists.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/migrate/20111005024536_create_songs.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="0" selection-start="218" selection-end="218" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/migrate/20111011202716_add_songs_columns.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/migrate/20111016212439_add_active_field_to_playlist.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="54" selection-start="124" selection-end="124" vertical-scroll-proportion="0.03846154">
           <folding />
         </state>
       </provider>
