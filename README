@@ -1,5 +1,5 @@
 Hello!
 
-One day, when this is actually finished, it will be a cloud music player. I designed it for myself so I could listen to my music on any computer. This also avoids having to go through some other providers cloud service. 
+One day, when this is actually finished, it will be a cloud music player. I designed it to avoid having to be tied down to any specific cloud service.
 
-This project is a work-in-progress. Nothing really works at the moment and there isn't a whole lot of functionality. In an attempt to learn Rails, I am porting this app from PHP.
+Nothing is really working at the moment, but skeletal functionality shouldn't be too far away.
