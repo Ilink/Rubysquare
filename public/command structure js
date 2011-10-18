@@ -1,0 +1,34 @@
+var next_song_command;
+
+var next_song_straight_command = {
+	execute:function(){
+		music_player.play(playlist.next);
+	}
+}
+
+var next_song_shuffle_command = {
+	execute:function(){
+		music_player.play(playlist.random);
+	}
+}
+
+shuffle_observer = function(){
+	if (shuffle_button.clicked){
+		next_song_command = next_song_shuffle_command;
+	}
+}
+
+//or...we let the button decide when it is updated!
+
+shuffle_button.clicked = function(){
+	observer = shuffle_observer;
+	options['shuffle'] = 'true'
+	observer.update();
+}
+
+shuffle_observer.update = function(){
+	if(options['shuffle'])
+		next_song_command = next_song_shuffle_command
+	else
+		next_song_command = next_song_straight_command
+}

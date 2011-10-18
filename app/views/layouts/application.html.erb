@@ -3,13 +3,12 @@
 <head>
   <title>Rubysquare</title>
   <%= stylesheet_link_tag    "application" %>
-  <%= javascript_include_tag "application" %>
+  <%= javascript_include_tag "jquery", "bind_from_json", "setup","commands", "obs", "main" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
 <div id="menu">
-
   <%= render_navigation %>
   <%= render 'devise/menu/auth_nav' %>
 </div>

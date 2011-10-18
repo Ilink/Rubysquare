@@ -4,6 +4,12 @@
   <%= text_field_tag(:q) %>
   <%= submit_tag("Search") %>
 <% end %>
+<ul>
+  <li id="prev" style="cursor:pointer;">Previous</li>
+  <li id="next" style="cursor:pointer;">Next</li>
+</ul>
+<div id="shuffle" style="cursor:pointer;">Shuffle</div>
+
 <%= paginate @songs %>
 <table>
   <tr>

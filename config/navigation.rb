@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # Configures your navigation
-SimpleNavigation::Configuration.run do |navigation|
+
   # Specify a custom renderer if needed.
   # The default renderer is SimpleNavigation::Renderer::List which renders HTML lists.
   # The renderer can also be specified as option in the render_navigation call.
@@ -32,7 +32,17 @@ SimpleNavigation::Configuration.run do |navigation|
 
   # Define the primary navigation
 
+SimpleNavigation::Configuration.run do |navigation|
   navigation.items do |primary|
+    if user_signed_in?
+      primary.item :key_1, 'Songs', songs_path
+      primary.item :key_2, 'Playlists', playlists_path, do |sub_nav|
+        sub_nav.item :key_2_1, 'Add New', new_playlist_path
+      end
+
+      primary.item :key_3, 'Dashboard', songs_dashboard_path
+    end
+
     # Add an item to the primary navigation. The following params apply:
     # key - a symbol which uniquely defines your navigation item in the scope of the primary_navigation
     # name - will be displayed in the rendered navigation. This can also be a call to your I18n-framework.
@@ -50,14 +60,6 @@ SimpleNavigation::Configuration.run do |navigation|
     #                            when the item should be highlighted, you can set a regexp which is matched
     #                            against the current URI.  You may also use a proc, or the symbol <tt>:subpath</tt>.
     #
-    if user_signed_in?
-      primary.item :key_1, 'Songs', songs_path
-      primary.item :key_2, 'Playlists', playlists_path, do |sub_nav|
-        sub_nav.item :key_2_1, 'Add New', new_playlist_path
-      end
-
-      primary.item :key_3, 'Dashboard', songs_dashboard_path
-    end
 
     # Add an item which has a sub navigation (same params, but with block)
     #primary.item :key_2, 'name', url, options do |sub_nav|
@@ -80,5 +82,4 @@ SimpleNavigation::Configuration.run do |navigation|
     # primary.auto_highlight = false
 
   end
-
 end
