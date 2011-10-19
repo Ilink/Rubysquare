@@ -4,9 +4,10 @@ rubysquare.ui = {};
 rubysquare.commands = {};
 rubysquare.obs = {};
 rubysquare.helpers = {};
+rubysquare.history = {};
 
 //~Arrays / Storage~//
-rubysquare.command_history = [];
+rubysquare.history.command_history = [];
 
 //~UI Node Names~//
 rubysquare.ui.node_names = {
