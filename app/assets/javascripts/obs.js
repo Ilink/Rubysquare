@@ -55,23 +55,23 @@ shuffle example:
 
 
 
-/*
+/************************************
     ~Quack quack!~
     abstract class Observer {
         public:
             function update()
             function ummmmm
     }
-*/
+************************************/
 
-rubysquare.obs.shuffle_observer = (function(){
-    return{
-        update : function(shuffle_on){
-            if (shuffle_on){
-                rubysquare.commands.next_command = next_song_shuffle_command;
-            }
-            else
-                rubysquare.commands.next_command = next_song_straight_command;
-        }
-    }
-})();
+//rubysquare.obs.shuffle_observer = (function(){
+//    return{
+//        update : function ( shuffle_on ){
+//            if ( shuffle_on ){
+//                rubysquare.commands.next_command = next_song_shuffle_command;
+//            }
+//            else
+//                rubysquare.commands.next_command = next_song_straight_command;
+//        }
+//    }
+//})();
