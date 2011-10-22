@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d13dcd32-c0ca-41c1-b3d0-8e2867947669" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/in.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/rubysquare.iml" afterPath="$PROJECT_DIR$/.idea/rubysquare.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile.lock" afterPath="$PROJECT_DIR$/Gemfile.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile" afterPath="$PROJECT_DIR$/Gemfile" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/commands.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/commands.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/main.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/main.js" />
     </list>
     <ignored path="rubysquare.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -75,7 +68,7 @@
       <file leaf-file-name="commands.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/assets/javascripts/commands.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="41" column="71" selection-start="1101" selection-end="1101" vertical-scroll-proportion="-0.26444444">
+            <state line="96" column="38" selection-start="3060" selection-end="3060" vertical-scroll-proportion="0.8488889">
               <folding />
             </state>
           </provider>
@@ -850,7 +843,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/javascripts/commands.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="71" selection-start="1101" selection-end="1101" vertical-scroll-proportion="-0.26444444">
+        <state line="96" column="38" selection-start="3060" selection-end="3060" vertical-scroll-proportion="0.8488889">
           <folding />
         </state>
       </provider>
