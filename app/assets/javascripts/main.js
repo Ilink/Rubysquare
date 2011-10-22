@@ -72,6 +72,6 @@ $(document).ready(function(){
     child.test_method();
     child.execute();
 
-    rubysquare.settings['shuffle'] = false;
+//    rubysquare.settings['shuffle'] = false;
     
 });

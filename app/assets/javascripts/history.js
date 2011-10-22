@@ -1,4 +1,6 @@
+//TODO where does a typical call to push onto history go? (cannot go in a command object, obviously)
 rubysquare.history = (function(){
+    
     return{
         add : function(command){
             if(!rubysquare.history.command_history.length >= 10)
@@ -11,5 +13,6 @@ rubysquare.history = (function(){
             //other stuff needs to happen to ensure you can redo/undo, this is not just a wrapper for array.pop
             //TODO make the command move the iterator rather than actually removing an element...or something
         }
+
     }
 })();

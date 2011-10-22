@@ -43,6 +43,7 @@ rubysquare.commands.next_song_command_factory = function( shuffle_setting ){
         var _shuffle_setting;
         if (typeof _shuffle_setting != "boolean" && typeof _shuffle_setting != "undefined") throw "expected boolean value in argument, instead got " + typeof _shuffle_setting;
 
+        //TODO abstract me for easier re-use! Might need a more complex version for more complex, undo-able commands
         function test_arg(){
             if (typeof shuffle_setting == 'undefined'){
                 return _shuffle_setting = rubysquare.settings['shuffle'];
@@ -61,6 +62,7 @@ rubysquare.commands.next_song_command_factory = function( shuffle_setting ){
                 rubysquare.commands.next_song_straight_command.execute();
             }
         }
+        
         this.unexecute = function(){
             _shuffle_setting = test_arg();
             if (_shuffle_setting){
