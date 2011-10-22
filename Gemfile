@@ -13,7 +13,7 @@ gem 'meta_search'
 gem "nokogiri"
 gem "simple-navigation"
 gem "kaminari"
-gem "json"
+#gem "json"
 #gem 'therubyracer', require: "v8"
 
 # Gems used only for assets and not required
