@@ -13,7 +13,7 @@ rubysquare.history = (function(){
             if( end >= (max_size - 1) ) {    //assuming the client wants max_size in terms of '# of elements' not 'size of base-0 array'
                 command_history[start] = undefined;     //we need to let the unused data (the oldest commands) get garbage collected
                 start++, end++; //move the array onwards so we can ignore + safely delete the oldest command in history
-                iterator = end; //move the iterator to the front
+                iterator = end; //move the iterator to the front when a new command is added
                 command_history.push(command);
                 console.log('trying to remove earliest command');
 //                console.log("@ method add() ::: arr val: " + command_history[iterator] + ", iterator val: " + iterator);
@@ -54,19 +54,3 @@ rubysquare.history = (function(){
         }
     }
 })();
-
-
-//To keep track of the array, it seems that a linked list would be nice...able to remove the end as the list exceeds 10
-//pointers to keep track of the end of the list as well as the head (which would correspond to present)
-//head = present, tail = oldest
-//upon removing an object from the tail, delete it!
-
-rubysquare.linkedlist = function(){
-    this.push = function(){
-
-    }
-
-    this.pop = function(){
-        
-    }
-}

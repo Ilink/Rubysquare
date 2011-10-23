@@ -72,14 +72,7 @@ $(document).ready(function(){
     var child = rubysquare.commands.test_command_child();
     child.test_method();
     child.execute();
-
-//    rubysquare.settings['shuffle'] = false;
     
-//    rubysquare.history.add('test');
-//    rubysquare.history.add('test2');
-//    rubysquare.history.add('test3');
-//    rubysquare.history.add('test4');
-
     console.log("\n\n\n");
 
     for(var i=0; i < 10; i++){
@@ -116,7 +109,5 @@ $(document).ready(function(){
     }
 
     rubysquare.history.logger();
-    
-//    rubysquare.history.undo();
-//    rubysquare.history.redo();
+
 });

@@ -16,9 +16,12 @@ rubysquare.ui.node_names = {
     'previous_button' : '#prev'
 }
 
-//~JSON for Settings~//
+//~JSON~//
 rubysquare.settings = {
     'debug' : true,
     'shuffle' : true,
     'repeat' : false
 }
+
+rubysquare.now_playing = {};
+

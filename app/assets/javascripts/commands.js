@@ -7,8 +7,19 @@
             function unexecute()
     }
 
+    //this is really more of a Strategy
     abstract class CommandFactory ( settings ) {
         var _settings = settings;
+        //allow the constructor to optionally specify the settings the factory logic depends on
+        public:
+            function execute(){
+                if ( settings ) commandA.execute();
+                else commandB.execute();
+            }
+            function unexecute(){
+                if ( settings ) commandA.unexecute();
+                else commandB.unexecute();
+            }
     }
 
 ****************************************/
@@ -41,9 +52,10 @@ rubysquare.commands.next_song_shuffle_command = (function(){
 rubysquare.commands.next_song_command_factory = function( shuffle_setting ){
     if (this instanceof rubysquare.commands.next_song_command_factory){
         var _shuffle_setting;
-        if (typeof _shuffle_setting != "boolean" && typeof _shuffle_setting != "undefined") throw "expected boolean value in argument, instead got " + typeof _shuffle_setting;
+        if (typeof shuffle_setting != "boolean" && typeof shuffle_setting != "undefined") throw "expected boolean value in argument, instead got " + typeof _shuffle_setting;
 
         //TODO abstract me for easier re-use! Might need a more complex version for more complex, undo-able commands
+        //this function allows for fixed or variable use of setting
         function test_arg(){
             if (typeof shuffle_setting == 'undefined'){
                 return _shuffle_setting = rubysquare.settings['shuffle'];
