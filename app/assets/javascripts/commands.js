@@ -80,15 +80,21 @@ rubysquare.commands.next_song_command_factory = function( shuffle_setting ){
 
 rubysquare.commands.test_command = function(arg){
     if (this instanceof rubysquare.commands.test_command){
-        var u = Math.random();
+        this.u = Math.random();
+
         this.execute = function(){
-            console.log(u);
+            console.log("executed:" + this.u);
         }
-        rubysquare.log('intialized object');
-        rubysquare.commands.test_command.prototype.help = 'help';
+
+        this.unexecute = function(){
+            console.log("unexecuted:" + this.u);
+        }
+
+//        rubysquare.log('intialized object');
+//        rubysquare.commands.test_command.prototype.help = 'help';
     }
     else{
-        rubysquare.log('made a new object');
+//        rubysquare.log('made a new object');
         return new rubysquare.commands.test_command(arg);
     }
 }

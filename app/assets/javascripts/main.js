@@ -80,14 +80,43 @@ $(document).ready(function(){
 //    rubysquare.history.add('test3');
 //    rubysquare.history.add('test4');
 
+    console.log("\n\n\n");
 
     for(var i=0; i < 10; i++){
-        var temp = rubysquare.commands.next_song_command_factory;
+        console.log(i);
+        var temp = rubysquare.commands.test_command();
+        temp.execute();
         rubysquare.history.add(temp);
     }
 
-//    rubysquare.history.logger();
+    console.log("\n\n\n");
 
+    rubysquare.history.logger();
+
+    for(var i=0; i < 10; i++){
+        rubysquare.history.undo();
+    }
+
+    rubysquare.history.logger();
+
+    for(var i=0; i < 10; i++){
+        rubysquare.history.redo();
+    }
+
+    rubysquare.history.logger();
+
+    for(var i=0; i < 10; i++){
+        rubysquare.history.undo();
+    }
+
+    rubysquare.history.logger();
+
+    for(var i=0; i < 10; i++){
+        rubysquare.history.redo();
+    }
+
+    rubysquare.history.logger();
+    
 //    rubysquare.history.undo();
 //    rubysquare.history.redo();
 });

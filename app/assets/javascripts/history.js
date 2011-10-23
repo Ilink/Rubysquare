@@ -10,8 +10,8 @@ rubysquare.history = (function(){
     return{
         //TODO if this method isnt fast enough, I can try a linkedlist or an array shift
         add : function( command ){
-            if( end >= (max_size - 1) ) {    //assuming the client wants max_size in terms of # of elements'
-                command_history[start] = undefined;
+            if( end >= (max_size - 1) ) {    //assuming the client wants max_size in terms of '# of elements' not 'size of base-0 array'
+                command_history[start] = undefined;     //we need to let the unused data (the oldest commands) get garbage collected
                 start++, end++; //move the array onwards so we can ignore + safely delete the oldest command in history
                 iterator = end; //move the iterator to the front
                 command_history.push(command);
@@ -27,25 +27,30 @@ rubysquare.history = (function(){
             }
         },
         undo : function(){
-            if (iterator == start) return null
+            if (iterator == (start-1)) return null
             else {
-//                command_history[iterator].unexecute();
-                iterator--;
-                console.log("@ method undo() ::: arr val: " + command_history[iterator] + ", iterator val: " + iterator);
+                if (iterator == end + 1) iterator = end;
+                if (iterator >= start) {
+                    command_history[iterator].unexecute();
+                    iterator--;
+                    console.log("iter:" + iterator);
+                }
             }
         },
         redo : function(){
-            if (iterator == end) return null
+            if (iterator == (end+1)) return null
             else {
-                iterator++;
-                console.log("@ method redo() ::: arr val: " + command_history[iterator] + ", iterator val: " + iterator);
-//                command_history[iterator].execute();
+                if (iterator <= end) {
+                    iterator++;
+                    console.log("iter: " + iterator);
+                }
+                if (iterator <= end) {
+                    command_history[iterator].execute();
+                }
             }
         },
         logger : function(){
-            console.log(command_history);
-            console.log(start)
-            console.log(end)
+            console.log("start: " + start + " end: " + end);
         }
     }
 })();
