@@ -1,18 +1,67 @@
 //TODO where does a typical call to push onto history go? (cannot go in a command object, obviously)
-rubysquare.history = (function(){
-    
-    return{
-        add : function(command){
-            if(!rubysquare.history.command_history.length >= 10)
-                rubysquare.history.command_history.push(command);
-            //other stuff needs to happen, this is not just a wrapper for array.push
-            //TODO make the command reset the iterator to the front of the history array (stack)
-        },
-        remove : function(){
-            rubysquare.history.command_history.pop;
-            //other stuff needs to happen to ensure you can redo/undo, this is not just a wrapper for array.pop
-            //TODO make the command move the iterator rather than actually removing an element...or something
-        }
 
+//~Singleton!~//
+rubysquare.history = (function(){
+    var iterator = -1;   //marks the "present" command, the last command issued
+    var end = -1;
+    var start = -1;
+    var max_size = 3;
+    var command_history = [];   //array to store all the commands
+    return{
+        //TODO if this method isnt fast enough, I can try a linkedlist or an array shift
+        add : function( command ){
+            if( end >= (max_size - 1) ) {    //assuming the client wants max_size in terms of # of elements'
+                command_history[start] = undefined;
+                start++, end++; //move the array onwards so we can ignore + safely delete the oldest command in history
+                iterator = end; //move the iterator to the front
+                command_history.push(command);
+                console.log('trying to remove earliest command');
+//                console.log("@ method add() ::: arr val: " + command_history[iterator] + ", iterator val: " + iterator);
+            }
+            else {
+                end++;
+                if (start == -1) start = 0;
+                iterator = end;
+                command_history.push(command);
+//                console.log("@ method add() ::: arr val: " + command_history[iterator] + ", iterator val: " + iterator);
+            }
+        },
+        undo : function(){
+            if (iterator == start) return null
+            else {
+//                command_history[iterator].unexecute();
+                iterator--;
+                console.log("@ method undo() ::: arr val: " + command_history[iterator] + ", iterator val: " + iterator);
+            }
+        },
+        redo : function(){
+            if (iterator == end) return null
+            else {
+                iterator++;
+                console.log("@ method redo() ::: arr val: " + command_history[iterator] + ", iterator val: " + iterator);
+//                command_history[iterator].execute();
+            }
+        },
+        logger : function(){
+            console.log(command_history);
+            console.log(start)
+            console.log(end)
+        }
     }
 })();
+
+
+//To keep track of the array, it seems that a linked list would be nice...able to remove the end as the list exceeds 10
+//pointers to keep track of the end of the list as well as the head (which would correspond to present)
+//head = present, tail = oldest
+//upon removing an object from the tail, delete it!
+
+rubysquare.linkedlist = function(){
+    this.push = function(){
+
+    }
+
+    this.pop = function(){
+        
+    }
+}

@@ -17,6 +17,7 @@ rubysquare.ui.bindings = [
             rubysquare.commands.next_song_command.execute();
             rubysquare.commands.next_song_command.unexecute();
             rubysquare.history.command_history.push(temp);
+//            temp = undefined;   //remove reference so it can be garbage collected
         }
     }
 //    ,
@@ -74,4 +75,19 @@ $(document).ready(function(){
 
 //    rubysquare.settings['shuffle'] = false;
     
+//    rubysquare.history.add('test');
+//    rubysquare.history.add('test2');
+//    rubysquare.history.add('test3');
+//    rubysquare.history.add('test4');
+
+
+    for(var i=0; i < 10; i++){
+        var temp = rubysquare.commands.next_song_command_factory;
+        rubysquare.history.add(temp);
+    }
+
+//    rubysquare.history.logger();
+
+//    rubysquare.history.undo();
+//    rubysquare.history.redo();
 });
