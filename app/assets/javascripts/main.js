@@ -54,7 +54,6 @@ $(document).ready(function(){
 
     $('#undo').click(function(){
        for(var i = 0; i < rubysquare.history.command_history.length; i++){
-
            rubysquare.history.command_history[i].unexecute();
        }
     });
@@ -129,9 +128,8 @@ $(document).ready(function(){
 			volume: 50,
 			autoPlay: false        	
 		});	//end create sound
-		
-		// soundManager.play(song);
-		// song.play();
+
+		//song.play();
 		
 	});	//end ready statement
 

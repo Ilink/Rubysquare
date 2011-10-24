@@ -96,6 +96,48 @@ rubysquare.commands.next_song_command_factory = function( shuffle_setting ){
     }
 }
 
+rubysquare.commands.stop_command = function(){
+	this.execute = function(){
+		soundManager.stopAll();
+	}
+	
+	this.unexecute = function(){
+		return null
+		rubysquare.log('The stop command cannot be unexecuted');
+	}
+}
+
+rubysquare.commands.pause_command = function(){
+	this.execute = function(){
+		soundManager.pauseAll();
+	}
+	
+	this.unexecute = function(){
+		return null
+		rubysquare.log('The pause command cannot be unexecuted');
+	}
+}
+
+//~ Play takes an argument and is therfore a subclass of Command ~//
+
+rubysquare.commands.play = function( song ){
+	this.execute = function(){
+		
+	}
+	
+	this.unexecute = function(){
+		return null
+		rubysquare.log('The play command cannot be unexecuted');
+	}
+}
+
+
+
+
+
+
+//~ Tests & Experiments ~//
+
 rubysquare.commands.test_command = function(arg){
     if (this instanceof rubysquare.commands.test_command){
         this.u = Math.random();
@@ -130,7 +172,6 @@ rubysquare.commands.test_command_child = function(arg){
 }
 rubysquare.commands.test_command_child.prototype = rubysquare.commands.test_command.prototype;  //set the prototype: access to methods, properties, etc
 
-//TODO: make me change only the setting
 rubysquare.commands.shuffle_command = (function(command_pointer){
     var command_pointer = command_pointer;
     return{
@@ -144,3 +185,6 @@ rubysquare.commands.shuffle_command = (function(command_pointer){
        }
    }
 })();
+
+
+
