@@ -116,4 +116,23 @@ $(document).ready(function(){
 
 
     $("#fling").click(flingable);
+
+
+
+	//~Soundmanager Testing~//
+
+	soundManager.onready(function() {
+	 	var song = soundManager.createSound({
+			id: 'song',
+			url: 'assets/test.mp3',
+			// optional sound parameters here, see Sound Properties for full list
+			volume: 50,
+			autoPlay: false        	
+		});	//end create sound
+		
+		// soundManager.play(song);
+		// song.play();
+		
+	});	//end ready statement
+
 });

@@ -43,6 +43,8 @@ module Rubysquare
     config.assets.enabled = true
     
     config.assets.paths << "#{Rails.root}/app/assets/flash"
+    
+    config.assets.paths << "#{Rails.root}/app/assets/songs"
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'

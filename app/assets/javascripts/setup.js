@@ -31,3 +31,4 @@ rubysquare.now_playing = {};
 
 //~Soundmanager setup~//
 soundManager.url = 'assets/soundmanager2.swf'
+soundManager.useHTML5Audio = true;
