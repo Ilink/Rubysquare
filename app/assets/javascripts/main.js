@@ -110,4 +110,6 @@ $(document).ready(function(){
 
     rubysquare.history.logger();
 
+
+    $("#fling").click(flingable);
 });
