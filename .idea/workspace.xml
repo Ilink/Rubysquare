@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="d13dcd32-c0ca-41c1-b3d0-8e2867947669" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/commands.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/commands.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/history.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/history.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/main.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/main.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/setup.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/setup.js" />
     </list>
     <ignored path="rubysquare.iws" />
@@ -44,7 +42,7 @@
       <file leaf-file-name="setup.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/assets/javascripts/setup.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="1" selection-start="468" selection-end="468" vertical-scroll-proportion="0.0">
+            <state line="27" column="109" selection-start="734" selection-end="734" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -53,7 +51,7 @@
       <file leaf-file-name="commands.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/assets/javascripts/commands.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="39" selection-start="219" selection-end="219" vertical-scroll-proportion="0.17">
+            <state line="64" column="0" selection-start="2273" selection-end="2273" vertical-scroll-proportion="0.5088889">
               <folding />
             </state>
           </provider>
@@ -62,7 +60,7 @@
       <file leaf-file-name="history.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/assets/javascripts/history.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="92" selection-start="977" selection-end="977" vertical-scroll-proportion="0.0">
+            <state line="38" column="10" selection-start="1922" selection-end="1922" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -130,10 +128,10 @@
         <option value="$PROJECT_DIR$/Gemfile" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/in.js" />
         <option value="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
-        <option value="$PROJECT_DIR$/app/assets/javascripts/commands.js" />
-        <option value="$PROJECT_DIR$/app/assets/javascripts/setup.js" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/main.js" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/history.js" />
+        <option value="$PROJECT_DIR$/app/assets/javascripts/setup.js" />
+        <option value="$PROJECT_DIR$/app/assets/javascripts/commands.js" />
       </list>
     </option>
   </component>
@@ -718,7 +716,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Data Sources" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32979593" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -835,18 +833,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/obs.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="51" selection-start="891" selection-end="891" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/setup.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="1" selection-start="468" selection-end="468" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/javascripts/in.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
@@ -859,16 +845,28 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/obs.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="51" selection-start="891" selection-end="891" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/javascripts/history.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="92" selection-start="977" selection-end="977" vertical-scroll-proportion="0.0">
+        <state line="38" column="10" selection-start="1922" selection-end="1922" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/setup.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="109" selection-start="734" selection-end="734" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/javascripts/commands.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="39" selection-start="219" selection-end="219" vertical-scroll-proportion="0.17">
+        <state line="64" column="0" selection-start="2273" selection-end="2273" vertical-scroll-proportion="0.5088889">
           <folding />
         </state>
       </provider>

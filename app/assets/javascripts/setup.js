@@ -23,5 +23,8 @@ rubysquare.settings = {
     'repeat' : false
 }
 
+// This could be gathered from another datasource, such as an AJAX call to the database.
+// Maybe this should be abstracted to allow for that possibility?
+// would require an interface to choose based on settings how to handle requests for the Now Playing playlist
 rubysquare.now_playing = {};
 
