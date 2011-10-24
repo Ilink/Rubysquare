@@ -9,7 +9,7 @@ var current_selection = {};
 var flingable = function(){
     var mouse_is_down;
     var mouse_movement_handler = function(){
-        console.log("mouse moved!")
+//        console.log("mouse moved!")
         
     }
 
