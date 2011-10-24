@@ -5,6 +5,7 @@ rubysquare.commands = {};
 rubysquare.obs = {};
 rubysquare.helpers = {};
 rubysquare.history = {};
+rubysquare.music = {};
 
 //~Arrays / Storage~//
 rubysquare.history.command_history = [];
@@ -28,3 +29,5 @@ rubysquare.settings = {
 // would require an interface to choose based on settings how to handle requests for the Now Playing playlist
 rubysquare.now_playing = {};
 
+//~Soundmanager setup~//
+soundManager.url = 'assets/soundmanager2.swf'

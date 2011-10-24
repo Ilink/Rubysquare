@@ -32,6 +32,10 @@ rubysquare.ui.bindings = [
 //        console.log('test');
 //    }
 
+
+
+
+
 $(document).ready(function(){
     //~Temp Binds~//
     $('#shuffle').click(function(){

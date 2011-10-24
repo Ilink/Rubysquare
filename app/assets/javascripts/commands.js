@@ -1,7 +1,7 @@
 /***************************************
     ~Quack quack!~
 
-    abstract class Command () {
+    public interface Command() {
         public:
             function execute()
             function unexecute()
@@ -20,6 +20,13 @@
                 else commandB.unexecute();
             }
     }
+	
+	//might refactor to use (something like) this, if things get messier / more complicated
+	//that way the factories (strategies) get separated 
+	interface Commands() {
+		public:
+			createCommand('name')	//reads from an enumerated list and then produces the appropriate strategy
+	}
 
 ****************************************/
 
