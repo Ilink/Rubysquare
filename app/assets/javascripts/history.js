@@ -1,6 +1,6 @@
 //TODO where does a typical call to push onto history go? (cannot go in a command object, obviously)
 
-//~Singleton!~//
+//~ Singleton, unless I decide to try different types of datastructures ~//
 rubysquare.history = (function(){
     var iterator = -1;   //marks the "present" command, the last command issued
     var end = -1;
