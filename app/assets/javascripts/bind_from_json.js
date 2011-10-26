@@ -40,7 +40,7 @@ jsUtil.bind_from_json = function(json){
 			throw "Error in supplied JSON at index "+ i + ". Expects 'Bind_to as String";
 		}
 		else {
-			if (json[i].func.length > 0) {
+			if (typeof json[i].func.length > 0) {
 				for (var j = 0; j < json[i].func.length; j++){
 					if (typeof json[i].func[j] !== 'function'){
 						throw "Error in supplied JSON at index " + i + ". Expects 'func' to be functions. The " + j + "th entry for 'functions' is not a function";

@@ -10,11 +10,13 @@ rubysquare.music = {};
 //~Arrays / Storage~//
 rubysquare.history.command_history = [];
 
+
 //~UI Node Names~//
-rubysquare.ui.node_names = {
+rubysquare.ui.nodes = {
     'shuffle_button' : '#shuffle',
     'next_button' : '#next',
-    'previous_button' : '#prev'
+    'previous_button' : '#prev',
+    'pause_button' : '#pause'
 }
 
 //~JSON~//

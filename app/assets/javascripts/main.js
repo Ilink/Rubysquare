@@ -1,23 +1,60 @@
 //~UI Commands~//
 
-rubysquare.commands.next_song_command = rubysquare.commands.next_song_command_factory();
+rubysquare.commands.next_song_command = rubysquare.commands.next_song_command_strategy();
 rubysquare.commands.previous_song_command = rubysquare.commands.previous_song_shuffle_command;
 
 rubysquare.commands.pointers = {
     'next_command' : rubysquare.commands.next_song_command
 }
 
+//Command Objects
+rubysquare.pause = rubysquare.commands.pause_command();
+//rubysquare.next = rubysquare.commands.
+rubysquare.pause_resume = rubysquare.commands.pause_resume_strategy();
+
 //~JSON for bindings~//
 rubysquare.ui.bindings = [
     {
-        'selector' : rubysquare.ui.node_names['next_button'],
+        'selector' : rubysquare.ui.nodes['next_button'],
         'bind_to' : 'click',
         'func' : function(){
-            var temp = rubysquare.commands.next_song_command_factory(rubysquare.settings['shuffle']);
+            var temp = rubysquare.commands.next_song_command_strategy(rubysquare.settings['shuffle']);
             rubysquare.commands.next_song_command.execute();
             rubysquare.commands.next_song_command.unexecute();
             rubysquare.history.command_history.push(temp);
 //            temp = undefined;   //remove reference so it can be garbage collected
+        }
+    },
+    {
+        'selector' : rubysquare.ui.nodes['pause_button'],
+        'bind_to' : 'click',
+        'func' : rubysquare.pause_resume.execute
+//        'func' : function(){
+//            if(test){
+//                soundManager.resumeAll();
+//                paused = true;
+//            }
+//            else{
+//                soundManager.pauseAll();
+//                paused = false;
+//            }
+//        }
+    },
+    {
+        'selector' : '#test',
+        'bind_to' : 'click',
+        'func' : function(){
+            rubysquare.song.stop();
+            console.log(rubysquare.song);
+            rubysquare.song.destruct();
+            rubysquare.song = soundManager.createSound({
+                id: 'song',
+                url: 'assets/test.mp3',
+                // optional sound parameters here, see Sound Properties for full list
+                volume: 50,
+                autoPlay: false
+            });	//end create sound
+            rubysquare.song.play();
         }
     }
 //    ,
@@ -116,21 +153,28 @@ $(document).ready(function(){
 
     $("#fling").click(flingable);
 
-
+    
 
 	//~Soundmanager Testing~//
 
 	soundManager.onready(function() {
-	 	var song = soundManager.createSound({
+	 	rubysquare.song = soundManager.createSound({
 			id: 'song',
 			url: 'assets/test.mp3',
 			// optional sound parameters here, see Sound Properties for full list
 			volume: 50,
-			autoPlay: false        	
+			autoPlay: false
 		});	//end create sound
 
-		//song.play();
-		
+        rubysquare.song.play();
+        soundManager.pauseAll();
+        if(soundManager.loaded){
+
+
+        }
+
+
+
 	});	//end ready statement
 
 });

@@ -4,9 +4,12 @@
     <list default="true" id="d13dcd32-c0ca-41c1-b3d0-8e2867947669" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/rubysquare.iml" afterPath="$PROJECT_DIR$/.idea/rubysquare.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/bind_from_json.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/bind_from_json.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/commands.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/commands.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/history.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/history.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/main.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/main.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/music.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/music.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/setup.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/setup.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/songs/index.html.erb" afterPath="$PROJECT_DIR$/app/views/songs/index.html.erb" />
     </list>
     <ignored path="rubysquare.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -33,10 +36,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="commands.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="commands.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/assets/javascripts/commands.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="60" column="69" selection-start="1960" selection-end="1960" vertical-scroll-proportion="0.5989933">
+            <state line="177" column="33" selection-start="6112" selection-end="6112" vertical-scroll-proportion="-24.8">
               <folding />
             </state>
           </provider>
@@ -45,7 +48,25 @@
       <file leaf-file-name="setup.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/assets/javascripts/setup.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="0" selection-start="403" selection-end="422" vertical-scroll-proportion="0.0">
+            <state line="11" column="0" selection-start="243" selection-end="243" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="bind_from_json.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/assets/javascripts/bind_from_json.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="41" column="14" selection-start="1224" selection-end="1224" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html.erb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/songs/index.html.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="10" column="14" selection-start="354" selection-end="354" vertical-scroll-proportion="-6.5384617">
               <folding />
             </state>
           </provider>
@@ -72,16 +93,16 @@
       <file leaf-file-name="main.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/assets/javascripts/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="133" column="29" selection-start="3405" selection-end="3405" vertical-scroll-proportion="0.0">
+            <state line="0" column="17" selection-start="17" selection-end="17" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="music.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="music.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/assets/javascripts/music.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+            <state line="20" column="69" selection-start="490" selection-end="490" vertical-scroll-proportion="0.3846154">
               <folding />
             </state>
           </provider>
@@ -101,22 +122,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/public/command structure js" />
-        <option value="$PROJECT_DIR$/public/command structure.js" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/command structure.js" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/old main" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/init.js" />
-        <option value="$PROJECT_DIR$/app/views/songs/index.html.erb" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/obs.js" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/log.js" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/in.js" />
         <option value="$PROJECT_DIR$/Gemfile" />
         <option value="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
-        <option value="$PROJECT_DIR$/app/assets/javascripts/main.js" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/fling.js" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/history.js" />
-        <option value="$PROJECT_DIR$/app/assets/javascripts/setup.js" />
+        <option value="$PROJECT_DIR$/app/assets/javascripts/bind_from_json.js" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/commands.js" />
+        <option value="$PROJECT_DIR$/app/views/songs/index.html.erb" />
+        <option value="$PROJECT_DIR$/app/assets/javascripts/setup.js" />
+        <option value="$PROJECT_DIR$/app/assets/javascripts/main.js" />
+        <option value="$PROJECT_DIR$/app/assets/javascripts/music.js" />
       </list>
     </option>
   </component>
@@ -169,6 +190,9 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="RailsProjectView" />
+      <pane id="Favorites" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -351,9 +375,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Favorites" />
-      <pane id="RailsProjectView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -370,15 +391,15 @@
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="148" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="457" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="460" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="457" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth2" value="147" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth1" value="146" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder2" value="2" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder3" value="3" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -500,6 +521,13 @@
       <RUBY_RUN_CONFIG NAME="SCRIPT_ARGS" VALUE="" />
       <method />
     </configuration>
+    <configuration default="true" type="JavascriptDebugSession" factoryName="Remote">
+      <JSRemoteDebuggerConfigurationSettings>
+        <option name="engineId" value="embedded" />
+        <option name="fileUrl" />
+      </JSRemoteDebuggerConfigurationSettings>
+      <method />
+    </configuration>
     <configuration default="true" type="CucumberRunConfigurationType" factoryName="Cucumber">
       <predefined_log_file id="RUBY_CUCUMBER" enabled="true" />
       <module name="" />
@@ -531,13 +559,6 @@
       <CUCUMBER_RUN_CONFIG_SETTINGS_ID NAME="CUCUMBER_RUNNER_PATH" VALUE="" />
       <CUCUMBER_RUN_CONFIG_SETTINGS_ID NAME="USE_CUSTOM_RUNNER" VALUE="false" />
       <CUCUMBER_RUN_CONFIG_SETTINGS_ID NAME="SETTINGS_VERSION" VALUE="2" />
-      <method />
-    </configuration>
-    <configuration default="true" type="JavascriptDebugSession" factoryName="Remote">
-      <JSRemoteDebuggerConfigurationSettings>
-        <option name="engineId" value="embedded" />
-        <option name="fileUrl" />
-      </JSRemoteDebuggerConfigurationSettings>
       <method />
     </configuration>
     <configuration default="true" type="TestUnitRunConfigurationType" factoryName="Test::Unit/Shoulda">
@@ -715,8 +736,8 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="false" />
+    <frame x="800" y="0" width="1120" height="1040" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Data Sources" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32979593" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32930845" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -724,7 +745,7 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32901832" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.14657535" sideWeight="0.3313897" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.14383562" sideWeight="0.68392664" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.29609543" sideWeight="0.67098165" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3279396" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32821077" sideWeight="0.9989189" order="7" side_tool="false" content_ui="tabs" />
@@ -790,11 +811,6 @@
         <state line="26" column="28" selection-start="604" selection-end="604" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/bind_from_json.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="17" selection-start="911" selection-end="911" vertical-scroll-proportion="0.092307694" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/javascripts/log.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="5" column="1" selection-start="137" selection-end="137" vertical-scroll-proportion="0.09209101" />
@@ -803,11 +819,6 @@
     <entry file="file://$PROJECT_DIR$/Gemfile">
       <provider selected="true" editor-type-id="text-editor">
         <state line="16" column="1" selection-start="306" selection-end="306" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/songs/index.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="5" selection-start="293" selection-end="293" vertical-scroll-proportion="-5.8846154" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/javascripts/in.js">
@@ -820,24 +831,23 @@
         <state line="20" column="51" selection-start="891" selection-end="891" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/layouts/application.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="21" selection-start="324" selection-end="324" vertical-scroll-proportion="-5.8846154" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/application.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="46" column="59" selection-start="2051" selection-end="2051" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/main.js">
+    <entry file="file://$PROJECT_DIR$/app/views/layouts/application.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="133" column="29" selection-start="3405" selection-end="3405" vertical-scroll-proportion="0.0" />
+        <state line="9" column="21" selection-start="324" selection-end="324" vertical-scroll-proportion="0.1750572">
+          <folding />
+        </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/music.js">
+    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/commands.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
+        <state line="177" column="33" selection-start="6112" selection-end="6112" vertical-scroll-proportion="-24.8">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/javascripts/fling.js">
@@ -850,16 +860,37 @@
         <state line="2" column="75" selection-start="177" selection-end="177" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/setup.js">
+    <entry file="file://$PROJECT_DIR$/app/views/songs/index.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="0" selection-start="403" selection-end="422" vertical-scroll-proportion="0.0">
+        <state line="10" column="14" selection-start="354" selection-end="354" vertical-scroll-proportion="-6.5384617">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/commands.js">
+    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/bind_from_json.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="60" column="69" selection-start="1960" selection-end="1960" vertical-scroll-proportion="0.5989933">
+        <state line="41" column="14" selection-start="1224" selection-end="1224" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/setup.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="0" selection-start="243" selection-end="243" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="17" selection-start="17" selection-end="17" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/music.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="69" selection-start="490" selection-end="490" vertical-scroll-proportion="0.3846154">
           <folding />
         </state>
       </provider>
