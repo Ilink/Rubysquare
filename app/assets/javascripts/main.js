@@ -7,17 +7,18 @@ rubysquare.commands.pointers = {
     'next_command' : rubysquare.commands.next_song_command
 }
 
-//Command Objects
+//Objects
 rubysquare.pause = rubysquare.commands.pause_command();
 //rubysquare.next = rubysquare.commands.
 rubysquare.pause_resume = rubysquare.commands.pause_resume_strategy();
+rubysquare.music = rubysquare.music_bridge();
 
 //~JSON for bindings~//
 rubysquare.ui.bindings = [
     {
         'selector' : rubysquare.ui.nodes['next_button'],
         'bind_to' : 'click',
-        'func' : function(){
+        'func' : function() {
             var temp = rubysquare.commands.next_song_command_strategy(rubysquare.settings['shuffle']);
             rubysquare.commands.next_song_command.execute();
             rubysquare.commands.next_song_command.unexecute();
@@ -28,7 +29,7 @@ rubysquare.ui.bindings = [
     {
         'selector' : rubysquare.ui.nodes['pause_button'],
         'bind_to' : 'click',
-        'func' : rubysquare.pause_resume.execute
+        'func' : rubysquare.music.pause_or_resume
 //        'func' : function(){
 //            if(test){
 //                soundManager.resumeAll();
@@ -43,18 +44,9 @@ rubysquare.ui.bindings = [
     {
         'selector' : '#test',
         'bind_to' : 'click',
-        'func' : function(){
-            rubysquare.song.stop();
-            console.log(rubysquare.song);
-            rubysquare.song.destruct();
-            rubysquare.song = soundManager.createSound({
-                id: 'song',
-                url: 'assets/test.mp3',
-                // optional sound parameters here, see Sound Properties for full list
-                volume: 50,
-                autoPlay: false
-            });	//end create sound
-            rubysquare.song.play();
+        'func' : function() {
+			rubysquare.music.set_song('assets/test.mp3')
+			rubysquare.music.play();
         }
     }
 //    ,
@@ -166,8 +158,11 @@ $(document).ready(function(){
 			autoPlay: false
 		});	//end create sound
 
-        rubysquare.song.play();
-        soundManager.pauseAll();
+		rubysquare.music.set_song('assets/test.mp3')
+		
+        rubysquare.music.play();
+		rubysquare.music.pause();
+        // soundManager.pauseAll();
         if(soundManager.loaded){
 
 
