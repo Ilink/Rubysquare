@@ -3,12 +3,13 @@ Rubysquare::Application.routes.draw do
   devise_for :users
   root :to => "songs#index"
 
-  post "/songs/add_to_playlist" => "songs#add_to_playlist"
-  get "/songs/dashboard" => "songs#dashboard"
+  get "/songs/filter" => "songs#filter", :as => "filter"
+  post "/songs/add_to_playlist" => "songs#add_to_playlist", :as => "add_to_playlist"
+  get "/songs/dashboard" => "songs#dashboard", :as => "dashboard"
   get "songs/search" => "songs#search", :as => "search"
 
   #post "songs/manage/update" => "songs#manage_songs_update"
-  post "songs/flush" => "songs#flush"
+  post "songs/flush" => "songs#flush", :as => "flush"
 
   resources :playlists
   resources :songs
