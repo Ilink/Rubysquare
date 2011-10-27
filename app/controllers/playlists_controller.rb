@@ -14,6 +14,9 @@ class PlaylistsController < ApplicationController
   # GET /playlists/1.json
   def show
     @playlist = Playlist.find(params[:id])
+    # chunk = params[:chunk]
+    # chunk_size = params[:chunk_size]
+    # values from [ (chunk * chunk_size) - chunk ] to [ chunk * chunk_size ]
 
     respond_to do |format|
       format.html # show.html.erb

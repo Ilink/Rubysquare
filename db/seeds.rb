@@ -11,6 +11,6 @@ for i in 1..100
     :title => "Song #{i}",
     :artist => "Artist #{i}",
     :album => "Album #{i}",
-    :location => "localhost/songs/file#{i}"
+    :location => "localhost/songs/file#{i}.mp3"
   )
 end

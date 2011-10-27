@@ -1,22 +1,5 @@
 //~Quack Quack!~//
 /*
-	
-*/
-
-rubysquare.music.title_click_handler = function( song ){
-	song = soundManager.createSound({
-		id: 'song',
-		url: 'assets/test.mp3'
-		// optional sound parameters here, see Sound Properties for full list
-		//volume: 50,
-		//autoPlay: false        	
-	});
-
-	song.play();
-}
-
-//~Quack Quack!~//
-/*
     //Calling this a bridge because its implementation is in terms of a music player API (such as SoundManager)
     //this will help if we ever need a different music player library
     abstract class Music_bridge( settings )
@@ -124,12 +107,13 @@ rubysquare.music_bridge = function( settings ) {
 	that can chunk data
 	
 	ORRR data can always be chunked up and sent out via AJAX calls
+	    --set rails to only return X amount, based on parameter
 */
 
 rubysquare.playlist_manager = function(){
 	if (this instanceof rubysquare.playlist){
 		// Private
-		var playlist = [{}];
+		var playlist_chunk;
 		// Public
 		this.add = function( url ){
 			playlist.push( url );

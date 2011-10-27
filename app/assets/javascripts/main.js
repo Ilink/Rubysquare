@@ -48,6 +48,18 @@ rubysquare.ui.bindings = [
 			rubysquare.music.set_song('assets/test.mp3')
 			rubysquare.music.play();
         }
+    },
+    {   // This is temporary since i have to figure out the UI before i know what the strucutre of the links will be
+        // This just plays the url of the clicked song.
+        'selector' : '.song_location',
+        'bind_to' : 'dblclick',
+        'func' : function(){
+            var clicked_song_location = $(this).text();
+            console.log("attempting to play song at location: " + clicked_song_location);
+            rubysquare.music.set_song(clicked_song_location);
+            rubysquare.music.play();
+            //should update the DB "now playing" at this point
+        }
     }
 //    ,
 //    {

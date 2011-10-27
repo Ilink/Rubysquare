@@ -24,6 +24,11 @@ class SongsController < ApplicationController
     end
   end
 
+  def show_by
+    # i need a way to send out data based on various categories
+    # EG: user requests all songs by Bjork
+  end
+
   # GET /songs/new
   # GET /songs/new.json
   def new
@@ -65,7 +70,7 @@ class SongsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to songs_url, notice: 'Selected songs succesfully added' }
       format.json { head :ok }
-    end
+    end 
   end
 
   # PUT /songs/1
