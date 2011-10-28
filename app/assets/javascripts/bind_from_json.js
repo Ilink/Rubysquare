@@ -19,6 +19,8 @@
  *  Note that you can include any valid jquery selector or combination of selectors
  *  
  *  Changelog:
+ *
+ *  Version 0.3: Better typechecking
  *  
  *	Version 0.2: Added support for binding to multiple functions
  *		- Better error reporting for type-checking errors
@@ -40,23 +42,26 @@ jsUtil.bind_from_json = function(json){
 			throw "Error in supplied JSON at index "+ i + ". Expects 'Bind_to as String";
 		}
 		else {
-			if (typeof json[i].func.length > 0) {
-				for (var j = 0; j < json[i].func.length; j++){
-					if (typeof json[i].func[j] !== 'function'){
-						throw "Error in supplied JSON at index " + i + ". Expects 'func' to be functions. The " + j + "th entry for 'functions' is not a function";
-					}
-					else {
-						$(json[i].selector).bind(json[i].bind_to, json[i].func[j]);
-					}
+            if (json[i].hasOwnProperty('func')) {
+                if (typeof json[i].func == 'object') {
+                    for (var j = 0; j < json[i].func.length; j++){
+                        if (typeof json[i].func[j] !== 'function'){
+                            throw "Error in supplied JSON at index " + i + ". Expects 'func' to be functions. The " + j + "th entry for 'functions' is not a function";
+                        }
+                        else {
+                            $(json[i].selector).bind(json[i].bind_to, json[i].func[j]);
+                        }
+                    }
+                }
+                else {
+                    if (typeof json[i].func !== 'function'){
+                        throw "Error in supplied JSON at index " + i + ". Expects 'func' to be a function.";
+                    }
+                    else
+                        $(json[i].selector).bind(json[i].bind_to, json[i].func);
                 }
             }
-			else {
-				if (typeof json[i].func !== 'function'){
-					throw "Error in supplied JSON at index " + i + ". Expects 'func' to be a function.";
-				}
-				else
-					$(json[i].selector).bind(json[i].bind_to, json[i].func);
-			}
+            else throw 'Has no functions to bind to!'
 		}
     }
 }
