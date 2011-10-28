@@ -35,8 +35,8 @@
     <%= submit_tag("Add to playlist") %>
     ||||||||||
     <%= link_to 'New Playlist', new_playlist_path %>
-      <% @songs.each do |song| %>
-        <tr>
+      <% @songs.each_with_index do |song, index| %>
+        <tr id="<%= index %>">
             <td class="song_title"><%= song.title %></td>
             <td class="song_artist"><%= song.artist %></td>
             <td class="song_album"><%= song.album %></td>

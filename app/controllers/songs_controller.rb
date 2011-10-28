@@ -40,7 +40,6 @@ class SongsController < ApplicationController
       format.html
       format.json { render json: @songs}
     end
-
   end
 
   # GET /songs/new
@@ -116,8 +115,17 @@ class SongsController < ApplicationController
   end
 
   def search
-    #@query = params[:q]
-    @songs = Song.find_all_by_title(params[:query])
+    if params.has_key?(:filter_by)
+      if params[:filter_by] == 'artist'
+        @songs = Song.find_all_by_artist(params[:query])
+      elsif params[:filter_by] == 'album'
+        @songs = Song.find_all_by_album(params[:query])
+      end
+    else params.has_key?(:query)
+      @songs = Song.find_all_by_title(params[:query])
+      #TODO utilize a real method (gem) here
+    end
+
     respond_to do |format|
       format.html
       format.json {
@@ -126,6 +134,7 @@ class SongsController < ApplicationController
     end
   end
 
+  # TODO: turn me into a gem! or at least, a module!
   # =Ruby iTunes XML Parser
   # This class takes a properly-formed XML iTunes library file and makes a hash
   #   *EG: "Artist" => "Nick Cave"

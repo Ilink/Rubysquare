@@ -49,7 +49,7 @@ rubysquare.music_bridge = function( settings ) {
 			if (settings['shuffle']){
 				//shuffle logic here
 			}
-			song.play();
+//			song.play();
 		}
 		
 		this.previous = function( settings, playlist ) {
@@ -78,25 +78,28 @@ rubysquare.music_bridge = function( settings ) {
 }
 
 /*
-    abstract class playlist_manager() {
+    abstract class playlist() {
         private:
             var playlist = [];
         public:
-            function add( ){
-                playlist.push
+            function copy(){
+
             }
     }
  */
 
-rubysquare.playlist_manager = function(){
+rubysquare.playlist = function( args ){
 	if (this instanceof rubysquare.playlist){
 		// Private
-		var playlist_chunk;
+        var playlist = [];
 		// Public
-		this.add = function( url ){
-			playlist.push( url );
-		}
+        this.copy_from = function( to_copy ){
+            playlist = $.extend( {}, to_copy ); // essentially this merges argument with a blank object and returns a new one
+        }
 	}
-	else return new rubysquare.playlist_manager();
+	else return new rubysquare.playlist();
 }
 
+/*
+    
+*/

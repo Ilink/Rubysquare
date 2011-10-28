@@ -2,29 +2,26 @@
 var rubysquare = {};
 rubysquare.ui = {};
 rubysquare.commands = {};
-rubysquare.obs = {};
 rubysquare.helpers = {};
 rubysquare.history = {};
 rubysquare.music = {};
 rubysquare.ajax_manager = {};
+rubysquare.playlists = {};
 
 //~Arrays / Storage~//
 rubysquare.history.command_history = [];
-
-
-//~UI Node Names~//
-rubysquare.ui.nodes = {
-    'shuffle_button' : '#shuffle',
-    'next_button' : '#next',
-    'previous_button' : '#prev',
-    'pause_button' : '#pause'
-}
 
 //~JSON~//
 rubysquare.settings = {
     'debug' : true,
     'shuffle' : true,
-    'repeat' : false
+    'repeat' : false,
+    'nodes' : {
+        'shuffle_button' : '#shuffle',
+        'next_button' : '#next',
+        'previous_button' : '#prev',
+        'pause_button' : '#pause'
+    }
 }
 
 /*
