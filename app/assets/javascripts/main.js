@@ -23,23 +23,13 @@ rubysquare.ui.bindings = [
             rubysquare.commands.next_song_command.execute();
             rubysquare.commands.next_song_command.unexecute();
             rubysquare.history.command_history.push(temp);
-//            temp = undefined;   //remove reference so it can be garbage collected
+            temp = undefined;   //remove reference so it can be garbage collected
         }
     },
     {
         'selector' : rubysquare.ui.nodes['pause_button'],
         'bind_to' : 'click',
         'func' : rubysquare.music.pause_or_resume
-//        'func' : function(){
-//            if(test){
-//                soundManager.resumeAll();
-//                paused = true;
-//            }
-//            else{
-//                soundManager.pauseAll();
-//                paused = false;
-//            }
-//        }
     },
     {
         'selector' : '#test',
@@ -60,6 +50,28 @@ rubysquare.ui.bindings = [
             rubysquare.music.play();
             //should update the DB "now playing" at this point
         }
+    },
+    {
+        'selector' : '#query',
+        'bind_to' : 'keyup',
+        'func' : function(){    // TODO: move me when im final
+            $.ajax({
+                type : "GET",
+                url : "songs/search.json",
+                data : "query="+$(this).val(),
+                success : function( json ){
+                    $.each(json, function(index, element){
+//                        $('tbody').next().prepend(element['artist']);
+                        $('tbody').children('tr').first().nextAll().remove();   // remove old results
+                        $('tbody').append("<tr><th style='font-weight:normal;'>"+element['title']+"</th>" +
+                            "<th style='font-weight:normal;'>"+element['artist']+"</th>"+
+                            "<th style='font-weight:normal;'>"+element['album']+"</th>"+
+                            "<th style='font-weight:normal;'>"+element['location']+"</th>"+
+                        "</tr>");
+                    });
+                }
+            });
+        }
     }
 //    ,
 //    {
@@ -68,13 +80,6 @@ rubysquare.ui.bindings = [
 //        'func' : rubysquare.commands.previous_song_command.execute
 //    }
 ];
-
-//rubysquare.commands.test_command = function(){
-//        console.log('test');
-//    }
-
-
-
 
 
 $(document).ready(function(){
@@ -88,10 +93,9 @@ $(document).ready(function(){
             rubysquare.commands.shuffle_command.execute();
             rubysquare.log(rubysquare.settings['shuffle']);
         }
-        
-//        rubysquare.history.command_history.push(rubysquare.commands.shuffle_command((rubysquare.commands.next_song_command)));
-
     });
+
+    
 
     $('#undo').click(function(){
        for(var i = 0; i < rubysquare.history.command_history.length; i++){

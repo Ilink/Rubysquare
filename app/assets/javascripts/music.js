@@ -78,37 +78,15 @@ rubysquare.music_bridge = function( settings ) {
 }
 
 /*
-	Notes:
-	how to handle the clicks on Artist, Title, etc? 
-	Need a playlist management class that can deal with playlist actions
-	
-	playlist = [
-		{
-			'id' : database_song_id,
-			'url' : 'assets/songs/song.mp3',
-			'artist' : 'some artist',
-			'album' : 'some album',
-			etc etc, basically all the important DB fields will probably go here
-		}
-	]
-	
-	alternatively, we could use a "light" playlist and simply query the DB every time we need more information about a song
-	
-	light_playlist = [
-		{
-			'id' : database_song_id,
-			'url' : 'assets/songs/song.mp3'
-		}
-	]
-	
-	I don't know if having to run another query just for more song informaiton is worth the trade off. Playlists aren't likely to get that big anyways.
-	
-	Or there can just be two strategies: if the playlist is above a certain size (like if they try to shuffle the whole library) then we use an AJAX based system
-	that can chunk data
-	
-	ORRR data can always be chunked up and sent out via AJAX calls
-	    --set rails to only return X amount, based on parameter
-*/
+    abstract class playlist_manager() {
+        private:
+            var playlist = [];
+        public:
+            function add( ){
+                playlist.push
+            }
+    }
+ */
 
 rubysquare.playlist_manager = function(){
 	if (this instanceof rubysquare.playlist){

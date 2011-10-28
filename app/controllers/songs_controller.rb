@@ -24,9 +24,23 @@ class SongsController < ApplicationController
     end
   end
 
-  def show_by
+  # GET /songs/filter/artist/
+  def filter
     # i need a way to send out data based on various categories
     # EG: user requests all songs by Bjork
+    if params.has_key?(:artist)
+      @songs = Song.where("artist = ?", params[:artist])
+      @songs = Song.all
+    else
+      @songs = Song.all
+    end
+    @playlists = Playlist.find_all_by_user_id(current_user.id)
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @songs}
+    end
+
   end
 
   # GET /songs/new
@@ -103,13 +117,11 @@ class SongsController < ApplicationController
 
   def search
     #@query = params[:q]
-    @songs = Song.find_all_by_title(params[:q])
+    @songs = Song.find_all_by_title(params[:query])
     respond_to do |format|
       format.html
       format.json {
-
-        #render :json => {'test'=>'yes i am'}.to_json
-        render :json => @song
+        render :json => @songs
       }
     end
   end

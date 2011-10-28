@@ -1,7 +1,7 @@
 <h1>Songs</h1>
 <%= form_tag("/songs/search", :method => "get") do |f| %>
-  <%= label_tag :search, "Search for:" %>
-  <%= text_field_tag :query  %>
+  <%= label_tag(:q, "Search for:") %>
+  <%= text_field_tag(:q) %>
   <%= submit_tag("Search") %>
 <% end %>
 <ul>
@@ -16,7 +16,7 @@
   <li id="redo" style="cursor:pointer;">Redo</li>
 </ul>
 
-<%= paginate @songs %>
+<% #paginate @songs %>
 <table>
   <tr>
     <th>Title</th>
@@ -28,7 +28,7 @@
     <th></th>
     <th></th>
   </tr>
-  
+
   <%= form_tag(songs_add_to_playlist_path, :method => "post") do %>
     <%= label_tag('add_to_playlist', 'Add songs to playlist: ') %>
     <%= collection_select('playlist', 'id', @playlists, :id, :title) %>

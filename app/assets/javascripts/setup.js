@@ -6,6 +6,7 @@ rubysquare.obs = {};
 rubysquare.helpers = {};
 rubysquare.history = {};
 rubysquare.music = {};
+rubysquare.ajax_manager = {};
 
 //~Arrays / Storage~//
 rubysquare.history.command_history = [];
