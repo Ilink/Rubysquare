@@ -59,9 +59,36 @@ rubysquare.ui.bindings = [
         'bind_to' : 'dblclick',
         'func' : function() {
             var song_index = Number($(this).parent('tr').attr('id'));
-            rubysquare.ui.play_from_available(song_index, rubysquare.playlists.songs_on_page, rubysquare.playlists.now_playing);
+            rubysquare.helpers.play_from_available(rubysquare.music, song_index, rubysquare.playlists.songs_on_page, rubysquare.playlists.now_playing);
         }
     },
+//    {
+//        'selector' : '#query',
+//        'bind_to' : 'keyup',
+//        'func' : function() {    // TODO: move/refactor search AJAX when final
+//            $.ajax({
+//                type : "GET",
+//                url : "songs/search.json",
+//                data : "query="+$(this).val(),
+//                beforeSend : function(){
+//                    $('tbody').children('tr').first().nextAll().remove();   // remove old results
+//                },
+//                success : function( json ){
+//                    $.each(json, function(index, element){
+//                        $('tbody').append("<tr id='" + index + "'><td class='song_title' style='font-weight:normal;'>"+element['title']+"</td>" +
+//                            "<td class='song_artist' style='font-weight:normal;'>"+element['artist']+"</td>"+
+//                            "<td class='song_album' style='font-weight:normal;'>"+element['album']+"</td>"+
+//                            "<td class='song_location' style='font-weight:normal;'>"+element['location']+"</td>"+
+//                        "</tr>");
+//                        rubysquare.playlists.songs_on_page.playlist = json; // update the "currently available songs" with the data from our search results
+//                        console.log(rubysquare.playlists.songs_on_page.playlist);
+//                        $(rubysquare.ui.bindings[4].selector).bind(rubysquare.ui.bindings[4].bind_to, rubysquare.ui.bindings[4].func);  //rebind the old bindings for title, see above JSON
+//                        //TODO improve re-binding process, this is repetitive
+//                    });
+//                }
+//            });
+//        }
+//    },
     {
         'selector' : '#query',
         'bind_to' : 'keyup',
