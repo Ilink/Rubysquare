@@ -119,11 +119,11 @@ rubysquare.commands.next_song_command_strategy = function( settings ){
 rubysquare.commands.shuffle_command = (function(){
     return{
        execute : function(){
-           //TODO: change shuffle button visuals
+           // TODO: change shuffle button visuals
            rubysquare.settings['shuffle'] = true //will be an AJAX call to update the database
        },
        unexecute : function(){
-           //TODO: revert changes to shuffle button visuals
+           // TODO: revert changes to shuffle button visuals
            rubysquare.settings['shuffle'] = false //AJAX call later...
        }
    }

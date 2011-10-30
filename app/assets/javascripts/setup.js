@@ -14,7 +14,7 @@ rubysquare.history.command_history = [];
 //~JSON~//
 rubysquare.settings = {
     'debug' : true,
-    'shuffle' : true,
+    'shuffle' : false,
     'repeat' : false,
     'nodes' : {
         'shuffle_button' : '#shuffle',
@@ -38,5 +38,5 @@ rubysquare.settings = {
 rubysquare.now_playing = {};
 
 //~Soundmanager setup~//
-soundManager.url = 'assets/soundmanager2.swf'
+soundManager.url = '/assets/soundmanager2.swf'
 soundManager.useHTML5Audio = true;
