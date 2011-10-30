@@ -1,0 +1,6 @@
+<div style="display:none" id="song_json"><%= @songs_json %></div>
+<%= form_tag("/songs/search", :method => "get") do |f| %>
+  <%= label_tag :search, "Search for:" %>
+  <%= text_field_tag :query  %>
+  <%= submit_tag("Search") %>
+<% end %>
