@@ -2,8 +2,14 @@ class PlaylistsController < ApplicationController
   # GET /playlists
   # GET /playlists.json
   def index
-    @playlists = Playlist.find_all_by_user_id(current_user.id)
-
+    @playlists = Playlist.page(params[:page]).find_all_by_user_id(current_user.id)
+    @songs_json = []
+    @playlists.each do |playlist|
+      playlist.songs.each do |song|
+        @songs_json.push song
+      end
+    end
+    @songs_json = @songs_json.to_json
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @playlists }
