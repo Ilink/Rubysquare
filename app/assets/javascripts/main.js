@@ -9,12 +9,9 @@ rubysquare.playlists.songs_on_page = rubysquare.playlist([{
 rubysquare.playlists.now_playing = rubysquare.playlist();
 
 //~ Objects ~//
-rubysquare.pause = rubysquare.commands.pause_command();
-rubysquare.pause_resume = rubysquare.commands.pause_resume_strategy();
 rubysquare.music = rubysquare.music_bridge(rubysquare.settings, rubysquare.playlists.now_playing);
 rubysquare.ui = rubysquare.ui_manager();
-
-//rubysquare.ajax = rubysquare.ajax_manager();
+rubysquare.ajax = rubysquare.ajax_manager();
 
 
 
@@ -62,58 +59,14 @@ rubysquare.ui.bindings = [
             rubysquare.helpers.play_from_available(rubysquare.music, song_index, rubysquare.playlists.songs_on_page, rubysquare.playlists.now_playing);
         }
     },
-//    {
-//        'selector' : '#query',
-//        'bind_to' : 'keyup',
-//        'func' : function() {    // TODO: move/refactor search AJAX when final
-//            $.ajax({
-//                type : "GET",
-//                url : "songs/search.json",
-//                data : "query="+$(this).val(),
-//                beforeSend : function(){
-//                    $('tbody').children('tr').first().nextAll().remove();   // remove old results
-//                },
-//                success : function( json ){
-//                    $.each(json, function(index, element){
-//                        $('tbody').append("<tr id='" + index + "'><td class='song_title' style='font-weight:normal;'>"+element['title']+"</td>" +
-//                            "<td class='song_artist' style='font-weight:normal;'>"+element['artist']+"</td>"+
-//                            "<td class='song_album' style='font-weight:normal;'>"+element['album']+"</td>"+
-//                            "<td class='song_location' style='font-weight:normal;'>"+element['location']+"</td>"+
-//                        "</tr>");
-//                        rubysquare.playlists.songs_on_page.playlist = json; // update the "currently available songs" with the data from our search results
-//                        console.log(rubysquare.playlists.songs_on_page.playlist);
-//                        $(rubysquare.ui.bindings[4].selector).bind(rubysquare.ui.bindings[4].bind_to, rubysquare.ui.bindings[4].func);  //rebind the old bindings for title, see above JSON
-//                        //TODO improve re-binding process, this is repetitive
-//                    });
-//                }
-//            });
-//        }
-//    },
+
     {
         'selector' : '#query',
         'bind_to' : 'keyup',
-        'func' : function() {    // TODO: move/refactor search AJAX when final
-            $.ajax({
-                type : "GET",
-                url : "songs/search.json",
-                data : "query="+$(this).val(),
-                beforeSend : function(){
-                    $('tbody').children('tr').first().nextAll().remove();   // remove old results
-                },
-                success : function( json ){
-                    $.each(json, function(index, element){
-                        $('tbody').append("<tr id='" + index + "'><td class='song_title' style='font-weight:normal;'>"+element['title']+"</td>" +
-                            "<td class='song_artist' style='font-weight:normal;'>"+element['artist']+"</td>"+
-                            "<td class='song_album' style='font-weight:normal;'>"+element['album']+"</td>"+
-                            "<td class='song_location' style='font-weight:normal;'>"+element['location']+"</td>"+
-                        "</tr>");
-                        rubysquare.playlists.songs_on_page.playlist = json; // update the "currently available songs" with the data from our search results
-                        console.log(rubysquare.playlists.songs_on_page.playlist);
-                        $(rubysquare.ui.bindings[4].selector).bind(rubysquare.ui.bindings[4].bind_to, rubysquare.ui.bindings[4].func);  //rebind the old bindings for title, see above JSON
-                        //TODO improve re-binding process, this is repetitive
-                    });
-                }
-            });
+        'func' : function() {
+            var query = $(this).val();
+            rubysquare.ajax.search_timer(query, rubysquare.playlists.songs_on_page);
+            
         }
     }
 ];
@@ -138,8 +91,8 @@ $(document).ready(function(){
        }
     });
 
-    rubysquare.playlists.songs_on_page.playlist = JSON.parse( $('#song_json').text() );
-    console.log( rubysquare.playlists.songs_on_page );
+    rubysquare.playlists.songs_on_page.playlist = rubysquare.helpers.update_json_from_page();
+    console.log(rubysquare.playlists.songs_on_page.playlist);
 
     jsUtil.bind_from_json(rubysquare.ui.bindings);
 
