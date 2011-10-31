@@ -13,5 +13,9 @@ rubysquare.helpers = function(){
         // TODO: should update the DB "now playing" playlist at this point
     }
 
+    that.update_json_from_page = function(){
+        return JSON.parse( $('#song_json').text() );
+    }
+
     return that;
 }();
