@@ -124,3 +124,21 @@ rubysquare.playlist = function( json ){
 	}
 	else return new rubysquare.playlist( json );
 }
+
+/*
+    This class may or may not get used, it feels redundent
+    abstract class playlist_loader(){
+        public:
+            function load()
+    }
+*/
+
+rubysquare.playlist_loader = function(playlist, music_manager){
+    this.load = function(index, playlist_to_load){
+        
+    }
+}
+
+rubysquare.playlist_from_json_loader = function(playlist){
+    
+}
