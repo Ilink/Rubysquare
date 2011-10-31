@@ -12,10 +12,26 @@
     margin:0px 5px 0px 5px;
 }
 
+ul, li{
+    list-style-type: none;
+}
+
+.pointer{
+    cursor:pointer;
+}
+
+.hidden{
+    display:none;
+}
+
 tr{
     text-align: left;
 }
 
 td{
     padding-right:15px;
+}
+
+.header{
+    font-size:18px;
 }
