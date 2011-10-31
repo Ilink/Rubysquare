@@ -4,8 +4,7 @@ class SongsController < ApplicationController
   # GET /songs.json
   def index
     @songs = Song.page(params[:page]).per(50)
-
-    #@songs_for_form = Song.
+    @songs_json = @songs.to_json
     @playlists = Playlist.find_all_by_user_id(current_user.id)
     respond_to do |format|
       format.html # index.html.erb
@@ -17,7 +16,7 @@ class SongsController < ApplicationController
   # GET /songs/1.json
   def show
     @song = Song.find(params[:id])
-
+    @songs_json = @songs.to_json
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @song }
@@ -30,7 +29,6 @@ class SongsController < ApplicationController
     # EG: user requests all songs by Bjork
     if params.has_key?(:artist)
       @songs = Song.where("artist = ?", params[:artist])
-      @songs = Song.all
     else
       @songs = Song.all
     end
@@ -83,7 +81,7 @@ class SongsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to songs_url, notice: 'Selected songs succesfully added' }
       format.json { head :ok }
-    end 
+    end
   end
 
   # PUT /songs/1
@@ -125,11 +123,16 @@ class SongsController < ApplicationController
       @songs = Song.find_all_by_title(params[:query])
       #TODO utilize a real method (gem) here
     end
+    @songs_json = @songs.to_json
+    @playlists = Playlist.find_all_by_user_id(current_user.id)
 
     respond_to do |format|
       format.html
-      format.json {
-        render :json => @songs
+      #format.json {
+      #  render :json => @songs
+      #}
+      format.xml {
+        render :partial => 'layouts/search_results'
       }
     end
   end
