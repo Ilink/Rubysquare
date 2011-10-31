@@ -1,5 +1,0 @@
-AuthUserFile localhost/pass/.htpasswd
-AuthName "red login"
-AuthType Basic
-
-require user admin
