@@ -1,34 +1,7 @@
-<h1>Listing search results</h1>
-
-<%= form_tag("/songs/search", :method => "get") do %>
-  <%= label_tag(:q, "Search by title:") %>
-  <%= text_field_tag(:q) %>
-  <%= submit_tag("Search") %>
-<% end %>
-
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Artist</th>
-    <th>Album</th>
-    <th>Location</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @songs.each do |song| %>
-  <tr>
-    <td><%= song.title %></td>
-    <td><%= song.artist %></td>
-    <td><%= song.album %></td>
-    <td><%= song.location %></td>
-    <td><%= link_to 'Show', song %></td>
-    <td><%= link_to 'Edit', edit_song_path(song) %></td>
-    <td><%= link_to 'Destroy', song, confirm: 'Are you sure?', method: :delete %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
+<h1>Search Results</h1>
+<%= render "layouts/json_on_page" %>
+<%= render "layouts/search" %>
+<%= render "layouts/music_player_controls" %>
+<div id="music_list_container">
+    <%= render "layouts/list_music" %>
+</div>

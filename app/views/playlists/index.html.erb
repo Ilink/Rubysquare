@@ -1,22 +1,54 @@
-<h1>Listing playlists</h1>
+<h1>Playlists</h1>
+<%= render 'layouts/json_on_page' %>
+<%= render "layouts/music_player_controls" %>
 
-<table>
-  <tr>
-    <th>Title</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
 
 <% @playlists.each do |playlist| %>
-  <tr>
-    <td><%= playlist.title %></td>
-    <td><%= link_to 'Show', playlist %></td>
-    <td><%= link_to 'Edit', edit_playlist_path(playlist) %></td>
-    <td><%= link_to 'Destroy', playlist, confirm: 'Are you sure?', method: :delete %></td>
-  </tr>
+  <ul>
+    <li class="header"><%= playlist.title %></li>
+    <li><%= link_to 'Show', playlist %></li>
+    <li><%= link_to 'Edit', edit_playlist_path(playlist) %></li>
+    <li><%= link_to 'Destroy', playlist, confirm: 'Are you sure?', method: :delete %></li>
+  </ul>
+
+  <table>
+      <tr>
+        <th>Title</th>
+        <th>Artist</th>
+        <th>Album</th>
+        <th>Location</th>
+        <th>Actions</th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+
+      <%= form_tag(songs_add_to_playlist_path, :method => "post") do %>
+        <%= label_tag('add_to_playlist', 'Add songs to playlist: ') %>
+        <%= collection_select('playlist', 'id', @playlists, :id, :title) %>
+        <%= submit_tag("Add to playlist") %>
+        ||||||||||
+        <%= link_to 'New Playlist', new_playlist_path %>
+          <% playlist.songs.each_with_index do |song, index| %>
+            <tr id="<%= index %>">
+                <td class="song_title"><%= song.title %></td>
+                <td class="song_artist"><%= song.artist %></td>
+                <td class="song_album"><%= song.album %></td>
+                <td class="song_location"><%= song.location %></td>
+                <td class="show_song"><%= link_to 'Show', song %></td>
+                <td class="edit_song"><%= link_to 'Edit', edit_song_path(song) %></td>
+                <td class="destroy_song"><%= link_to 'Destroy', song, confirm: 'Are you sure?', method: :delete %></td>
+              <td>
+                <%= label_tag(song.id, "Add to playlist") %>
+                <%= check_box_tag "song_ids[]", song.id, false, :id => "song_#{song.id}" %>
+              </td>
+            </tr>
+          <% end %>
+      <% end %>
+  </table>
+
 <% end %>
-</table>
+
 
 <br />
 
