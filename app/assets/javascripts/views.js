@@ -26,9 +26,6 @@ rubysquare.view_manager = function(){
                     current_view = view;
                     view.load_content();
                     view.bind();
-                    current_view.hide
-                    view.show
-                    current_view = view
                 }
 				else throw 'the view manager was not initialized, please initialize it before trying to initialize a view';
                 // if init wasn't called, then the viewmanager has no knowledge of what the current view is
