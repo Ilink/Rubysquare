@@ -13,6 +13,17 @@ rubysquare.music = rubysquare.music_bridge(rubysquare.settings, rubysquare.playl
 rubysquare.ui = rubysquare.ui_manager();
 rubysquare.ajax = rubysquare.ajax_manager();
 
+rubysquare.views.views_manager = rubysquare.view_manager();
+rubysquare.views.playlists = rubysquare.view(
+    {
+        'selector':'#playlist_test_node',
+        'bind_to':'click',
+        'func':function(){
+            console.log('test node in playlist view was clicked');
+        }
+    }, '#playlist_view_container');
+
+
 
 
 //~ JSON for bindings ~//
@@ -48,7 +59,8 @@ rubysquare.ui.bindings = [
         'selector' : '#test',
         'bind_to' : 'click',
         'func' : function() {
-            console.log(rubysquare.playlists.now_playing);
+//            console.log(rubysquare.playlists.now_playing);
+            console.log('test');
         }
     },
     {
@@ -71,6 +83,7 @@ rubysquare.ui.bindings = [
     }
 ];
 
+rubysquare.views.songs = rubysquare.view(rubysquare.ui.bindings, '#songs_view_container');  // temp
 
 $(document).ready(function(){
     //~Temp Binds~//
@@ -94,7 +107,13 @@ $(document).ready(function(){
     rubysquare.playlists.songs_on_page.playlist = rubysquare.helpers.update_json_from_page();
     console.log(rubysquare.playlists.songs_on_page.playlist);
 
-    jsUtil.bind_from_json(rubysquare.ui.bindings);
+//    jsUtil.bind_from_json(rubysquare.ui.bindings);
+
+    //there needs to be json that tells me what view i'm currently on...
+    rubysquare.views.views_manager.init( rubysquare.views.songs );  //hardcode current view for now
+    rubysquare.views.views_manager.init_view( rubysquare.views.songs);
+
+
 
 
 //    var test = rubysquare.commands.test_command('test');

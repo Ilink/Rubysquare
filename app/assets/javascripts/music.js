@@ -28,7 +28,7 @@ rubysquare.music_bridge = function( settings, playlist_manager ) {
 		});
 
         // Public
-        this.current_index; //TODO: figure out if this is a good way to set this
+        this.current_index; // TODO: figure out if this is a good way to set this
 
         this.set_song = function( url ) {
 			if (typeof url !== 'string') throw 'Exepected resource to be a string';
@@ -62,7 +62,7 @@ rubysquare.music_bridge = function( settings, playlist_manager ) {
             }
 		}
 		
-		this.previous = function( settings ) { //this should never shuffle - previous song is always fixed
+		this.previous = function( settings ) { // this should never shuffle - previous song is always fixed
             var playlist = playlist_manager.get_playlist();
             if (this.current_index - 1 > -1) {
                 this.current_index = this.current_index - 1;

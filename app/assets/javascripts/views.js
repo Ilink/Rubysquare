@@ -10,49 +10,114 @@
             function init_view( view )
     }
 */
-rubysquare._view_manager = function( view_name ){
-    if(this instanceof rubysquare._view_manager){
-        //Private
 
+rubysquare.view_manager = function(){
+    if(this instanceof rubysquare.view_manager){
+        //Private
+		var views = [];	// not sure if this should really keep a list of available views, might be too complicated for initial functionality
+		var current_view;
 
         //Public
-        this.init_view = function( view ){
+        this.switch_view = function( view ){
+			if (typeof view !== 'undefined' && view.hasOwnProperty('bind')){ // this is SOOO not a good typecheck
+                if(typeof current_view !== 'undefined') {
+                    current_view.hide();
+                    view.show();
+                    current_view = view;
+                    view.load_content();
+                    view.bind();
+                    current_view.hide
+                    view.show
+                    current_view = view
+                }
+				else throw 'the view manager was not initialized, please initialize it before trying to initialize a view';
+                // if init wasn't called, then the viewmanager has no knowledge of what the current view is
+			}
+            else throw 'The supplied argument is not a view object! Please supply a view object.';
+        }
 
+        // this feels kinda redundent
+        this.init_view = function( view ){
+            if (typeof view !== 'undefined' && view.hasOwnProperty('bind')){  // TODO improve typechecking
+                if(typeof current_view !== 'undefined') {
+                    current_view.bind();
+                }
+                else throw 'the view manager was not initialized, please initialize it before trying to initialize a view';
+                // if init wasn't called, then the viewmanager has no knowledge of what the current view is
+            }
+            else throw 'The supplied argument is not a view object! Please supply a view object.';
+        }
+
+        this.init = function( view ){
+            // TODO add typechecking to this
+            current_view = view;
+            current_view.bind();
         }
     }
-    else return new rubysquare.view( _view_manager );
+    else return new rubysquare.view_manager();
 }
 
-
 /*
-    abstract class view(){
+    abstract class view(binds, container_selector){
         Private:
+            var container_selector
 
         Public:
+            var binds
+            function show()
+            function hide()
+            function load_content()
+            function bind(){
+                jsUtil.bind_from_json(this.binds)
+            }
 
     }
 */
 
-rubysquare.view = function( view_name ){
+rubysquare.view = function( _binds, _container_selector, ajax_url ){
     if(this instanceof rubysquare.view){
         //Private
-        binds = {
-
-        }
+        var container_selector = _container_selector;
 
         //Public
-        this.init = function(){
+		this.binds = _binds;	// TODO: should binds in views be private?
 
+        this.show = function(){
+            $(container_selector).show();
+        }
+
+        this.hide = function(){
+            $(container_selector).hide();
+        }
+
+        this.load_content = function(){
+            $.ajax({
+                url : ajax_url,
+                success : function(){
+                    console.log('test ajax success');
+                }
+            });
+        }
+		
+        this.bind = function(){
+			jsUtil.bind_from_json( this.binds );
         }
     }
-    else return new rubysquare.view( view_name );
+    else return new rubysquare.view( _binds, _container_selector, ajax_url );
 }
 
 /*
     sample usage, so far:
     ----------------------------------
     instaniate some views:
-        rubysquare.views.playlist =
+        rubysquare.views.playlist = rubysquare.view({
+			'selector':'#help',
+			'bind_to':'click',
+			'func':function(){
+				console.log('help'p)
+			}
+		});
+
 
     first, get the current page, from rendered (by rails) json:
         var view_info = JSON.parse( $('#view_info').text() );
