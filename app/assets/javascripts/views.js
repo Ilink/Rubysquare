@@ -19,13 +19,16 @@ rubysquare.view_manager = function(){
 
         //Public
         this.switch_view = function( view ){
-			if (typeof view !== 'undefined' && view.hasOwnProperty('bind')){ // this is SOOO not a good typecheck
+			if (typeof view !== 'undefined' && view.hasOwnProperty('bind')){ // TODO this is SOOO not a good typecheck, add more functions that represent a view object's "fingerprint"
                 if(typeof current_view !== 'undefined') {
+                    console.log(current_view.binds);
                     current_view.hide();
                     view.show();
                     current_view = view;
                     view.load_content();
+                    console.log(current_view.binds);
                     view.bind();
+                    // TODO: need to change the URL to reflect the AJAX-loaded path
                 }
 				else throw 'the view manager was not initialized, please initialize it before trying to initialize a view';
                 // if init wasn't called, then the viewmanager has no knowledge of what the current view is
@@ -80,7 +83,10 @@ rubysquare.view = function( _binds, _container_selector, ajax_url ){
 		this.binds = _binds;	// TODO: should binds in views be private?
 
         this.show = function(){
-            $(container_selector).show();
+            if (typeof $(container_selector) === 'undefined'){
+                $(rubysquare.settings.nodes.main_container).append(container_selector);
+            }
+            else $(container_selector).show();
         }
 
         this.hide = function(){
@@ -90,8 +96,9 @@ rubysquare.view = function( _binds, _container_selector, ajax_url ){
         this.load_content = function(){
             $.ajax({
                 url : ajax_url,
-                success : function(){
+                success : function(json){
                     console.log('test ajax success');
+                    console.log(json);
                 }
             });
         }

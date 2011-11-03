@@ -21,7 +21,9 @@ rubysquare.settings = {
         'shuffle_button' : '#shuffle',
         'next_button' : '#next',
         'previous_button' : '#prev',
-        'pause_button' : '#pause'
+        'pause_button' : '#pause',
+        'song_json' : '#song_json',
+        'main_container': '#container'
     }
 }
 

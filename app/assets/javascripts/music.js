@@ -48,12 +48,12 @@ rubysquare.music_bridge = function( settings, playlist_manager ) {
                                                             // Therefore, when we make a copy of the playlist within a playlist manager, the pointer within this object would still point to the old data.
             if (settings['shuffle']){
 				//shuffle logic here
-                console.log('shuffle next goes here');
+                console.log('shuffle next goes here');  //todo add shuffle
                 song.play();
 			}
             else {
                 console.log(this.current_index);
-                if ( typeof playlist[this.current_index + 1] !== 'undefined' ){
+                if ( typeof playlist[this.current_index + 1] !== 'undefined' ) {
                     this.current_index = this.current_index + 1;
                     if ( playlist[this.current_index].hasOwnProperty('location') )
                         this.set_song( playlist[this.current_index].location );

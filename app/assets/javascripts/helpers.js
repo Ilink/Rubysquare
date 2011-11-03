@@ -9,12 +9,12 @@ rubysquare.helpers = function(){
         music_manager.current_index = song_index;
         music_manager.set_song( now_playing_playlist.playlist[song_index].location );
         rubysquare.music.play();
-        console.log(now_playing_playlist.playlist);
+        console.log("now playing playlist:" + now_playing_playlist.playlist);
         // TODO: should update the DB "now playing" playlist at this point
     }
 
-    that.update_json_from_page = function(){
-        return JSON.parse( $('#song_json').text() );
+    that.update_json_from_page = function(selector){
+        return JSON.parse( $(selector).text() );
     }
 
     return that;

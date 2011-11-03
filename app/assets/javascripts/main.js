@@ -13,17 +13,6 @@ rubysquare.music = rubysquare.music_bridge(rubysquare.settings, rubysquare.playl
 rubysquare.ui = rubysquare.ui_manager();
 rubysquare.ajax = rubysquare.ajax_manager();
 
-rubysquare.views.views_manager = rubysquare.view_manager();
-rubysquare.views.playlists = rubysquare.view(
-    {
-        'selector':'#playlist_test_node',
-        'bind_to':'click',
-        'func':function(){
-            console.log('test node in playlist view was clicked');
-        }
-    }, '#playlist_view_container');
-
-
 
 
 //~ JSON for bindings ~//
@@ -71,7 +60,6 @@ rubysquare.ui.bindings = [
             rubysquare.helpers.play_from_available(rubysquare.music, song_index, rubysquare.playlists.songs_on_page, rubysquare.playlists.now_playing);
         }
     },
-
     {
         'selector' : '#query',
         'bind_to' : 'keyup',
@@ -83,7 +71,31 @@ rubysquare.ui.bindings = [
     }
 ];
 
-rubysquare.views.songs = rubysquare.view(rubysquare.ui.bindings, '#songs_view_container');  // temp
+rubysquare.ui.common_bindings = [
+    {
+        'selector' : '#playlist_nav_test',
+        'bind_to' : 'click',
+        'func' : function(){
+            $(this).click(function(event){
+                event.preventDefault();
+            });
+            rubysquare.views.views_manager.switch_view( rubysquare.views.playlists );
+        }
+    }
+];
+
+//~ More Objects, these reference above JSON ~//
+
+rubysquare.views.songs = rubysquare.view(rubysquare.ui.bindings, '#songs_view_container');  // temp, hardcoded, needs to be flexible
+rubysquare.views.views_manager = rubysquare.view_manager();
+rubysquare.views.playlists = rubysquare.view(
+    [{
+        'selector':'#playlist_test_link',
+        'bind_to':'click',
+        'func':function(){
+            console.log('test node in playlist view was clicked');
+        }
+    }], '#playlist_view_container', '/playlists.json');
 
 $(document).ready(function(){
     //~Temp Binds~//
@@ -104,14 +116,18 @@ $(document).ready(function(){
        }
     });
 
-    rubysquare.playlists.songs_on_page.playlist = rubysquare.helpers.update_json_from_page();
+    rubysquare.playlists.songs_on_page.playlist = rubysquare.helpers.update_json_from_page(rubysquare.settings.nodes.song_json);
     console.log(rubysquare.playlists.songs_on_page.playlist);
 
 //    jsUtil.bind_from_json(rubysquare.ui.bindings);
+    jsUtil.bind_from_json(rubysquare.ui.common_bindings);
 
     //there needs to be json that tells me what view i'm currently on...
     rubysquare.views.views_manager.init( rubysquare.views.songs );  //hardcode current view for now
-    rubysquare.views.views_manager.init_view( rubysquare.views.songs);
+
+
+//    rubysquare.views.views_manager.init_view( rubysquare.views.songs);
+//    rubysquare.views.views_manager.switch_view( rubysquare.views.playlists );
 
 
 

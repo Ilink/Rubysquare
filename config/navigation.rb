@@ -35,12 +35,12 @@
 SimpleNavigation::Configuration.run do |navigation|
   navigation.items do |primary|
     if user_signed_in?
-      primary.item :key_1, 'Songs', songs_path
-      primary.item :key_2, 'Playlists', playlists_path, do |sub_nav|
-        sub_nav.item :key_2_1, 'Add New', new_playlist_path
+      primary.item :key_1, 'Songs', songs_path, :id => "nav_songs"
+      primary.item :key_2, 'Playlists', playlists_path, :id => "nav_playlist", do |sub_nav|
+        sub_nav.item :key_2_1, 'Add New', new_playlist_path, :id => "nav_new_playlist"
       end
 
-      primary.item :key_3, 'Dashboard', songs_dashboard_path
+      primary.item :key_3, 'Dashboard', songs_dashboard_path, :id => "nav_dashboard"
     end
 
     # Add an item to the primary navigation. The following params apply:

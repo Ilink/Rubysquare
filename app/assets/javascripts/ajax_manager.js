@@ -33,7 +33,7 @@ rubysquare.ajax_manager = function(){
                 dataType: 'text',
                 success : function( html ){
                     $('#music_list_container').contents().remove(); // remove old list of music
-                    $('#song_json').remove();   // remove old songs on page json
+                    $(rubysquare.settings.nodes.song_json).remove();   // remove old songs on page json
                     $('#music_list_container').append(html);
 
                     playlist_to_update.playlist = rubysquare.helpers.update_json_from_page(); // update json with our new search results
