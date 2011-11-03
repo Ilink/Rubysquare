@@ -38,7 +38,7 @@ rubysquare.ajax_manager = function(){
 
                     playlist_to_update.playlist = rubysquare.helpers.update_json_from_page(); // update json with our new search results
                     $(rubysquare.ui.bindings[4].selector).bind(rubysquare.ui.bindings[4].bind_to, rubysquare.ui.bindings[4].func);  //rebind the old bindings for title, see above JSON
-                   //TODO improve re-binding process, this is repetitive. Or use jquery delegate
+                   //TODO improve re-binding process, this is repetitive. Or use jquery delegate. Add an argument for the binds to update?
                 }
             });
         }

@@ -26,12 +26,13 @@ rubysquare.music_bridge = function( settings, playlist_manager ) {
 			id: 'song',
 			url: ''
 		});
+        var self = this;
 
         // Public
         this.current_index; // TODO: figure out if this is a good way to set this
 
         this.set_song = function( url ) {
-			if (typeof url !== 'string') throw 'Exepected resource to be a string';
+			if (typeof url !== 'string') throw 'Exepected resource (URL) to be a string';
             if( song ) {
 				song.destruct();
 				rubysquare.log("song destroyed");
@@ -39,7 +40,10 @@ rubysquare.music_bridge = function( settings, playlist_manager ) {
 			else rubysquare.log("no current song, making a new song...");
 			song = soundManager.createSound({
 				id: 'song',
-				url: '/'+url
+				url: '/'+url,
+                onfinish: function(){
+                    self.next( settings ) // TODO figure out if this works, need a shorter song
+                }
 			});
         }
 

@@ -1,8 +1,10 @@
-<h1>Songs</h1>
-<%= render "layouts/json_on_page" %>
-<%= render "layouts/search" %>
-<%= render "layouts/music_player_controls" %>
-<%= paginate @songs %>
-<div id="music_list_container">
-    <%= render "layouts/list_music" %>
-</div>
+<% content_for :ajax_view do %>
+    <div id="songs_view">
+        <h1>Songs</h1>
+        <%= render "layouts/json_on_page" %>
+        <%= paginate @songs %>
+        <div id="music_list_container">
+            <%= render "layouts/list_music" %>
+        </div>
+    </div>
+<% end %>

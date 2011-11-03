@@ -1,0 +1,10 @@
+<% content_for :controls do %>
+    <%= render 'layouts/music_player_controls' %>
+    <%= render 'layouts/search' %>
+<% end %>
+
+<% content_for :content do %>
+<div id="view_container">
+    <%= yield :ajax_view %>
+</div>
+<% end %>

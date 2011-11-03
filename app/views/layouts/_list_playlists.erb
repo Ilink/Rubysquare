@@ -1,0 +1,50 @@
+<h1>Playlists</h1>
+<%= render 'layouts/json_on_page' %>
+<% @playlists.each do |playlist| %>
+  <ul>
+    <li class="header"><%= playlist.title %></li>
+    <li><%= link_to 'Show', playlist %></li>
+    <li><%= link_to 'Edit', edit_playlist_path(playlist) %></li>
+    <li><%= link_to 'Destroy', playlist, confirm: 'Are you sure?', method: :delete %></li>
+  </ul>
+  <%= form_tag(songs_add_to_playlist_path, :method => "post") do %>
+  <table>
+      <tr>
+        <th>Title</th>
+        <th>Artist</th>
+        <th>Album</th>
+        <th>Location</th>
+        <th>Actions</th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+
+
+        <%= label_tag('add_to_playlist', 'Add songs to playlist: ') %>
+        <%= collection_select('playlist', 'id', @playlists, :id, :title) %>
+        <%= submit_tag("Add to playlist") %>
+        ||||||||||
+        <%= link_to 'New Playlist', new_playlist_path %>
+          <% playlist.songs.each_with_index do |song, index| %>
+            <tr id="<%= index %>">
+                <td class="song_title"><%= song.title %></td>
+                <td class="song_artist"><%= song.artist %></td>
+                <td class="song_album"><%= song.album %></td>
+                <td class="song_location"><%= song.location %></td>
+                <td class="show_song"><%= link_to 'Show', song %></td>
+                <td class="edit_song"><%= link_to 'Edit', edit_song_path(song) %></td>
+                <td class="destroy_song"><%= link_to 'Destroy', song, confirm: 'Are you sure?', method: :delete %></td>
+              <td>
+                <%= label_tag(song.id, "Add to playlist") %>
+                <%= check_box_tag "song_ids[]", song.id, false, :id => "song_#{song.id}" %>
+              </td>
+            </tr>
+          <% end %>
+      <% end %>
+  </table>
+
+<% end %>
+<br />
+
+<%= link_to 'New Playlist', new_playlist_path %>

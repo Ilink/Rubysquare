@@ -17,16 +17,10 @@
   <%= content_tag :div, msg, :id => "flash_#{name}" %>
 <% end %>
 
-<a href="#" id="playlist_nav_test">Playlist Test</a>
-
-<div class="hidden" id="playlist_view_container">
-  Test Data Goes Here
-  moop
-  mop
-  <div class="pointer" id="playlist_test_link">Test</div>
-</div>
-
-<%= yield %>
-
+<%= render 'layouts/music_player' %>
+    <%= yield :controls %>
+    <div id="main_container">
+        <%= yield :content %>
+    </div>
 </body>
 </html>

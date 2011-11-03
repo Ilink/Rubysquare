@@ -21,12 +21,11 @@ rubysquare.view_manager = function(){
         this.switch_view = function( view ){
 			if (typeof view !== 'undefined' && view.hasOwnProperty('bind')){ // TODO this is SOOO not a good typecheck, add more functions that represent a view object's "fingerprint"
                 if(typeof current_view !== 'undefined') {
-                    console.log(current_view.binds);
+//                    console.log(current_view.binds);
                     current_view.hide();
                     view.show();
                     current_view = view;
                     view.load_content();
-                    console.log(current_view.binds);
                     view.bind();
                     // TODO: need to change the URL to reflect the AJAX-loaded path
                 }
@@ -78,12 +77,13 @@ rubysquare.view = function( _binds, _container_selector, ajax_url ){
     if(this instanceof rubysquare.view){
         //Private
         var container_selector = _container_selector;
+        var self = this;
 
         //Public
 		this.binds = _binds;	// TODO: should binds in views be private?
 
         this.show = function(){
-            if (typeof $(container_selector) === 'undefined'){
+            if (typeof $(container_selector) === 'undefined') {
                 $(rubysquare.settings.nodes.main_container).append(container_selector);
             }
             else $(container_selector).show();
@@ -96,11 +96,19 @@ rubysquare.view = function( _binds, _container_selector, ajax_url ){
         this.load_content = function(){
             $.ajax({
                 url : ajax_url,
-                success : function(json){
+                dataType: 'text',
+                success : function(data){
                     console.log('test ajax success');
-                    console.log(json);
+                    if ( $(container_selector).length === 0 ) { // check if element exists, create it if it doesnt
+                        //the selector string should have an identifier, a hash or period that needs to be removed first
+                        $('#view_container').append("<div id='"+container_selector.substring(1) + "'></div>");    //todo: hardcoded view parent for now, fix me. Also typecheck to see if string has NO prefix identifier
+                        console.log('empty');
+                    }
+                    $(container_selector).empty().append(data);
+                    self.bind();
                 }
             });
+
         }
 		
         this.bind = function(){

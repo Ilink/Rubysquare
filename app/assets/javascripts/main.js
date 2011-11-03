@@ -15,7 +15,7 @@ rubysquare.ajax = rubysquare.ajax_manager();
 
 
 
-//~ JSON for bindings ~//
+//~ JSON for bindings, for Songs view, TEMP ~//
 rubysquare.ui.bindings = [
     {
         'selector' : rubysquare.settings.nodes['next_button'],
@@ -71,31 +71,43 @@ rubysquare.ui.bindings = [
     }
 ];
 
+//~ JSON for playlist view bindings, TEMP ~//
+rubysquare.ui.playlist_bindings = [
+    {
+        'selector' : '#playlists_view .song_title, #playlist_view .song_location', // This is temporary since i have to figure out the UI before i know what the strucutre of the links will be
+        'bind_to' : 'dblclick',
+        'func' : function(event) {
+            event.preventDefault();
+            var song_index = Number($(this).parent('tr').attr('id'));
+            rubysquare.helpers.play_from_available(rubysquare.music, song_index, rubysquare.playlists.songs_on_page, rubysquare.playlists.now_playing);
+        }
+    }
+];
+
 rubysquare.ui.common_bindings = [
     {
-        'selector' : '#playlist_nav_test',
+        'selector' : '#nav_playlist',
         'bind_to' : 'click',
         'func' : function(){
-            $(this).click(function(event){
-                event.preventDefault();
-            });
             rubysquare.views.views_manager.switch_view( rubysquare.views.playlists );
         }
     }
 ];
 
-//~ More Objects, these reference above JSON ~//
+//~ View Objects, these reference above JSON (for now) ~//
 
-rubysquare.views.songs = rubysquare.view(rubysquare.ui.bindings, '#songs_view_container');  // temp, hardcoded, needs to be flexible
+rubysquare.views.songs = rubysquare.view(rubysquare.ui.bindings, '#songs_view', '/songs.xml');  // temp, hardcoded, needs to be flexible
 rubysquare.views.views_manager = rubysquare.view_manager();
-rubysquare.views.playlists = rubysquare.view(
-    [{
-        'selector':'#playlist_test_link',
-        'bind_to':'click',
-        'func':function(){
-            console.log('test node in playlist view was clicked');
-        }
-    }], '#playlist_view_container', '/playlists.json');
+//rubysquare.views.playlists = rubysquare.view(
+//    [{
+//        'selector':'#playlist_test_link',
+//        'bind_to':'click',
+//        'func':function(){
+//            console.log('test node in playlist view was clicked');
+//        }
+//    }], '#playlist_view', '/playlists.xml');
+rubysquare.views.playlists = rubysquare.view(rubysquare.ui.playlist_bindings, '#playlists_view', '/playlists.xml');
+
 
 $(document).ready(function(){
     //~Temp Binds~//
@@ -123,7 +135,15 @@ $(document).ready(function(){
     jsUtil.bind_from_json(rubysquare.ui.common_bindings);
 
     //there needs to be json that tells me what view i'm currently on...
-    rubysquare.views.views_manager.init( rubysquare.views.songs );  //hardcode current view for now
+    rubysquare.views.views_manager.init( rubysquare.views.songs );
+
+    //TODO add me to the binding process
+    $('#nav_playlist').click(function(event){
+//        event.preventDefault();
+    });
+
+
+     //hardcode current view for now
 
 
 //    rubysquare.views.views_manager.init_view( rubysquare.views.songs);
