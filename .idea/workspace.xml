@@ -2,20 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d13dcd32-c0ca-41c1-b3d0-8e2867947669" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/layouts/_list_playlists.erb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/layouts/_music_player.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/rubysquare.iml" afterPath="$PROJECT_DIR$/.idea/rubysquare.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/ajax_manager.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/ajax_manager.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/helpers.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/helpers.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/main.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/main.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/music.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/music.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/views.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/views.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/playlists_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/playlists_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/layouts/application.html.erb" afterPath="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/playlists/index.html.erb" afterPath="$PROJECT_DIR$/app/views/playlists/index.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/songs/index.html.erb" afterPath="$PROJECT_DIR$/app/views/songs/index.html.erb" />
     </list>
     <ignored path="rubysquare.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -45,7 +33,7 @@
       <file leaf-file-name="main.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/assets/javascripts/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="142" column="7" selection-start="5215" selection-end="5215" vertical-scroll-proportion="0.72136223">
+            <state line="138" column="66" selection-start="5108" selection-end="5108" vertical-scroll-proportion="0.57264054">
               <folding />
             </state>
           </provider>
@@ -997,7 +985,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/javascripts/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="142" column="7" selection-start="5215" selection-end="5215" vertical-scroll-proportion="0.72136223">
+        <state line="138" column="66" selection-start="5108" selection-end="5108" vertical-scroll-proportion="0.57264054">
           <folding />
         </state>
       </provider>

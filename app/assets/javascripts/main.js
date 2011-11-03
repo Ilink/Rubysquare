@@ -76,10 +76,10 @@ rubysquare.ui.playlist_bindings = [
     {
         'selector' : '#playlists_view .song_title, #playlist_view .song_location', // This is temporary since i have to figure out the UI before i know what the strucutre of the links will be
         'bind_to' : 'dblclick',
-        'func' : function(event) {
-            event.preventDefault();
+        'func' : function() {
             var song_index = Number($(this).parent('tr').attr('id'));
             rubysquare.helpers.play_from_available(rubysquare.music, song_index, rubysquare.playlists.songs_on_page, rubysquare.playlists.now_playing);
+
         }
     }
 ];
@@ -90,6 +90,7 @@ rubysquare.ui.common_bindings = [
         'bind_to' : 'click',
         'func' : function(){
             rubysquare.views.views_manager.switch_view( rubysquare.views.playlists );
+            return false;  // this prevents the default action
         }
     }
 ];
@@ -136,11 +137,6 @@ $(document).ready(function(){
 
     //there needs to be json that tells me what view i'm currently on...
     rubysquare.views.views_manager.init( rubysquare.views.songs );
-
-    //TODO add me to the binding process
-    $('#nav_playlist').click(function(event){
-//        event.preventDefault();
-    });
 
 
      //hardcode current view for now
