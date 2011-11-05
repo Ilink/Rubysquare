@@ -3,12 +3,22 @@ class SongsController < ApplicationController
   # GET /songs
   # GET /songs.json
   def index
-    @songs = Song.page(params[:page]).per(50)
+    #@songs = Song.page(params[:page]).per(50)
+    @songs = Song.all
     @songs_json = @songs.to_json
+    @test
     @playlists = Playlist.find_all_by_user_id(current_user.id)
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @songs }
+      #format.json { render json: @songs }
+      format.json { render json: @songs.to_json}
+      format.xml { render :partial => 'songs/list_music' }
+      #format.xml { render_to_string( render :partial => "songs/list_music" ) }
+      #format.xml { render_to_string :partial => 'songs/list_music' }
+      #format.xml {
+      #  foo = render_to_string 'blasfjasfdkjl;asfdklj'
+      #  render foo
+      #}
     end
   end
 

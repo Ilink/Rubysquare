@@ -7,7 +7,9 @@
     <li><%= link_to 'Edit', edit_playlist_path(playlist) %></li>
     <li><%= link_to 'Destroy', playlist, confirm: 'Are you sure?', method: :delete %></li>
   </ul>
+
   <%= form_tag(songs_add_to_playlist_path, :method => "post") do %>
+
   <table>
       <tr>
         <th>Title</th>

@@ -26,7 +26,7 @@ rubysquare.view_manager = function(){
                     view.show();
                     current_view = view;
                     view.load_content();
-                    view.bind();
+//                    view.bind();
                     // TODO: need to change the URL to reflect the AJAX-loaded path
                 }
 				else throw 'the view manager was not initialized, please initialize it before trying to initialize a view';

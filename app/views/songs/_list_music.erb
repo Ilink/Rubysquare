@@ -1,3 +1,6 @@
+<h1>Songs</h1>
+<div id="music_list_container">
+<%= render 'layouts/json_on_page' %>
 <%= form_tag(songs_add_to_playlist_path, :method => "post", :remote => true) do %>
 <table>
   <tr>
@@ -32,3 +35,4 @@
       <% end %>
 </table>
 <% end %>
+</div>

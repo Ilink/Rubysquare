@@ -2,7 +2,8 @@ class PlaylistsController < ApplicationController
   # GET /playlists
   # GET /playlists.json
   def index
-    @playlists = Playlist.page(params[:page]).find_all_by_user_id(current_user.id)
+    #@playlists = Playlist.page(params[:page]).find_all_by_user_id(current_user.id)
+    @playlists = Playlist.find_all_by_user_id(current_user.id)
     @songs_json = []
     @playlists.each do |playlist|
       playlist.songs.each do |song|
@@ -13,7 +14,8 @@ class PlaylistsController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @playlists }
-      format.xml { render :partial => 'layouts/list_playlists'}
+      format.xml { render :partial => 'playlists/list_playlists'}
+      #format.xml { render_to_string :partial => 'playlists/list_playlists'}
     end
   end
 
