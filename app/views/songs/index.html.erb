@@ -1,7 +1,7 @@
 <% content_for :ajax_view do %>
     <div id="songs_view">
         <div id="music_list_container">
-            <%= render "songs/list_music" %>
+            <%= render :partial => "songs/list_music", :locals => {:title => 'Songs'} %>
         </div>
     </div>
 <% end %>

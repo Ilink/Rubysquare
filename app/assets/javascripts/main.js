@@ -24,14 +24,16 @@ rubysquare.ui.songs_bindings = [
             var song_index = Number($(this).parent('tr').attr('id'));
             rubysquare.helpers.play_from_available(rubysquare.music, song_index, rubysquare.playlists.songs_on_page, rubysquare.playlists.now_playing);
         }
-    },
+    }
+];
+
+rubysquare.ui.search_bindings = [
     {
-        'selector' : '#query',
-        'bind_to' : 'keyup',
+        'selector' : '#search_view .song_location, #search_view .song_title', // This is temporary since i have to figure out the UI before i know what the strucutre of the links will be
+        'bind_to' : 'dblclick',
         'func' : function() {
-            var query = $(this).val();
-            rubysquare.ajax.search_timer(query, rubysquare.playlists.songs_on_page);
-            
+            var song_index = Number($(this).parent('tr').attr('id'));
+            rubysquare.helpers.play_from_available(rubysquare.music, song_index, rubysquare.playlists.songs_on_page, rubysquare.playlists.now_playing);
         }
     }
 ];
@@ -94,11 +96,21 @@ rubysquare.ui.common_bindings = [
         'func' : rubysquare.music.pause_or_resume
     },
     {
+        'selector' : '#query',
+        'bind_to' : 'keyup',
+        'func' : function() {
+            rubysquare.views.views_manager.hide_current_view();
+            rubysquare.views.search.show();
+            rubysquare.views.views_manager.set_current_view( rubysquare.views.search );
+            var query = $(this).val();
+            rubysquare.ajax.search_timer( query, rubysquare.views.search );
+        }
+    },
+    {
         'selector' : '#test',
         'bind_to' : 'click',
         'func' : function() {
-//            console.log(rubysquare.playlists.now_playing);
-            console.log('test');
+            rubysquare.helpers.update_now_playing_db_entries();
         }
     }
 ];
@@ -107,15 +119,9 @@ rubysquare.ui.common_bindings = [
 
 rubysquare.views.songs = rubysquare.view(rubysquare.ui.songs_bindings, '#songs_view', '/songs.xml');  // temp, hardcoded, needs to be flexible
 rubysquare.views.views_manager = rubysquare.view_manager();
-//rubysquare.views.playlists = rubysquare.view(
-//    [{
-//        'selector':'#playlist_test_link',
-//        'bind_to':'click',
-//        'func':function(){
-//            console.log('test node in playlist view was clicked');
-//        }
-//    }], '#playlist_view', '/playlists.xml');
 rubysquare.views.playlists = rubysquare.view(rubysquare.ui.playlist_bindings, '#playlists_view', '/playlists.xml');
+rubysquare.views.now_playing = rubysquare.view(rubysquare.ui.playlist_bindings, '#now_playling_view', 'songs/now_playing.xml');
+rubysquare.views.search = rubysquare.view(rubysquare.ui.search_bindings, '#search_view', 'songs/search.xml' );
 
 
 $(document).ready(function(){

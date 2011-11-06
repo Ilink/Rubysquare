@@ -22,7 +22,6 @@
         <th></th>
       </tr>
 
-
         <%= label_tag('add_to_playlist', 'Add songs to playlist: ') %>
         <%= collection_select('playlist', 'id', @playlists, :id, :title) %>
         <%= submit_tag("Add to playlist") %>

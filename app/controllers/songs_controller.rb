@@ -6,8 +6,7 @@ class SongsController < ApplicationController
     #@songs = Song.page(params[:page]).per(50)
     @songs = Song.all
     @songs_json = @songs.to_json
-    @test
-    @playlists = Playlist.find_all_by_user_id(current_user.id)
+    @playlists = Playlist.find_all_by_user_id current_user.id
     respond_to do |format|
       format.html # index.html.erb
       #format.json { render json: @songs }
@@ -19,6 +18,19 @@ class SongsController < ApplicationController
       #  foo = render_to_string 'blasfjasfdkjl;asfdklj'
       #  render foo
       #}
+    end
+  end
+
+  def now_playing
+    now_playing_playlist = Playlist.where("title = ? AND user_id = ?", '__now_playing__', current_user.id )
+    @playlists = Playlist.find_all_by_user_id current_user.id
+    @songs = []
+    now_playing_playlist[0].songs.each do |song|
+      @songs.push song
+    end
+    respond_to do |format|
+      format.html
+      format.xml { render :partial => 'songs/list_music'}
     end
   end
 
@@ -131,16 +143,13 @@ class SongsController < ApplicationController
       end
     else params.has_key?(:query)
       @songs = Song.find_all_by_title(params[:query])
-      #TODO utilize a real method (gem) here
+      #TODO utilize a real search method (gem) here
     end
     @songs_json = @songs.to_json
     @playlists = Playlist.find_all_by_user_id(current_user.id)
 
     respond_to do |format|
       format.html
-      #format.json {
-      #  render :json => @songs
-      #}
       format.xml {
         render :partial => 'layouts/search_results'
       }

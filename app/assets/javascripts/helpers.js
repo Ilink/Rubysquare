@@ -1,7 +1,7 @@
 //~ Singleton ~//
 rubysquare.helpers = function(){
     var that = {};
-    
+    var self = this;
     //this function may seem specific but its a very general case that encompasses 99% of music-playing behavior
     // TODO: find the best place for this function, i dont know if it belongs as a helper or part of the music class itself
     that.play_from_available = function( music_manager, song_index, available_playlist, now_playing_playlist ){
@@ -9,14 +9,28 @@ rubysquare.helpers = function(){
         console.log("attempting to play song at location: " + now_playing_playlist.playlist[song_index].location);
         music_manager.current_index = song_index;
         music_manager.set_song( now_playing_playlist.playlist[song_index].location );
+
+        self.update_now_playing_db_entries( now_playing_playlist );
+
         rubysquare.music.play();
         console.log("now playing playlist:" + now_playing_playlist.playlist);
         // TODO: should update the DB "now playing" playlist at this point
     }
 
-    //this definitely belongs here
+    that.update_now_playing_db_entries = function( playlist ){
+        $.ajax({
+            type: 'POST',
+            url: '/songs/add_to_playlist',
+            data: "playlist[id]=3&song_ids[]=2",
+            success: function(){
+                console.log('updated now playing playlist');
+            }
+        });
+    }
+
     that.update_json_from_page = function(selector){
-        return JSON.parse( $(selector).text() );
+        if ( $(selector).text() !== '' )
+            return JSON.parse( $(selector).text() );
     }
 
     return that;

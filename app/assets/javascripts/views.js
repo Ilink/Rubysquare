@@ -18,21 +18,34 @@ rubysquare.view_manager = function(){
 		var current_view;
 
         //Public
-        this.switch_view = function( view ){
+        this.switch_view = function( view, data ){
 			if (typeof view !== 'undefined' && view.hasOwnProperty('bind')){ // TODO this is SOOO not a good typecheck, add more functions that represent a view object's "fingerprint"
                 if(typeof current_view !== 'undefined') {
 //                    console.log(current_view.binds);
                     current_view.hide();
                     view.show();
                     current_view = view;
-                    view.load_content();
+                    view.load_content( data );
 //                    view.bind();
+
                     // TODO: need to change the URL to reflect the AJAX-loaded path
                 }
 				else throw 'the view manager was not initialized, please initialize it before trying to initialize a view';
                 // if init wasn't called, then the viewmanager has no knowledge of what the current view is
 			}
             else throw 'The supplied argument is not a view object! Please supply a view object.';
+        }
+
+        this.hide_current_view = function(){
+            current_view.hide();
+        }
+
+        this.set_current_view = function( view ){
+            current_view = view;
+        }
+
+        this.load = function( data ){
+            current_view.load( dasta );
         }
 
         // this feels kinda redundent
@@ -57,7 +70,7 @@ rubysquare.view_manager = function(){
 }
 
 /*
-    abstract class view(binds, container_selector){
+    abstract class view(binds, container_selector, ajax_url){
         Private:
             var container_selector
 
@@ -65,7 +78,7 @@ rubysquare.view_manager = function(){
             var binds
             function show()
             function hide()
-            function load_content()
+            function load_content( data ) //data is an optional parameter
             function bind(){
                 jsUtil.bind_from_json(this.binds)
             }
@@ -93,19 +106,30 @@ rubysquare.view = function( _binds, _container_selector, ajax_url ){
             $(container_selector).hide();
         }
 
-        this.load_content = function(){
+        this.get_container_selector = function(){
+            return container_selector;
+        }
+
+        this.load_content = function( data ){
             $.ajax({
                 url : ajax_url,
                 dataType: 'text',
+                data: data,
                 success : function(data){
-                    console.log('test ajax success');
+                    console.log('search ajax success');
                     if ( $(container_selector).length === 0 ) { // check if element exists, create it if it doesnt
                         //the selector string should have an identifier, a hash or period that needs to be removed first
-                        $('#view_container').append("<div id='"+container_selector.substring(1) + "'></div>");    //todo: hardcoded view parent for now, fix me. Also typecheck to see if string has NO prefix identifier
+                        //TODO typecheck to see if string has NO prefix identifier
+                        $('#view_container').append("<div id='"+container_selector.substring(1) + "'></div>");    //todo: hardcoded view parent (#view_container) for now, fix me.
                         console.log('empty');
                     }
                     $(container_selector).empty().append(data);
                     self.bind();
+
+                    if( $(_container_selector + " " + rubysquare.settings.nodes.song_json).length > 0 ){    // only try to update "available json" if the view actually has any
+                        rubysquare.playlists.songs_on_page.playlist = rubysquare.helpers.update_json_from_page(_container_selector + " " + rubysquare.settings.nodes.song_json);
+                        console.log(rubysquare.playlists.songs_on_page.playlist);
+                    }
                 }
             });
 
@@ -117,6 +141,8 @@ rubysquare.view = function( _binds, _container_selector, ajax_url ){
     }
     else return new rubysquare.view( _binds, _container_selector, ajax_url );
 }
+
+
 
 /*
     sample usage, so far:
