@@ -5,6 +5,7 @@ Rubysquare::Application.routes.draw do
 
   match "/songs/now_playing" => "songs#now_playing", :as => "now_playing", :via => :get
   match "/songs/filter" => "songs#filter", :as => "filter", :via => :get
+  match "/songs/update_now_playing" => "songs#update_now_playing", :via => :post
   match "/songs/add_to_playlist" => "songs#add_to_playlist", :via => :post
   match "/songs/dashboard" => "songs#dashboard", :via => :get
   match "songs/search" => "songs#search", :via => :get

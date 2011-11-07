@@ -1,37 +1,38 @@
-<p id="notice"><%= notice %></p>
+<% content_for :ajax_view do %>
+    <div id="playlists_view">
+      <%= render 'layouts/json_on_page' %>
+      <h1>
+        Playlist: <%= @playlist.title %>
+      </h1>
 
-<p>
-  <b>Playlist:</b>
-  <%= @playlist.title %>
-</p>
+      <table>
+        <tr>
+          <th>Title</th>
+          <th>Artist</th>
+          <th>Album</th>
+          <th>Location</th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
 
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Artist</th>
-    <th>Album</th>
-    <th>Location</th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-  
-  <% @songs = @playlist.songs %>
-  <% @playlist.songs.each do |song| %>
-    <tr>
-        <td><%= song.title %></td>
-        <td><%= song.artist %></td>
-        <td><%= song.album %></td>
-        <td><%= song.location %></td>
-        <td><%= link_to 'Show', song %></td>
-        <td><%= link_to 'Edit', edit_song_path(song) %></td>
-        <td><%= link_to 'Destroy', song, confirm: 'Are you sure?', method: :delete %></td>
-    </tr>
-  <% end %>
+        <% @playlist.songs.each_with_index do |song, index| %>
+            <tr id="<%= index %>">
+                <td class="song_title"><%= song.title %></td>
+                <td class="song_artist"><%= song.artist %></td>
+                <td class="song_album"><%= song.album %></td>
+                <td class="song_location"><%= song.location %></td>
+                <td class="show_song"><%= link_to 'Show', song %></td>
+                <td class="edit_song"><%= link_to 'Edit', edit_song_path(song) %></td>
+                <td class="destroy_song"><%= link_to 'Destroy', song, confirm: 'Are you sure?', method: :delete %></td>
+            </tr>
+        <% end %>
+      </table>
+
+      <%= link_to 'Edit', edit_playlist_path(@playlist) %> |
+      <%= link_to 'Back', playlists_path %>
+    </div>
+<% end %>
 
 
-</table>
-
-<%= link_to 'Edit', edit_playlist_path(@playlist) %> |
-<%= link_to 'Back', playlists_path %>

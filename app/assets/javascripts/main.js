@@ -1,11 +1,7 @@
 //~ (undoable) Commands ~//
 
 //~ Playlists ~//
-rubysquare.playlists.songs_on_page = rubysquare.playlist([{
-    'prop':'val',
-    'prop2':'val2',
-    'location':'test/test/tes.mp3'
-}]);
+rubysquare.playlists.songs_on_page = rubysquare.playlist();
 rubysquare.playlists.now_playing = rubysquare.playlist();
 
 //~ Objects ~//
@@ -41,7 +37,20 @@ rubysquare.ui.search_bindings = [
 //~ JSON for playlist view bindings, TEMP ~//
 rubysquare.ui.playlist_bindings = [
     {
-        'selector' : '#playlists_view .song_title, #playlist_view .song_location', // This is temporary since i have to figure out the UI before i know what the strucutre of the links will be
+        'selector' : '#playlists_view .song_title, #playlists_view .song_location', // This is temporary since i have to figure out the UI before i know what the strucutre of the links will be
+        'bind_to' : 'dblclick',
+        'func' : function() {
+            var song_index = Number($(this).parent('tr').attr('id'));
+            rubysquare.helpers.play_from_available(rubysquare.music, song_index, rubysquare.playlists.songs_on_page, rubysquare.playlists.now_playing);
+
+        }
+    }
+];
+
+//~ JSON for playlist view bindings, TEMP ~//
+rubysquare.ui.now_playing_bindings = [
+    {
+        'selector' : '#now_playing_view .song_title, #now_playing_view .song_location', // This is temporary since i have to figure out the UI before i know what the strucutre of the links will be
         'bind_to' : 'dblclick',
         'func' : function() {
             var song_index = Number($(this).parent('tr').attr('id'));
@@ -65,6 +74,14 @@ rubysquare.ui.common_bindings = [
         bind_to : 'click',
         func : function(){
             rubysquare.views.views_manager.switch_view( rubysquare.views.songs );
+            return false; // prevents default action
+        }
+    },
+    {
+        selector : '#nav_now_playing',
+        bind_to : 'click',
+        func : function(){
+            rubysquare.views.views_manager.switch_view( rubysquare.views.now_playing );
             return false; // prevents default action
         }
     },
@@ -110,18 +127,23 @@ rubysquare.ui.common_bindings = [
         'selector' : '#test',
         'bind_to' : 'click',
         'func' : function() {
-            rubysquare.helpers.update_now_playing_db_entries();
+            rubysquare.helpers.update_now_playing_db_entries( rubysquare.playlists.songs_on_page.get_playlist() );
         }
     }
 ];
 
 //~ View Objects, these reference above JSON (for now) ~//
 
-rubysquare.views.songs = rubysquare.view(rubysquare.ui.songs_bindings, '#songs_view', '/songs.xml');  // temp, hardcoded, needs to be flexible
 rubysquare.views.views_manager = rubysquare.view_manager();
-rubysquare.views.playlists = rubysquare.view(rubysquare.ui.playlist_bindings, '#playlists_view', '/playlists.xml');
-rubysquare.views.now_playing = rubysquare.view(rubysquare.ui.playlist_bindings, '#now_playling_view', 'songs/now_playing.xml');
-rubysquare.views.search = rubysquare.view(rubysquare.ui.search_bindings, '#search_view', 'songs/search.xml' );
+//rubysquare.views.songs = rubysquare.view(rubysquare.ui.songs_bindings, '#songs_view', '/songs.xml', rubysquare.playlists.songs_on_page.playlist);  // temp, hardcoded, needs to be flexible
+//rubysquare.views.playlists = rubysquare.view(rubysquare.ui.playlist_bindings, '#playlists_view', '/playlists.xml', rubysquare.playlists.songs_on_page.playlist);
+//rubysquare.views.now_playing = rubysquare.view(rubysquare.ui.now_playing_bindings, '#now_playing_view', '/songs/now_playing.xml', rubysquare.playlists.songs_on_page.playlist);
+//rubysquare.views.search = rubysquare.view(rubysquare.ui.search_bindings, '#search_view', '/songs/search.xml', rubysquare.playlists.songs_on_page.playlist );
+
+rubysquare.views.songs = rubysquare.view(rubysquare.ui.songs_bindings, '#songs_view', '/songs.xml', rubysquare.playlists.songs_on_page.playlist);  // temp, hardcoded, needs to be flexible
+rubysquare.views.playlists = rubysquare.view(rubysquare.ui.playlist_bindings, '#playlists_view', '/playlists.xml', rubysquare.playlists.songs_on_page.playlist);
+rubysquare.views.now_playing = rubysquare.view(rubysquare.ui.now_playing_bindings, '#now_playing_view', '/songs/now_playing.xml', rubysquare.playlists.songs_on_page.playlist);
+rubysquare.views.search = rubysquare.view(rubysquare.ui.search_bindings, '#search_view', '/songs/search.xml', rubysquare.playlists.songs_on_page.playlist );
 
 
 $(document).ready(function(){
@@ -143,14 +165,21 @@ $(document).ready(function(){
        }
     });
 
+    //this might have to change if there is more than one JSON on an initial page load
     rubysquare.playlists.songs_on_page.playlist = rubysquare.helpers.update_json_from_page(rubysquare.settings.nodes.song_json);
     console.log(rubysquare.playlists.songs_on_page.playlist);
 
-//    jsUtil.bind_from_json(rubysquare.ui.bindings);
     jsUtil.bind_from_json(rubysquare.ui.common_bindings);
 
-    //there needs to be json that tells me what view i'm currently on...
-    rubysquare.views.views_manager.init( rubysquare.views.songs );
+    //todo: move me into the helper class
+    var initial_view = rubysquare.helpers.update_json_from_page(rubysquare.settings.nodes.initial_page);
+    initial_view = initial_view.initial_view;
+    if(initial_view === 'songs') rubysquare.views.views_manager.init( rubysquare.views.songs );
+    else if(initial_view === 'playlist') { rubysquare.views.views_manager.init( rubysquare.views.playlists ); console.log('playlist view');}
+    else if(initial_view === 'search') { rubysquare.views.views_manager.init( rubysquare.views.search ); console.log('search view'); }
+    else if(initial_view === 'now_playing') { rubysquare.views.views_manager.init( rubysquare.views.now_playing ); console.log('now playing view')}
+
+
 
 
      //hardcode current view for now
@@ -217,31 +246,5 @@ $(document).ready(function(){
 
     $("#fling").click(flingable);
 
-    
-
-//~Soundmanager Testing~//
-
-//	soundManager.onready(function() {
-//	 	rubysquare.song = soundManager.createSound({
-//			id: 'song',
-//			url: 'assets/test.mp3',
-//			// optional sound parameters here, see Sound Properties for full list
-//			volume: 50,
-//			autoPlay: false
-//		});	//end create sound
-//
-//		rubysquare.music.set_song('assets/test.mp3')
-//
-//        rubysquare.music.play();
-//		rubysquare.music.pause();
-//        // soundManager.pauseAll();
-//        if(soundManager.loaded){
-//
-//
-//        }
-//
-//
-//
-//	});	//end ready statement
 
 });

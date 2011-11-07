@@ -1,36 +1,35 @@
 class SongsController < ApplicationController
   require 'nokogiri'
+
+
+
   # GET /songs
   # GET /songs.json
   def index
     #@songs = Song.page(params[:page]).per(50)
+    @initial_view = self.initial_view 'songs'
     @songs = Song.all
     @songs_json = @songs.to_json
     @playlists = Playlist.find_all_by_user_id current_user.id
     respond_to do |format|
       format.html # index.html.erb
-      #format.json { render json: @songs }
       format.json { render json: @songs.to_json}
-      format.xml { render :partial => 'songs/list_music' }
-      #format.xml { render_to_string( render :partial => "songs/list_music" ) }
-      #format.xml { render_to_string :partial => 'songs/list_music' }
-      #format.xml {
-      #  foo = render_to_string 'blasfjasfdkjl;asfdklj'
-      #  render foo
-      #}
+      format.xml { render :partial => 'songs/list_music', :locals => { :title => "Songs" } }
     end
   end
 
   def now_playing
+    @initial_view = self.initial_view 'now_playing'
     now_playing_playlist = Playlist.where("title = ? AND user_id = ?", '__now_playing__', current_user.id )
     @playlists = Playlist.find_all_by_user_id current_user.id
     @songs = []
     now_playing_playlist[0].songs.each do |song|
       @songs.push song
     end
+    @songs_json = @songs.to_json
     respond_to do |format|
       format.html
-      format.xml { render :partial => 'songs/list_music'}
+      format.xml { render :partial => 'songs/list_music', :locals => { :title => "Now Playing" }}
     end
   end
 
@@ -94,6 +93,26 @@ class SongsController < ApplicationController
     end
   end
 
+  #POST /songs/update_now_playing
+  def update_now_playing
+    @playlist = Playlist.find_by_title(params[:playlist][:title])
+    @playlist.songs = [] # clear old now playing playlist
+
+    @playlist.transaction do |record|
+      begin
+        @songs = Song.find(params[:song_ids])
+        @playlist.songs << @songs
+        #@playlist.save!
+      rescue ActiveRecord::StatementInvalid
+      end
+    end
+
+    respond_to do |format|
+      format.html { redirect_to songs_url, notice: 'Selected songs succesfully added' }
+      format.json { head :ok }
+    end
+  end
+
   #POST /songs/add_to_playlist
   def add_to_playlist
     @playlist = Playlist.find(params[:playlist][:id])
@@ -135,6 +154,7 @@ class SongsController < ApplicationController
   end
 
   def search
+    @initial_view = self.initial_view 'search'
     if params.has_key?(:filter_by)
       if params[:filter_by] == 'artist'
         @songs = Song.find_all_by_artist(params[:query])
@@ -150,9 +170,8 @@ class SongsController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.xml {
-        render :partial => 'layouts/search_results'
-      }
+      #format.xml { render :partial => 'layouts/search_results' }
+      format.xml { render :partial => "songs/list_music", :locals => { :title => 'Search Results'} }
     end
   end
 

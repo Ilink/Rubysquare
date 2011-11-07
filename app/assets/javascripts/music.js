@@ -113,12 +113,17 @@ rubysquare.music_bridge = function( settings, playlist_manager ) {
 rubysquare.playlist = function( json ){
 	if (this instanceof rubysquare.playlist){
 		// Private
+        var self = this;
 
 		// Public
         this.playlist = json;
 
         this.get_playlist = function(){
             return this.playlist
+        }
+
+        this.set_playlist = function( new_data ){
+            self.playlist = new_data;
         }
 
         this.copy_from = function( to_copy ){

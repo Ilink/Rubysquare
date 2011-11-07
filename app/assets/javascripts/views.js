@@ -19,14 +19,13 @@ rubysquare.view_manager = function(){
 
         //Public
         this.switch_view = function( view, data ){
+            console.log(current_view);
 			if (typeof view !== 'undefined' && view.hasOwnProperty('bind')){ // TODO this is SOOO not a good typecheck, add more functions that represent a view object's "fingerprint"
                 if(typeof current_view !== 'undefined') {
-//                    console.log(current_view.binds);
                     current_view.hide();
                     view.show();
                     current_view = view;
                     view.load_content( data );
-//                    view.bind();
 
                     // TODO: need to change the URL to reflect the AJAX-loaded path
                 }
@@ -45,7 +44,7 @@ rubysquare.view_manager = function(){
         }
 
         this.load = function( data ){
-            current_view.load( dasta );
+            current_view.load( data );
         }
 
         // this feels kinda redundent
@@ -86,11 +85,12 @@ rubysquare.view_manager = function(){
     }
 */
 
-rubysquare.view = function( _binds, _container_selector, ajax_url ){
+rubysquare.view = function( _binds, _container_selector, ajax_url, _playlist_to_update ){
     if(this instanceof rubysquare.view){
         //Private
         var container_selector = _container_selector;
         var self = this;
+        var playlist_to_update = _playlist_to_update;
 
         //Public
 		this.binds = _binds;	// TODO: should binds in views be private?
@@ -116,18 +116,21 @@ rubysquare.view = function( _binds, _container_selector, ajax_url ){
                 dataType: 'text',
                 data: data,
                 success : function(data){
-                    console.log('search ajax success');
+                    console.log('View load success!')
                     if ( $(container_selector).length === 0 ) { // check if element exists, create it if it doesnt
                         //the selector string should have an identifier, a hash or period that needs to be removed first
                         //TODO typecheck to see if string has NO prefix identifier
                         $('#view_container').append("<div id='"+container_selector.substring(1) + "'></div>");    //todo: hardcoded view parent (#view_container) for now, fix me.
-                        console.log('empty');
+                        console.log('Created new container');
                     }
                     $(container_selector).empty().append(data);
                     self.bind();
 
+                    //TODO this is still kinda brittle
                     if( $(_container_selector + " " + rubysquare.settings.nodes.song_json).length > 0 ){    // only try to update "available json" if the view actually has any
-                        rubysquare.playlists.songs_on_page.playlist = rubysquare.helpers.update_json_from_page(_container_selector + " " + rubysquare.settings.nodes.song_json);
+                        playlist_to_update = rubysquare.helpers.update_json_from_page( _container_selector + " " + rubysquare.settings.nodes.song_json );
+                        console.log(_container_selector + " " + rubysquare.settings.nodes.song_json);
+                        console.log(playlist_to_update);
                         console.log(rubysquare.playlists.songs_on_page.playlist);
                     }
                 }
@@ -136,7 +139,7 @@ rubysquare.view = function( _binds, _container_selector, ajax_url ){
         }
 		
         this.bind = function(){
-			jsUtil.bind_from_json( this.binds );
+			jsUtil.bind_from_json( self.binds );
         }
     }
     else return new rubysquare.view( _binds, _container_selector, ajax_url );
