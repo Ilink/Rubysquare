@@ -6,9 +6,10 @@ class PlaylistsController < ApplicationController
     #@playlists = Playlist.page(params[:page]).find_all_by_user_id(current_user.id)
     @playlists = Playlist.find_all_by_user_id(current_user.id)
     @songs_json = []
-    @playlists.each do |playlist|
+    @playlists.each_with_index do |playlist, index|
+      @songs_json[index] = []
       playlist.songs.each do |song|
-        @songs_json.push song
+        @songs_json[index].push song
       end
     end
     @songs_json = @songs_json.to_json

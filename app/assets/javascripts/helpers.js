@@ -30,13 +30,23 @@ rubysquare.helpers = function(){
             data: data,
             success: function(){
                 console.log('updated now playing playlist');
+            },
+            error: function(jqXHR, textStatus, errorThrown){
+                console.log('failed to update now playing playlist')
+                console.log(textStatus);
+                console.log(errorThrown);
             }
         });
     }
 
-    that.update_json_from_page = function(selector){
+    that.parse_json = function(selector){
         if ( $(selector).text() !== '' )    // TODO: this typecheck isnt right, fix it
             return JSON.parse( $(selector).text() );
+    }
+
+    that.parse_all_json = function(jquery_object){
+        if ( jquery_object.text() !== '' )    // TODO: this typecheck isnt right, fix it
+            return JSON.parse( jquery_object.text() );
     }
 
     return that;

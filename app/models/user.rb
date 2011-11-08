@@ -12,7 +12,12 @@ class User < ActiveRecord::Base
   validates_presence_of :email
   validates_uniqueness_of :email
 
-  #Associations
+  # Associations
   has_many :playlists
+
+  # Hooks
+  after_create { |user|
+    user.playlists.create(:title => '__now_playing__')
+  }
 
 end

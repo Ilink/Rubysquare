@@ -20,7 +20,7 @@ rubysquare.view_manager = function(){
         //Public
         this.switch_view = function( view, data ){
             console.log(current_view);
-			if (typeof view !== 'undefined' && view.hasOwnProperty('bind')){ // TODO this is SOOO not a good typecheck, add more functions that represent a view object's "fingerprint"
+			if (typeof view !== 'undefined' && view.hasOwnProperty('bind')){ // TODO this is SOOO not a good typecheck, add more functions that represent a view object's "fingerprint"? Not sure
                 if(typeof current_view !== 'undefined') {
                     current_view.hide();
                     view.show();
@@ -128,9 +128,9 @@ rubysquare.view = function( _binds, _container_selector, ajax_url, _playlist_to_
 
                     //TODO this is still kinda brittle
                     if( $(_container_selector + " " + rubysquare.settings.nodes.song_json).length > 0 ){    // only try to update "available json" if the view actually has any
-                        playlist_to_update = rubysquare.helpers.update_json_from_page( _container_selector + " " + rubysquare.settings.nodes.song_json );
+                        playlist_to_update.playlist = rubysquare.helpers.parse_json( _container_selector + " " + rubysquare.settings.nodes.song_json );
                         console.log(_container_selector + " " + rubysquare.settings.nodes.song_json);
-                        console.log(playlist_to_update);
+                        console.log(playlist_to_update.playlist);
                         console.log(rubysquare.playlists.songs_on_page.playlist);
                     }
                 }
@@ -142,7 +142,7 @@ rubysquare.view = function( _binds, _container_selector, ajax_url, _playlist_to_
 			jsUtil.bind_from_json( self.binds );
         }
     }
-    else return new rubysquare.view( _binds, _container_selector, ajax_url );
+    else return new rubysquare.view( _binds, _container_selector, ajax_url, _playlist_to_update );
 }
 
 

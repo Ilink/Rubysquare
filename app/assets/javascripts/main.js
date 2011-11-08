@@ -3,6 +3,7 @@
 //~ Playlists ~//
 rubysquare.playlists.songs_on_page = rubysquare.playlist();
 rubysquare.playlists.now_playing = rubysquare.playlist();
+rubysquare.playlists.all_on_page = {};
 
 //~ Objects ~//
 rubysquare.music = rubysquare.music_bridge(rubysquare.settings, rubysquare.playlists.now_playing);
@@ -18,7 +19,7 @@ rubysquare.ui.songs_bindings = [
         'bind_to' : 'dblclick',
         'func' : function() {
             var song_index = Number($(this).parent('tr').attr('id'));
-            rubysquare.helpers.play_from_available(rubysquare.music, song_index, rubysquare.playlists.songs_on_page, rubysquare.playlists.now_playing);
+            rubysquare.helpers.play_from_available(rubysquare.music, song_index, rubysquare.playlists.all_on_page[0], rubysquare.playlists.now_playing);
         }
     }
 ];
@@ -40,14 +41,16 @@ rubysquare.ui.playlist_bindings = [
         'selector' : '#playlists_view .song_title, #playlists_view .song_location', // This is temporary since i have to figure out the UI before i know what the strucutre of the links will be
         'bind_to' : 'dblclick',
         'func' : function() {
+            var playlist_index = $(this).parents('.playlist_container').attr('playlist_index');
+            console.log(playlist_index);
             var song_index = Number($(this).parent('tr').attr('id'));
-            rubysquare.helpers.play_from_available(rubysquare.music, song_index, rubysquare.playlists.songs_on_page, rubysquare.playlists.now_playing);
+            rubysquare.helpers.play_from_available(rubysquare.music, song_index, rubysquare.playlists.all_on_page[playlist_index], rubysquare.playlists.now_playing);
 
         }
     }
 ];
 
-//~ JSON for playlist view bindings, TEMP ~//
+//~ JSON for now playing view bindings, TEMP ~//
 rubysquare.ui.now_playing_bindings = [
     {
         'selector' : '#now_playing_view .song_title, #now_playing_view .song_location', // This is temporary since i have to figure out the UI before i know what the strucutre of the links will be
@@ -140,10 +143,10 @@ rubysquare.views.views_manager = rubysquare.view_manager();
 //rubysquare.views.now_playing = rubysquare.view(rubysquare.ui.now_playing_bindings, '#now_playing_view', '/songs/now_playing.xml', rubysquare.playlists.songs_on_page.playlist);
 //rubysquare.views.search = rubysquare.view(rubysquare.ui.search_bindings, '#search_view', '/songs/search.xml', rubysquare.playlists.songs_on_page.playlist );
 
-rubysquare.views.songs = rubysquare.view(rubysquare.ui.songs_bindings, '#songs_view', '/songs.xml', rubysquare.playlists.songs_on_page.playlist);  // temp, hardcoded, needs to be flexible
-rubysquare.views.playlists = rubysquare.view(rubysquare.ui.playlist_bindings, '#playlists_view', '/playlists.xml', rubysquare.playlists.songs_on_page.playlist);
-rubysquare.views.now_playing = rubysquare.view(rubysquare.ui.now_playing_bindings, '#now_playing_view', '/songs/now_playing.xml', rubysquare.playlists.songs_on_page.playlist);
-rubysquare.views.search = rubysquare.view(rubysquare.ui.search_bindings, '#search_view', '/songs/search.xml', rubysquare.playlists.songs_on_page.playlist );
+rubysquare.views.songs = rubysquare.view(rubysquare.ui.songs_bindings, '#songs_view', '/songs.xml', rubysquare.playlists.songs_on_page );  // temp, hardcoded, needs to be flexible
+rubysquare.views.playlists = rubysquare.view(rubysquare.ui.playlist_bindings, '#playlists_view', '/playlists.xml', rubysquare.playlists.songs_on_page );
+rubysquare.views.now_playing = rubysquare.view(rubysquare.ui.now_playing_bindings, '#now_playing_view', '/songs/now_playing.xml', rubysquare.playlists.songs_on_page );
+rubysquare.views.search = rubysquare.view(rubysquare.ui.search_bindings, '#search_view', '/songs/search.xml', rubysquare.playlists.songs_on_page );
 
 
 $(document).ready(function(){
@@ -165,14 +168,24 @@ $(document).ready(function(){
        }
     });
 
-    //this might have to change if there is more than one JSON on an initial page load
-    rubysquare.playlists.songs_on_page.playlist = rubysquare.helpers.update_json_from_page(rubysquare.settings.nodes.song_json);
+
+
+    //~ Assign all JSON sent by the server to a playlist ~//
+    $(rubysquare.settings.nodes.song_json).each(function(index, value){
+       rubysquare.playlists.all_on_page[index] = rubysquare.playlist();
+       rubysquare.playlists.all_on_page[index].playlist = rubysquare.helpers.parse_json(value);
+       console.log(rubysquare.playlists.all_on_page[index].playlist);
+    });
+
+
+
+    rubysquare.playlists.songs_on_page.playlist = rubysquare.helpers.parse_json(rubysquare.settings.nodes.song_json);
     console.log(rubysquare.playlists.songs_on_page.playlist);
 
     jsUtil.bind_from_json(rubysquare.ui.common_bindings);
 
     //todo: move me into the helper class
-    var initial_view = rubysquare.helpers.update_json_from_page(rubysquare.settings.nodes.initial_page);
+    var initial_view = rubysquare.helpers.parse_json(rubysquare.settings.nodes.initial_page);
     initial_view = initial_view.initial_view;
     if(initial_view === 'songs') rubysquare.views.views_manager.init( rubysquare.views.songs );
     else if(initial_view === 'playlist') { rubysquare.views.views_manager.init( rubysquare.views.playlists ); console.log('playlist view');}

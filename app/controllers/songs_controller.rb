@@ -20,10 +20,9 @@ class SongsController < ApplicationController
 
   def now_playing
     @initial_view = self.initial_view 'now_playing'
-    now_playing_playlist = Playlist.where("title = ? AND user_id = ?", '__now_playing__', current_user.id )
-    @playlists = Playlist.find_all_by_user_id current_user.id
+    @playlists = Playlist.where("title = ? AND user_id = ?", '__now_playing__', current_user.id )
     @songs = []
-    now_playing_playlist[0].songs.each do |song|
+    @playlists[0].songs.each do |song|
       @songs.push song
     end
     @songs_json = @songs.to_json
@@ -102,8 +101,8 @@ class SongsController < ApplicationController
       begin
         @songs = Song.find(params[:song_ids])
         @playlist.songs << @songs
-        #@playlist.save!
-      rescue ActiveRecord::StatementInvalid
+      rescue
+        ActiveRecord::StatementInvalid
       end
     end
 

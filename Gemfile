@@ -12,7 +12,7 @@ gem 'meta_search'
 gem "nokogiri"
 gem "simple-navigation"
 gem "kaminari"
-gem "thin"
+
 gem 'therubyracer', require: "v8"
 
 # Gems used only for assets and not required
@@ -38,3 +38,9 @@ group :test do
   # Pretty printed test output
   gem 'turn', :require => false
 end
+
+gem "thin"
+gem 'mongrel', "~> 1.2.0.pre2"
+gem 'daemons', "~> 1.0.10"
+
+gem "sunspot"
