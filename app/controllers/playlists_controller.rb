@@ -3,21 +3,17 @@ class PlaylistsController < ApplicationController
   # GET /playlists.json
   def index
     @initial_view = self.initial_view 'playlist'
-    #@playlists = Playlist.page(params[:page]).find_all_by_user_id(current_user.id)
     @playlists = Playlist.find_all_by_user_id(current_user.id)
-    @songs_json = []
+    @songs = []
     @playlists.each_with_index do |playlist, index|
-      @songs_json[index] = []
+      @songs[index] = []
       playlist.songs.each do |song|
-        @songs_json[index].push song
+        @songs[index].push song
       end
     end
-    @songs_json = @songs_json.to_json
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @playlists }
       format.xml { render :partial => 'playlists/list_playlists'}
-      #format.xml { render_to_string :partial => 'playlists/list_playlists'}
     end
   end
 

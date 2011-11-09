@@ -22,7 +22,7 @@ rubysquare.settings = {
         'next_button' : '#next',
         'previous_button' : '#prev',
         'pause_button' : '#pause',
-        'song_json' : '#song_json',
+        'song_json' : '.song_json',
         'main_container' : '#container',
         'initial_page' : '#initial_view_json'
     }

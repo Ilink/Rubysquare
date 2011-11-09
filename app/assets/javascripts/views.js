@@ -128,8 +128,23 @@ rubysquare.view = function( _binds, _container_selector, ajax_url, _playlist_to_
 
                     //TODO this is still kinda brittle
                     if( $(_container_selector + " " + rubysquare.settings.nodes.song_json).length > 0 ){    // only try to update "available json" if the view actually has any
+                        /*
+                            PSEUDO
+                            delete all props in playlist_to_update
+
+                            $(rubysquare.settings.nodes.song_json).each(function(index, value){
+                               rubysquare.playlists.all_on_page[index] = rubysquare.playlist();
+                               rubysquare.playlists.all_on_page[index].playlist = rubysquare.helpers.parse_json(value);
+                               console.log(rubysquare.playlists.all_on_page[index].playlist);
+                                console.log('test');
+                            });
+
+                         */
+                        $(rubysquare.settings.nodes.song_json).each(function(index, value){
+                            
+                        });
+
                         playlist_to_update.playlist = rubysquare.helpers.parse_json( _container_selector + " " + rubysquare.settings.nodes.song_json );
-                        console.log(_container_selector + " " + rubysquare.settings.nodes.song_json);
                         console.log(playlist_to_update.playlist);
                         console.log(rubysquare.playlists.songs_on_page.playlist);
                     }

@@ -3,7 +3,7 @@
 //~ Playlists ~//
 rubysquare.playlists.songs_on_page = rubysquare.playlist();
 rubysquare.playlists.now_playing = rubysquare.playlist();
-rubysquare.playlists.all_on_page = {};
+rubysquare.playlists.all_on_page = [];
 
 //~ Objects ~//
 rubysquare.music = rubysquare.music_bridge(rubysquare.settings, rubysquare.playlists.now_playing);
@@ -30,7 +30,7 @@ rubysquare.ui.search_bindings = [
         'bind_to' : 'dblclick',
         'func' : function() {
             var song_index = Number($(this).parent('tr').attr('id'));
-            rubysquare.helpers.play_from_available(rubysquare.music, song_index, rubysquare.playlists.songs_on_page, rubysquare.playlists.now_playing);
+            rubysquare.helpers.play_from_available(rubysquare.music, song_index, rubysquare.playlists.all_on_page[0], rubysquare.playlists.now_playing);
         }
     }
 ];
@@ -57,7 +57,7 @@ rubysquare.ui.now_playing_bindings = [
         'bind_to' : 'dblclick',
         'func' : function() {
             var song_index = Number($(this).parent('tr').attr('id'));
-            rubysquare.helpers.play_from_available(rubysquare.music, song_index, rubysquare.playlists.songs_on_page, rubysquare.playlists.now_playing);
+            rubysquare.helpers.play_from_available(rubysquare.music, song_index, rubysquare.playlists.all_on_page[0], rubysquare.playlists.now_playing);
 
         }
     }
@@ -143,10 +143,10 @@ rubysquare.views.views_manager = rubysquare.view_manager();
 //rubysquare.views.now_playing = rubysquare.view(rubysquare.ui.now_playing_bindings, '#now_playing_view', '/songs/now_playing.xml', rubysquare.playlists.songs_on_page.playlist);
 //rubysquare.views.search = rubysquare.view(rubysquare.ui.search_bindings, '#search_view', '/songs/search.xml', rubysquare.playlists.songs_on_page.playlist );
 
-rubysquare.views.songs = rubysquare.view(rubysquare.ui.songs_bindings, '#songs_view', '/songs.xml', rubysquare.playlists.songs_on_page );  // temp, hardcoded, needs to be flexible
-rubysquare.views.playlists = rubysquare.view(rubysquare.ui.playlist_bindings, '#playlists_view', '/playlists.xml', rubysquare.playlists.songs_on_page );
-rubysquare.views.now_playing = rubysquare.view(rubysquare.ui.now_playing_bindings, '#now_playing_view', '/songs/now_playing.xml', rubysquare.playlists.songs_on_page );
-rubysquare.views.search = rubysquare.view(rubysquare.ui.search_bindings, '#search_view', '/songs/search.xml', rubysquare.playlists.songs_on_page );
+rubysquare.views.songs = rubysquare.view(rubysquare.ui.songs_bindings, '#songs_view', '/songs.xml', rubysquare.playlists.all_on_page );  // temp, hardcoded, needs to be flexible
+rubysquare.views.playlists = rubysquare.view(rubysquare.ui.playlist_bindings, '#playlists_view', '/playlists.xml', rubysquare.playlists.all_on_page );
+rubysquare.views.now_playing = rubysquare.view(rubysquare.ui.now_playing_bindings, '#now_playing_view', '/songs/now_playing.xml', rubysquare.playlists.all_on_page );
+rubysquare.views.search = rubysquare.view(rubysquare.ui.search_bindings, '#search_view', '/songs/search.xml', rubysquare.playlists.all_on_page );
 
 
 $(document).ready(function(){
@@ -175,12 +175,13 @@ $(document).ready(function(){
        rubysquare.playlists.all_on_page[index] = rubysquare.playlist();
        rubysquare.playlists.all_on_page[index].playlist = rubysquare.helpers.parse_json(value);
        console.log(rubysquare.playlists.all_on_page[index].playlist);
+        console.log('test');
     });
 
 
 
-    rubysquare.playlists.songs_on_page.playlist = rubysquare.helpers.parse_json(rubysquare.settings.nodes.song_json);
-    console.log(rubysquare.playlists.songs_on_page.playlist);
+//    rubysquare.playlists.songs_on_page.playlist = rubysquare.helpers.parse_json(rubysquare.settings.nodes.song_json);
+//    console.log(rubysquare.playlists.songs_on_page.playlist);
 
     jsUtil.bind_from_json(rubysquare.ui.common_bindings);
 
