@@ -162,11 +162,10 @@ class SongsController < ApplicationController
         @songs = Song.find_all_by_album(params[:query])
       end
     else params.has_key?(:query)
-      @songs = Song.find_all_by_title(params[:query])
-      #@search = Song.search do
-      #  fulltext params[:search]
-      #end
-      #@songs = @search.results
+      @search = Song.search do |s|
+        s.fulltext params[:query]
+      end
+      @songs = @search.results
     end
     @songs_json = @songs.to_json
     @playlists = Playlist.find_all_by_user_id(current_user.id)
