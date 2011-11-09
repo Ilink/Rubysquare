@@ -152,6 +152,7 @@ class SongsController < ApplicationController
     end
   end
 
+  # TODO: decide if I want to move this search logic into the Index function within this controller
   def search
     @initial_view = self.initial_view 'search'
     if params.has_key?(:filter_by)
@@ -162,7 +163,10 @@ class SongsController < ApplicationController
       end
     else params.has_key?(:query)
       @songs = Song.find_all_by_title(params[:query])
-      #TODO utilize a real search method (gem) here
+      #@search = Song.search do
+      #  fulltext params[:search]
+      #end
+      #@songs = @search.results
     end
     @songs_json = @songs.to_json
     @playlists = Playlist.find_all_by_user_id(current_user.id)

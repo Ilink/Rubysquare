@@ -164,11 +164,3 @@ rubysquare.view = function( _binds, _container_selector, ajax_url, _playlist_to_
         var view_info = JSON.parse( $('#view_info').text() );
         view_manager.current_page = view_info.current_page;
  */
-
-
-//    view_manager.init(view)
-//
-//    view_manager.update_current_view();
-//
-//    view_manager.current_view = view_manager.get_view(view_manager.current_page)
-//    viewmanager.current_view.init();

@@ -8,7 +8,6 @@ gem 'sqlite3'
 #gem 'mysql2', '0.3.7'
 gem 'bcrypt-ruby'
 gem 'devise', '1.4.7'
-gem 'meta_search'
 gem "nokogiri"
 gem "simple-navigation"
 gem "kaminari"
@@ -43,4 +42,4 @@ gem "thin"
 gem 'mongrel', "~> 1.2.0.pre2"
 gem 'daemons', "~> 1.0.10"
 
-gem "sunspot"
+gem "sunspot_rails"
