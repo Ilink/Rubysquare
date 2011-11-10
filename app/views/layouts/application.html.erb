@@ -8,8 +8,9 @@
   <%= javascript_include_tag "bind_from_json", "soundmanager/script/soundmanager2.js", "setup", "helpers", "log","views", "ajax_manager", "ui", "music", "history", "fling", "commands", "obs",  "main" %>
 </head>
 <body>
+<div id="page_wrapper">
 <%= render 'layouts/initial_view' %>
-<div id="fling">fling</div>
+<div class="hidden" id="fling">fling</div>
 <div id="menu">
   <%= render_navigation %>
   <%= render 'devise/menu/auth_nav' %>
@@ -25,5 +26,6 @@
         <%= yield :content %>
         <%= yield %>
     </div>
+</div>
 </body>
 </html>

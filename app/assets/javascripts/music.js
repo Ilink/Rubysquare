@@ -40,7 +40,8 @@ rubysquare.music_bridge = function( settings, playlist_manager ) {
 			else rubysquare.log("no current song, making a new song...");
 			song = soundManager.createSound({
 				id: 'song',
-				url: '/'+url,
+//				url: '/'+url, //for now i need to use external urls, which dont need that slash
+                url: url,
                 onfinish: function(){
                     self.next( settings ) // TODO figure out if this works, need a shorter song
                 }
@@ -75,6 +76,18 @@ rubysquare.music_bridge = function( settings, playlist_manager ) {
                 song.play();
             }
 		}
+
+        this.seek = function( percentage ){
+            var pos;
+            if(song.loaded){
+                pos = percentage * song.duration;   // value is truncated if the song isnt loaded
+            }
+            else {
+                pos = percentage * song.durationEstimate;
+            }
+
+            song.setPosition( pos );
+        }
 		
 		this.play = function() {
 			song.play();

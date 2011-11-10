@@ -40,8 +40,9 @@ rubysquare.helpers = function(){
     }
 
     that.parse_json = function(selector){
-        if ( $(selector).text() !== '' )    // TODO: this typecheck isnt right, fix it
-            return JSON.parse( $(selector).text() );
+        var text = $(selector).text();
+        if ( text !== '' )    // TODO: this typecheck isnt right, fix it
+            return JSON.parse( text );
     }
 
     that.parse_all_json = function(jquery_object){

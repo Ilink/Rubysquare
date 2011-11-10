@@ -7,10 +7,8 @@ rubysquare.playlists.all_on_page = [];
 
 //~ Objects ~//
 rubysquare.music = rubysquare.music_bridge(rubysquare.settings, rubysquare.playlists.now_playing);
-rubysquare.ui = rubysquare.ui_manager();
 rubysquare.ajax = rubysquare.ajax_manager();
-
-
+rubysquare.seek_bar = rubysquare.ui.seek_bar(rubysquare.music);
 
 //~ JSON for bindings, for Songs view, TEMP ~//
 rubysquare.ui.songs_bindings = [
@@ -132,6 +130,13 @@ rubysquare.ui.common_bindings = [
         'func' : function() {
             rubysquare.helpers.update_now_playing_db_entries( rubysquare.playlists.songs_on_page.get_playlist() );
         }
+    },
+    {
+        'selector' : '#seek_bar',
+        'bind_to' : 'click',
+        'func' : function(e){
+            rubysquare.seek_bar.seek();
+        }
     }
 ];
 
@@ -147,6 +152,8 @@ rubysquare.views.songs = rubysquare.view(rubysquare.ui.songs_bindings, '#songs_v
 rubysquare.views.playlists = rubysquare.view(rubysquare.ui.playlist_bindings, '#playlists_view', '/playlists.xml', rubysquare.playlists.all_on_page );
 rubysquare.views.now_playing = rubysquare.view(rubysquare.ui.now_playing_bindings, '#now_playing_view', '/songs/now_playing.xml', rubysquare.playlists.all_on_page );
 rubysquare.views.search = rubysquare.view(rubysquare.ui.search_bindings, '#search_view', '/songs/search.xml', rubysquare.playlists.all_on_page );
+
+
 
 
 $(document).ready(function(){
@@ -175,7 +182,6 @@ $(document).ready(function(){
        rubysquare.playlists.all_on_page[index] = rubysquare.playlist();
        rubysquare.playlists.all_on_page[index].playlist = rubysquare.helpers.parse_json(value);
        console.log(rubysquare.playlists.all_on_page[index].playlist);
-        console.log('test');
     });
 
 

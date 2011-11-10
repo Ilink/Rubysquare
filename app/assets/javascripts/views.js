@@ -85,12 +85,12 @@ rubysquare.view_manager = function(){
     }
 */
 
-rubysquare.view = function( _binds, _container_selector, ajax_url, _playlist_to_update ){
+rubysquare.view = function( _binds, container_selector, ajax_url, playlist_to_update ){
     if(this instanceof rubysquare.view){
         //Private
-        var container_selector = _container_selector;
         var self = this;
-        var playlist_to_update = _playlist_to_update;
+//        if(typeof playlist_to_update)
+
 
         //Public
 		this.binds = _binds;	// TODO: should binds in views be private?
@@ -111,6 +111,7 @@ rubysquare.view = function( _binds, _container_selector, ajax_url, _playlist_to_
         }
 
         this.load_content = function( data ){
+            console.log(typeof playlist_to_update);
             $.ajax({
                 url : ajax_url,
                 dataType: 'text',
@@ -127,7 +128,7 @@ rubysquare.view = function( _binds, _container_selector, ajax_url, _playlist_to_
                     self.bind();
 
                     //TODO this is still kinda brittle
-                    if( $(_container_selector + " " + rubysquare.settings.nodes.song_json).length > 0 ){    // only try to update "available json" if the view actually has any
+                    if( $(container_selector + " " + rubysquare.settings.nodes.song_json).length > 0 ){    // only try to update "available json" if the view actually has any
                         /*
                             PSEUDO
                             delete all props in playlist_to_update
@@ -140,13 +141,16 @@ rubysquare.view = function( _binds, _container_selector, ajax_url, _playlist_to_
                             });
 
                          */
-                        $(rubysquare.settings.nodes.song_json).each(function(index, value){
-                            
-                        });
 
-                        playlist_to_update.playlist = rubysquare.helpers.parse_json( _container_selector + " " + rubysquare.settings.nodes.song_json );
-                        console.log(playlist_to_update.playlist);
-                        console.log(rubysquare.playlists.songs_on_page.playlist);
+                        //TODO move this so it can be re-used during initialization
+                        $($(container_selector + " " + rubysquare.settings.nodes.song_json)).each(function(index, value){
+                            playlist_to_update[index] = rubysquare.playlist();
+                            playlist_to_update[index].playlist = rubysquare.helpers.parse_json(value);
+
+                            console.log(index);
+                            console.log(value);
+                            console.log(playlist_to_update[index].playlist);
+                        });
                     }
                 }
             });
@@ -157,7 +161,7 @@ rubysquare.view = function( _binds, _container_selector, ajax_url, _playlist_to_
 			jsUtil.bind_from_json( self.binds );
         }
     }
-    else return new rubysquare.view( _binds, _container_selector, ajax_url, _playlist_to_update );
+    else return new rubysquare.view( _binds, container_selector, ajax_url, playlist_to_update );
 }
 
 
