@@ -16,9 +16,11 @@
   <%= render 'devise/menu/auth_nav' %>
 </div>
 
-<% flash.each do |name, msg| %>
-  <%= content_tag :div, msg, :id => "flash_#{name}" %>
-<% end %>
+<div id="message_container">
+  <% flash.each do |name, msg| %>
+      <%= content_tag :div, msg, :id => "flash_#{name}" %>
+  <% end %>
+</div>
 
 <%= render 'layouts/music_player' %>
     <%= yield :controls %>

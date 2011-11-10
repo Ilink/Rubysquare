@@ -2,24 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d13dcd32-c0ca-41c1-b3d0-8e2867947669" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/solr/data/development/index/segments_3" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/solr/data/development/index/segments_4" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Ian\Documents\htdocs\Rubysquare\solr\data\development\index\segments_3" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Ian\Documents\htdocs\Rubysquare\solr\data\development\index\segments_4" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Ian\Documents\htdocs\Rubysquare\solr\data\development\index\segments_5" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/solr/data/development/index/_4.fdx" afterPath="$PROJECT_DIR$/solr/data/development/index/_4.fdx" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/solr/data/development/index/segments.gen" afterPath="$PROJECT_DIR$/solr/data/development/index/segments.gen" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/rubysquare.iml" afterPath="$PROJECT_DIR$/.idea/rubysquare.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/helpers.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/helpers.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/main.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/main.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/music.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/music.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/ui.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/ui.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/views.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/views.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/stylesheets/application.css" afterPath="$PROJECT_DIR$/app/assets/stylesheets/application.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/layouts/_music_player_controls.erb" afterPath="$PROJECT_DIR$/app/views/layouts/_music_player_controls.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/layouts/application.html.erb" afterPath="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/playlists/_list_playlists.erb" afterPath="$PROJECT_DIR$/app/views/playlists/_list_playlists.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/songs/_list_music.erb" afterPath="$PROJECT_DIR$/app/views/songs/_list_music.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/songs/_list_now_playing.erb" afterPath="$PROJECT_DIR$/app/views/songs/_list_now_playing.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/seeds.rb" afterPath="$PROJECT_DIR$/db/seeds.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/solr/data/development/index/_4.fdt" afterPath="$PROJECT_DIR$/solr/data/development/index/_4.fdt" />
     </list>
     <ignored path="rubysquare.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -55,10 +47,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ui.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="ui.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/assets/javascripts/ui.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="25" column="0" selection-start="580" selection-end="580" vertical-scroll-proportion="0.3869969">
+            <state line="9" column="0" selection-start="192" selection-end="192" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -73,10 +65,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="views.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/assets/javascripts/views.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="38" column="13" selection-start="1592" selection-end="1611" vertical-scroll-proportion="0.0">
+            <state line="129" column="43" selection-start="4393" selection-end="4393" vertical-scroll-proportion="0.6682081">
               <folding />
             </state>
           </provider>
@@ -94,7 +86,7 @@
       <file leaf-file-name="application.html.erb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/layouts/application.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="20" selection-start="470" selection-end="470" vertical-scroll-proportion="-7.5">
+            <state line="20" column="25" selection-start="671" selection-end="671" vertical-scroll-proportion="-13.076923">
               <folding />
             </state>
           </provider>
@@ -103,7 +95,7 @@
       <file leaf-file-name="_list_playlists.erb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/playlists/_list_playlists.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="35" selection-start="986" selection-end="998" vertical-scroll-proportion="-14.375">
+            <state line="23" column="35" selection-start="986" selection-end="998" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -121,7 +113,7 @@
       <file leaf-file-name="_list_music.erb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/songs/_list_music.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="29" selection-start="478" selection-end="478" vertical-scroll-proportion="-8.125">
+            <state line="13" column="29" selection-start="478" selection-end="478" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -130,7 +122,7 @@
       <file leaf-file-name="_list_now_playing.erb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/songs/_list_now_playing.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="29" selection-start="478" selection-end="478" vertical-scroll-proportion="-8.125">
+            <state line="13" column="29" selection-start="478" selection-end="478" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -154,18 +146,18 @@
         <option value="$PROJECT_DIR$/app/views/layouts/_json_on_page_with_index.erb" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/setup.js" />
         <option value="$PROJECT_DIR$/app/views/layouts/_json_on_page.erb" />
-        <option value="$PROJECT_DIR$/app/assets/javascripts/views.js" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/helpers.js" />
         <option value="$PROJECT_DIR$/db/seeds.rb" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/music.js" />
         <option value="$PROJECT_DIR$/app/views/layouts/_music_player_controls.erb" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/main.js" />
-        <option value="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
         <option value="$PROJECT_DIR$/app/views/playlists/_list_playlists.erb" />
         <option value="$PROJECT_DIR$/app/views/songs/_list_music.erb" />
         <option value="$PROJECT_DIR$/app/views/songs/_list_now_playing.erb" />
         <option value="$PROJECT_DIR$/app/assets/stylesheets/application.css" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/ui.js" />
+        <option value="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
+        <option value="$PROJECT_DIR$/app/assets/javascripts/views.js" />
       </list>
     </option>
   </component>
@@ -177,10 +169,9 @@
     <option name="CUSTOM_FILTER" value="" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="4" />
-    <option name="y" value="23" />
-    <option name="width" value="1907" />
-    <option name="height" value="1096" />
+    <option name="x" value="1034" />
+    <option name="width" value="886" />
+    <option name="height" value="1040" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -225,7 +216,6 @@
     </navigator>
     <panes>
       <pane id="RailsProjectView" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -524,6 +514,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="Favorites" />
     </panes>
   </component>
@@ -541,16 +532,16 @@
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="148" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="460" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="457" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="460" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth2" value="147" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth1" value="146" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder2" value="2" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder2" value="2" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder3" value="3" />
-    <property name="dynamic.classpath" value="false" />
-    <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
+    <property name="dynamic.classpath" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -673,13 +664,6 @@
       <RUBY_RUN_CONFIG NAME="SCRIPT_ARGS" VALUE="" />
       <method />
     </configuration>
-    <configuration default="true" type="JavascriptDebugSession" factoryName="Remote">
-      <JSRemoteDebuggerConfigurationSettings>
-        <option name="engineId" value="embedded" />
-        <option name="fileUrl" />
-      </JSRemoteDebuggerConfigurationSettings>
-      <method />
-    </configuration>
     <configuration default="true" type="CucumberRunConfigurationType" factoryName="Cucumber">
       <predefined_log_file id="RUBY_CUCUMBER" enabled="true" />
       <module name="" />
@@ -711,6 +695,13 @@
       <CUCUMBER_RUN_CONFIG_SETTINGS_ID NAME="CUCUMBER_RUNNER_PATH" VALUE="" />
       <CUCUMBER_RUN_CONFIG_SETTINGS_ID NAME="USE_CUSTOM_RUNNER" VALUE="false" />
       <CUCUMBER_RUN_CONFIG_SETTINGS_ID NAME="SETTINGS_VERSION" VALUE="2" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugSession" factoryName="Remote">
+      <JSRemoteDebuggerConfigurationSettings>
+        <option name="engineId" value="embedded" />
+        <option name="fileUrl" />
+      </JSRemoteDebuggerConfigurationSettings>
       <method />
     </configuration>
     <configuration default="true" type="JavascriptDebugSession" factoryName="Local">
@@ -897,14 +888,14 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="4" y="23" width="1907" height="1096" extended-state="0" />
+    <frame x="1034" y="0" width="886" height="1040" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Data Sources" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32979593" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32827735" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.21759747" sideWeight="0.3150384" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2411283" sideWeight="0.3622393" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18693574" sideWeight="0.0" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3394794" sideWeight="0.0" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32827735" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -1005,39 +996,47 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/layouts/application.html.erb">
+    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/music.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="20" selection-start="470" selection-end="470" vertical-scroll-proportion="-7.5">
-          <folding />
-        </state>
+        <state line="80" column="20" selection-start="3176" selection-end="3176" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/playlists/_list_playlists.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="35" selection-start="986" selection-end="998" vertical-scroll-proportion="-14.375">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/songs/_list_music.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="29" selection-start="478" selection-end="478" vertical-scroll-proportion="-8.125">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/songs/_list_now_playing.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="29" selection-start="478" selection-end="478" vertical-scroll-proportion="-8.125">
+        <state line="23" column="35" selection-start="986" selection-end="998" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/application.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="48" column="0" selection-start="737" selection-end="737" vertical-scroll-proportion="0.0">
+        <state line="48" column="0" selection-start="737" selection-end="737" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/songs/_list_music.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="29" selection-start="478" selection-end="478" vertical-scroll-proportion="0.0">
           <folding />
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/songs/_list_now_playing.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="29" selection-start="478" selection-end="478" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/layouts/application.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="25" selection-start="671" selection-end="671" vertical-scroll-proportion="-13.076923">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/helpers.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="30" selection-start="565" selection-end="573" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/javascripts/main.js">
@@ -1047,26 +1046,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/music.js">
+    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/ui.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="80" column="20" selection-start="3176" selection-end="3176" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/helpers.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="30" selection-start="565" selection-end="573" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/views.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="38" column="13" selection-start="1592" selection-end="1611" vertical-scroll-proportion="0.0">
+        <state line="9" column="0" selection-start="192" selection-end="192" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/ui.js">
+    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/views.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="0" selection-start="580" selection-end="580" vertical-scroll-proportion="0.3869969">
+        <state line="129" column="43" selection-start="4393" selection-end="4393" vertical-scroll-proportion="0.6682081">
           <folding />
         </state>
       </provider>

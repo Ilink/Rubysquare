@@ -89,8 +89,8 @@ rubysquare.view = function( _binds, container_selector, ajax_url, playlist_to_up
     if(this instanceof rubysquare.view){
         //Private
         var self = this;
+        var ui_modules = [];
 //        if(typeof playlist_to_update)
-
 
         //Public
 		this.binds = _binds;	// TODO: should binds in views be private?
@@ -102,12 +102,22 @@ rubysquare.view = function( _binds, container_selector, ajax_url, playlist_to_up
             else $(container_selector).show();
         }
 
+        this.attach_ui_module = function( module ){
+            ui_modules.push(module);
+        }
+
         this.hide = function(){
             $(container_selector).hide();
         }
 
         this.get_container_selector = function(){
             return container_selector;
+        }
+
+        this.bind_ui_modules = function(){
+            $.each(ui_modules, function(index, module){
+                module.init();
+            });
         }
 
         this.load_content = function( data ){
@@ -117,7 +127,7 @@ rubysquare.view = function( _binds, container_selector, ajax_url, playlist_to_up
                 dataType: 'text',
                 data: data,
                 success : function(data){
-                    console.log('View load success!')
+                    console.log('View AJAX load success!')
                     if ( $(container_selector).length === 0 ) { // check if element exists, create it if it doesnt
                         //the selector string should have an identifier, a hash or period that needs to be removed first
                         //TODO typecheck to see if string has NO prefix identifier
@@ -126,35 +136,19 @@ rubysquare.view = function( _binds, container_selector, ajax_url, playlist_to_up
                     }
                     $(container_selector).empty().append(data);
                     self.bind();
+                    self.bind_ui_modules();
 
                     //TODO this is still kinda brittle
                     if( $(container_selector + " " + rubysquare.settings.nodes.song_json).length > 0 ){    // only try to update "available json" if the view actually has any
-                        /*
-                            PSEUDO
-                            delete all props in playlist_to_update
-
-                            $(rubysquare.settings.nodes.song_json).each(function(index, value){
-                               rubysquare.playlists.all_on_page[index] = rubysquare.playlist();
-                               rubysquare.playlists.all_on_page[index].playlist = rubysquare.helpers.parse_json(value);
-                               console.log(rubysquare.playlists.all_on_page[index].playlist);
-                                console.log('test');
-                            });
-
-                         */
-
                         //TODO move this so it can be re-used during initialization
                         $($(container_selector + " " + rubysquare.settings.nodes.song_json)).each(function(index, value){
                             playlist_to_update[index] = rubysquare.playlist();
                             playlist_to_update[index].playlist = rubysquare.helpers.parse_json(value);
-
-                            console.log(index);
-                            console.log(value);
                             console.log(playlist_to_update[index].playlist);
                         });
                     }
                 }
             });
-
         }
 		
         this.bind = function(){
