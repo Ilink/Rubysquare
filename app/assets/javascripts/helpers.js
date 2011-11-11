@@ -22,7 +22,6 @@ rubysquare.helpers = function(){
             data = data + "&song_ids[]="+ playlist[index].id;
         });
 
-        console.log(data);
         $.ajax({
             type: 'POST',
             url: '/songs/update_now_playing',

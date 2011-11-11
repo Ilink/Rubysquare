@@ -17,6 +17,7 @@ rubysquare.ui.songs_bindings = [
         'bind_to' : 'dblclick',
         'func' : function() {
             var song_index = Number($(this).parent('tr').attr('id'));
+            console.log(song_index);
             rubysquare.helpers.play_from_available(rubysquare.music, song_index, rubysquare.playlists.all_on_page[0], rubysquare.playlists.now_playing);
         }
     }

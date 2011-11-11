@@ -34,15 +34,26 @@
 
 SimpleNavigation::Configuration.run do |navigation|
   navigation.items do |primary|
+
     if user_signed_in?
       primary.item :key_1, 'Songs', songs_path, :id => "nav_songs"
       primary.item :key_2, 'Playlists', playlists_path, :id => "nav_playlist", do |sub_nav|
-        sub_nav.item :key_2_1, 'Add New', new_playlist_path, :id => "nav_new_playlist"
+        #sub_nav.item :key_2_1, 'Add New', new_playlist_path, :id => "nav_new_playlist"
       end
       primary.item :key_3, 'Now Playing', '/songs/now_playing', :id => "nav_now_playing" #TODO un-hardcode this url
 
       primary.item :key_4, 'Dashboard', songs_dashboard_path, :id => "nav_dashboard"
     end
+
+    #if user_signed_in?
+    #  primary.item :key_1, 'Songs', songs_path, :id => "nav_songs"
+    #  primary.item :key_2, 'Playlists', playlists_path, :id => "nav_playlist", do |sub_nav|
+    #    sub_nav.item :key_2_1, 'Add New', new_playlist_path, :id => "nav_new_playlist"
+    #  end
+    #  primary.item :key_3, 'Now Playing', '/songs/now_playing', :id => "nav_now_playing" #TODO un-hardcode this url
+    #
+    #  primary.item :key_4, 'Dashboard', songs_dashboard_path, :id => "nav_dashboard"
+    #end
 
     # Add an item to the primary navigation. The following params apply:
     # key - a symbol which uniquely defines your navigation item in the scope of the primary_navigation

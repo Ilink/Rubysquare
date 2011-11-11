@@ -1,12 +1,4 @@
-body {
-  background-color: #fff;
-  color: #333;
-  font-family: verdana, arial, helvetica, sans-serif;
-  font-size: 13px;
-  line-height: 18px; }
-
 p, ol, ul, td {
-  font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;
   line-height: 18px; }
 
@@ -15,17 +7,10 @@ pre {
   padding: 10px;
   font-size: 11px; }
 
-a {
-  color: #000;
-  &:visited {
-    color: #666; }
-  &:hover {
-    color: #fff;
-    background-color: #000; } }
-
 div {
   &.field, &.actions {
-    margin-bottom: 10px; } }
+    margin-bottom: 10px; }
+    }
 
 #notice {
   color: green; }
@@ -54,3 +39,76 @@ div {
   ul li {
     font-size: 12px;
     list-style: square; } }
+
+
+/*~~ Nav ~~*/
+
+.song_title, .song_artist, .song_album, .song_location{
+    cursor:pointer;
+}
+
+#big_menu li a{
+    font-size:32pt;
+    font-weight:bold;
+
+}
+
+a {
+  color: #000;
+  &:visited {
+    color: #000; }
+  &:hover {
+
+    }
+}
+
+#nav_songs, #nav_songs a {
+     color: #7B49A3;
+     &:visited {
+       color: #7B49A3; }
+     &:hover {
+       color: white;
+       background-color: #7B49A3;
+     }
+}
+
+#nav_playlist, #nav_playlist a {
+     color: #33B1FF;
+     &:visited {
+       color: #33B1FF; }
+     &:hover {
+       color: white;
+       background-color: #33B1FF;
+     }
+}
+
+#nav_now_playing, #nav_now_playing a {
+     color: #FF0F0F;
+     &:visited {
+       color: #FF0F0F; }
+     &:hover {
+       color: white;
+       background-color: #FF0F0F;
+     }
+}
+
+#big_menu a {
+    text-decoration:none!important;
+}
+
+#registration_nav{
+    text-align:right;
+    padding-right:20px;
+}
+
+#music_player_controls li, #music_player_controls div{
+    font-size:20px !important;
+    &:hover{
+        background-color: black;
+        color:white;
+    }
+}
+
+#music_player_controls .playback{
+    text-align: center;
+}

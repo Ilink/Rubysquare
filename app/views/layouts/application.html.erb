@@ -9,11 +9,17 @@
 </head>
 <body>
 <div id="page_wrapper">
+<div id="big_menu">
+  <%= render_navigation %>
+</div>
+<div id="registration_nav">
+    <%= render 'devise/menu/auth_nav' %>
+</div>
+
 <%= render 'layouts/initial_view' %>
 <div class="hidden" id="fling">fling</div>
 <div id="menu">
-  <%= render_navigation %>
-  <%= render 'devise/menu/auth_nav' %>
+
 </div>
 
 <div id="message_container">
