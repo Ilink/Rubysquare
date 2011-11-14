@@ -1,8 +1,6 @@
 class SongsController < ApplicationController
   require 'nokogiri'
 
-
-
   # GET /songs
   # GET /songs.json
   def index
@@ -236,8 +234,7 @@ class SongsController < ApplicationController
 
   #POST /songs/flush
   def flush
-    #for the song location i need to parse out the beginning of the directory string to make it reflect an accessible location
-    @itunes_song_data = itunes_parser('app/assets/itunes_xml.xml')
+    @itunes_song_data = Iparse.parse('app/assets/itunes_xml.xml')
     Song.transaction do
       Song.delete_all
       @itunes_song_data.each do |index, song|
@@ -248,7 +245,6 @@ class SongsController < ApplicationController
         new_song.save!
       end
     end
-
 
     respond_to do |format|
       if true #change me
