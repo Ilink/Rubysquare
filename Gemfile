@@ -41,5 +41,6 @@ end
 gem "thin"
 gem 'mongrel', "~> 1.2.0.pre2"
 gem 'daemons', "~> 1.0.10"
+gem 'pg'
 
 gem "sunspot_rails"
