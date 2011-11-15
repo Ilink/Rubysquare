@@ -11,6 +11,7 @@ gem 'devise', '1.4.7'
 gem "nokogiri"
 gem "simple-navigation"
 gem "kaminari"
+gem "iparse"
 
 gem 'therubyracer', require: "v8"
 

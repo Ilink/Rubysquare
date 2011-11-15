@@ -48,16 +48,16 @@ rubysquare.view_manager = function(){
         }
 
         // this feels kinda redundent
-        this.init_view = function( view ){
-            if (typeof view !== 'undefined' && view.hasOwnProperty('bind')){  // TODO improve typechecking
-                if(typeof current_view !== 'undefined') {
-                    current_view.bind();
-                }
-                else throw 'the view manager was not initialized, please initialize it before trying to initialize a view';
-                // if init wasn't called, then the viewmanager has no knowledge of what the current view is
-            }
-            else throw 'The supplied argument is not a view object! Please supply a view object.';
-        }
+//        this.init_view = function( view ){
+//            if (typeof view !== 'undefined' && view.hasOwnProperty('bind')){  // TODO improve typechecking
+//                if(typeof current_view !== 'undefined') {
+//                    current_view.bind();
+//                }
+//                else throw 'the view manager was not initialized, please initialize it before trying to initialize a view';
+//                // if init wasn't called, then the viewmanager has no knowledge of what the current view is
+//            }
+//            else throw 'The supplied argument is not a view object! Please supply a view object.';
+//        }
 
         this.init = function( view ){
             // TODO add typechecking to this
@@ -81,7 +81,6 @@ rubysquare.view_manager = function(){
             function bind(){
                 jsUtil.bind_from_json(this.binds)
             }
-
     }
 */
 
@@ -91,6 +90,11 @@ rubysquare.view = function( _binds, container_selector, ajax_url, playlist_to_up
         var self = this;
         var ui_modules = [];
 //        if(typeof playlist_to_update)
+        var bind_ui_modules = function(){
+           $.each(ui_modules, function(index, module){
+               module.init();
+           });
+        }
 
         //Public
 		this.binds = _binds;	// TODO: should binds in views be private?
@@ -114,11 +118,7 @@ rubysquare.view = function( _binds, container_selector, ajax_url, playlist_to_up
             return container_selector;
         }
 
-        this.bind_ui_modules = function(){
-            $.each(ui_modules, function(index, module){
-                module.init();
-            });
-        }
+
 
         this.load_content = function( data ){
             console.log(typeof playlist_to_update);
@@ -153,6 +153,7 @@ rubysquare.view = function( _binds, container_selector, ajax_url, playlist_to_up
 		
         this.bind = function(){
 			jsUtil.bind_from_json( self.binds );
+            bind_ui_modules();
         }
     }
     else return new rubysquare.view( _binds, container_selector, ajax_url, playlist_to_update );
