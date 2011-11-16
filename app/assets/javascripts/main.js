@@ -6,13 +6,16 @@ rubysquare.playlists.now_playing = rubysquare.playlist();
 rubysquare.playlists.all_on_page = [];
 
 //~ Objects ~//
-rubysquare.music = rubysquare.music_bridge(rubysquare.settings, rubysquare.playlists.now_playing);
+rubysquare.ui.table_highlight = rubysquare.ui.Table_highlight();
+rubysquare.music = rubysquare.music_bridge(rubysquare.settings, rubysquare.playlists.now_playing, rubysquare.ui.table_highlight);
 rubysquare.ajax = rubysquare.ajax_manager();
 rubysquare.seek_bar = rubysquare.ui.slider('#seek_bar')
+
 
 rubysquare.seek_bar.bind();
 
 //~ JSON for bindings, for Songs view, TEMP ~//
+// TODO refactor these bindings, they are very very repetitive
 rubysquare.ui.songs_bindings = [
     {
         'selector' : '#songs_view .song_location, #songs_view .song_title', // This is temporary since i have to figure out the UI before i know what the strucutre of the links will be
@@ -20,7 +23,9 @@ rubysquare.ui.songs_bindings = [
         'func' : function() {
             var song_index = Number($(this).parent('tr').attr('id'));
             console.log(song_index);
-            rubysquare.helpers.play_from_available(rubysquare.music, song_index, rubysquare.playlists.all_on_page[0], rubysquare.playlists.now_playing);
+            var playlist_index = $(this).parents('.playlist_container').attr('playlist_index');
+            console.log(playlist_index);
+            rubysquare.helpers.play_from_available(rubysquare.music, song_index, rubysquare.playlists.all_on_page[0], rubysquare.playlists.now_playing, playlist_index, '#songs_view');
         }
     }
 ];
@@ -31,7 +36,8 @@ rubysquare.ui.search_bindings = [
         'bind_to' : 'dblclick',
         'func' : function() {
             var song_index = Number($(this).parent('tr').attr('id'));
-            rubysquare.helpers.play_from_available(rubysquare.music, song_index, rubysquare.playlists.all_on_page[0], rubysquare.playlists.now_playing);
+            var playlist_index = $(this).parents('.playlist_container').attr('playlist_index');
+            rubysquare.helpers.play_from_available(rubysquare.music, song_index, rubysquare.playlists.all_on_page[0], rubysquare.playlists.now_playing, playlist_index);
         }
     }
 ];
@@ -45,7 +51,7 @@ rubysquare.ui.playlist_bindings = [
             var playlist_index = $(this).parents('.playlist_container').attr('playlist_index');
             console.log("playlist:" + playlist_index);
             var song_index = Number($(this).parent('tr').attr('id'));
-            rubysquare.helpers.play_from_available(rubysquare.music, song_index, rubysquare.playlists.all_on_page[playlist_index], rubysquare.playlists.now_playing);
+            rubysquare.helpers.play_from_available(rubysquare.music, song_index, rubysquare.playlists.all_on_page[playlist_index], rubysquare.playlists.now_playing, playlist_index);
 
         }
     }
@@ -58,7 +64,8 @@ rubysquare.ui.now_playing_bindings = [
         'bind_to' : 'dblclick',
         'func' : function() {
             var song_index = Number($(this).parent('tr').attr('id'));
-            rubysquare.helpers.play_from_available(rubysquare.music, song_index, rubysquare.playlists.all_on_page[0], rubysquare.playlists.now_playing);
+            var playlist_index = $(this).parents('.playlist_container').attr('playlist_index');
+            rubysquare.helpers.play_from_available(rubysquare.music, song_index, rubysquare.playlists.all_on_page[0], rubysquare.playlists.now_playing, playlist_index);
 
         }
     }

@@ -19,7 +19,7 @@
 			function previous()
 */
 
-rubysquare.music_bridge = function( settings, playlist_manager, next_callback) {
+rubysquare.music_bridge = function( settings, playlist_manager, ui_effects) {
     if (this instanceof rubysquare.music_bridge) {
         // Private
 		var song = soundManager.createSound({
@@ -29,7 +29,11 @@ rubysquare.music_bridge = function( settings, playlist_manager, next_callback) {
         var self = this;
 
         // Public
-        this.current_index; // TODO: figure out if this is a good way to set this
+
+
+        this.current_song_index;
+        this.current_playlist_index;
+        this.current_container;
 
         this.set_song = function( url ) {
 			if (typeof url !== 'string') throw 'Exepected resource (URL) to be a string';
@@ -58,22 +62,23 @@ rubysquare.music_bridge = function( settings, playlist_manager, next_callback) {
                 song.play();
 			}
             else {
-                console.log(this.current_index);
-                if ( typeof playlist[this.current_index + 1] !== 'undefined' ) {
-                    this.current_index = this.current_index + 1;
-                    if ( playlist[this.current_index].hasOwnProperty('location') )
-                        this.set_song( playlist[this.current_index].location );
+                console.log(this.current_song_index);
+                if ( typeof playlist[this.current_song_index + 1] !== 'undefined' ) {
+                    this.current_song_index = this.current_song_index + 1;
+                    if ( playlist[this.current_song_index].hasOwnProperty('location') )
+                        this.set_song( playlist[this.current_song_index].location );
                     song.play();
+                    ui_effects.highlight(self.current_song_index, self.current_playlist_index, self.current_container);
                 }
             }
 		}
 		
 		this.previous = function( settings ) { // this should never shuffle - previous song is always fixed
             var playlist = playlist_manager.get_playlist();
-            if (this.current_index - 1 > -1) {
-                this.current_index = this.current_index - 1;
-                console.log(this.current_index);
-                this.set_song(playlist[this.current_index].location);
+            if (this.current_song_index - 1 > -1) {
+                this.current_song_index = this.current_song_index - 1;
+                console.log(this.current_song_index);
+                this.set_song(playlist[this.current_song_index].location);
                 song.play();
             }
 		}
@@ -108,7 +113,7 @@ rubysquare.music_bridge = function( settings, playlist_manager, next_callback) {
 		}
 		
     }
-    else return new rubysquare.music_bridge( settings, playlist_manager );
+    else return new rubysquare.music_bridge( settings, playlist_manager, ui_effects );
 }
 
 

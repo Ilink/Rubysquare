@@ -23,10 +23,24 @@ rubysquare.ui.slider = function(container, bind_to){
 // inherits the bind function
 rubysquare.ui.slider.prototype.bind = rubysquare.ui.module.bind;
 
-// Singleton
-rubysquare.ui.table_highlight = function(selector){
-    if (this instanceof rubysquare.ui.table_highlight){
+/*
+    This class is called during several aspects of music player interaction. For example, setting a new song
 
+    abstract class music_ui_effects (){
+        public:
+            highlight_table(song_index, playlist_index)
+        private:
     }
-    else return new rubysquare.ui.table_highlight(selector);
+ */
+rubysquare.ui.Table_highlight = function(){
+    if (this instanceof rubysquare.ui.Table_highlight){
+        this.test = function(song_index, playlist_index){
+            console.log('test highlight fired');
+        }
+
+        this.highlight = function(song_index, playlist_index){
+            // get the row of the current song of the current playlist
+        }
+    }
+    else return new rubysquare.ui.Table_highlight();
 }
