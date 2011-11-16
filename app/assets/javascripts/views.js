@@ -118,7 +118,10 @@ rubysquare.view = function( _binds, container_selector, ajax_url, playlist_to_up
             return container_selector;
         }
 
-
+        this.init = function(){
+            self.bind();
+            // self.bind_ui_modules();
+        }
 
         this.load_content = function( data ){
             console.log(typeof playlist_to_update);
@@ -135,8 +138,8 @@ rubysquare.view = function( _binds, container_selector, ajax_url, playlist_to_up
                         console.log('Created new container');
                     }
                     $(container_selector).empty().append(data);
-                    self.bind();
-                    self.bind_ui_modules();
+                    self.init();
+
 
                     //TODO this is still kinda brittle
                     if( $(container_selector + " " + rubysquare.settings.nodes.song_json).length > 0 ){    // only try to update "available json" if the view actually has any

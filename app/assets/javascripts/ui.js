@@ -1,29 +1,32 @@
-rubysquare.ui.slider = function(bind_to, container){
-    if(this instanceof rubysquare.ui.slider){
-
-        var bind = function(){
-
+rubysquare.ui.Module = function(container, bind_to){
+    if (this instanceof rubysquare.ui.Module){
+        // Private
+        // Public
+        this.bind = function(){
+            jsUtil.bind_from_json( bind_to );
         }
+    } else return new rubysquare.ui.Module(container, bind_to);
+}
+
+rubysquare.ui.module = rubysquare.ui.Module();
+
+rubysquare.ui.slider = function(container, bind_to){
+    if(this instanceof rubysquare.ui.slider){
 
         //Public
         this.init = function(){
 
         }
     }
-    else return new rubysquare.ui.slider(bind_to, container);
+    else return new rubysquare.ui.slider(container, bind_to);
 }
+// inherits the bind function
+rubysquare.ui.slider.prototype.bind = rubysquare.ui.module.bind;
 
-rubysquare.ui.seek_bar = function(music_bridge, slider){
-    if (this instanceof rubysquare.ui.seek_bar){
-
-        //Private
-
-        // Public
-        this.seek = function() {
-            var percentage = (e.pageX - this.offsetLeft) / $(this).width();
-            music_bridge.seek(percentage);
-        }
+// Singleton
+rubysquare.ui.table_highlight = function(selector){
+    if (this instanceof rubysquare.ui.table_highlight){
 
     }
-    else return new rubysquare.ui.seek_bar(music_bridge, slider);
+    else return new rubysquare.ui.table_highlight(selector);
 }

@@ -16,8 +16,8 @@ class User < ActiveRecord::Base
   has_many :playlists
 
   # Hooks
-  after_create { |user|
+  after_create do |user|
     user.playlists.create(:title => '__now_playing__')
-  }
+  end
 
 end

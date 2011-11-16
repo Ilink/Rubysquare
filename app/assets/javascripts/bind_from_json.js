@@ -34,6 +34,7 @@ if (typeof jsUtil === 'undefined'){
 
 jsUtil.bind_from_json = function(json){
 	"use strict";
+    if(typeof json == 'undefined') return 'No json supplied'
     for (var i = 0; i < json.length; i++){
 		if (typeof json[i].selector !== 'string'){
 			throw "Error in supplied JSON at index "+ i + ". Expects 'Selector' as String";
@@ -41,27 +42,22 @@ jsUtil.bind_from_json = function(json){
 		if (typeof json[i].bind_to !== 'string'){
 			throw "Error in supplied JSON at index "+ i + ". Expects 'Bind_to as String";
 		}
-		else {
-            if (json[i].hasOwnProperty('func')) {
-                if (typeof json[i].func === 'object') {
-                    for (var j = 0; j < json[i].func.length; j++){
-                        if (typeof json[i].func[j] !== 'function'){
-                            throw "Error in supplied JSON at index " + i + ". Expects 'func' to be functions. The " + j + "th entry for 'functions' is not a function";
-                        }
-                        else {
-                            $(json[i].selector).bind(json[i].bind_to, json[i].func[j]);
-                        }
+        if (json[i].hasOwnProperty('func')) {
+            if (typeof json[i].func === 'object') {
+                for (var j = 0; j < json[i].func.length; j++){
+                    if (typeof json[i].func[j] !== 'function'){
+                        throw "Error in supplied JSON at index " + i + ". Expects 'func' to be functions. The " + j + "th entry for 'functions' is not a function";
                     }
-                }
-                else {
-                    if (typeof json[i].func !== 'function'){
-                        throw "Error in supplied JSON at index " + i + ". Expects 'func' to be a function.";
-                    }
-                    else
-                        $(json[i].selector).bind(json[i].bind_to, json[i].func);
+                    $(json[i].selector).bind(json[i].bind_to, json[i].func[j]);
                 }
             }
-            else throw 'Has no functions to bind to!'
-		}
+            else {
+                if (typeof json[i].func !== 'function'){
+                    throw "Error in supplied JSON at index " + i + ". Expects 'func' to be a function.";
+                }
+                $(json[i].selector).bind(json[i].bind_to, json[i].func);
+            }
+        }
+        else throw 'Has no functions to bind to!'
     }
 }

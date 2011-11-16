@@ -19,7 +19,7 @@
 			function previous()
 */
 
-rubysquare.music_bridge = function( settings, playlist_manager ) {
+rubysquare.music_bridge = function( settings, playlist_manager, next_callback) {
     if (this instanceof rubysquare.music_bridge) {
         // Private
 		var song = soundManager.createSound({
@@ -43,7 +43,7 @@ rubysquare.music_bridge = function( settings, playlist_manager ) {
 //				url: '/'+url, //for now i need to use external urls, which dont need that slash
                 url: url,
                 onfinish: function(){
-                    self.next( settings ) // TODO figure out if this works, need a shorter song
+                    self.next( settings );
                 }
 			});
         }
@@ -54,6 +54,7 @@ rubysquare.music_bridge = function( settings, playlist_manager ) {
             if (settings['shuffle']){
 				//shuffle logic here
                 console.log('shuffle next goes here');  //todo add shuffle
+                next_callback();
                 song.play();
 			}
             else {

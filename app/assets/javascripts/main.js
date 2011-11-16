@@ -8,7 +8,9 @@ rubysquare.playlists.all_on_page = [];
 //~ Objects ~//
 rubysquare.music = rubysquare.music_bridge(rubysquare.settings, rubysquare.playlists.now_playing);
 rubysquare.ajax = rubysquare.ajax_manager();
-rubysquare.seek_bar = rubysquare.ui.seek_bar(rubysquare.music);
+rubysquare.seek_bar = rubysquare.ui.slider('#seek_bar')
+
+rubysquare.seek_bar.bind();
 
 //~ JSON for bindings, for Songs view, TEMP ~//
 rubysquare.ui.songs_bindings = [
@@ -41,7 +43,7 @@ rubysquare.ui.playlist_bindings = [
         'bind_to' : 'dblclick',
         'func' : function() {
             var playlist_index = $(this).parents('.playlist_container').attr('playlist_index');
-            console.log(playlist_index);
+            console.log("playlist:" + playlist_index);
             var song_index = Number($(this).parent('tr').attr('id'));
             rubysquare.helpers.play_from_available(rubysquare.music, song_index, rubysquare.playlists.all_on_page[playlist_index], rubysquare.playlists.now_playing);
 
@@ -176,11 +178,10 @@ $(document).ready(function(){
        }
     });
 
-
-
     //~ Assign all JSON sent by the server to a playlist ~//
     $(rubysquare.settings.nodes.song_json).each(function(index, value){
        rubysquare.playlists.all_on_page[index] = rubysquare.playlist();
+       console.log("first playlist loop "+index);
        rubysquare.playlists.all_on_page[index].playlist = rubysquare.helpers.parse_json(value);
        console.log(rubysquare.playlists.all_on_page[index].playlist);
     });
