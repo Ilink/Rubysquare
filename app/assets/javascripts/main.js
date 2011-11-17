@@ -205,6 +205,7 @@ $(document).ready(function(){
     //todo: move me into the helper class
     var initial_view = rubysquare.helpers.parse_json(rubysquare.settings.nodes.initial_page);
     initial_view = initial_view.initial_view;
+    
     if(initial_view === 'songs')  {
         rubysquare.views.views_manager.init( rubysquare.views.songs );
     }

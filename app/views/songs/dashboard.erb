@@ -1,15 +1,20 @@
-<% #@itunes_song_data %>
+<% content_for :ajax_view do %>
+    <div id="dashboard_view">
+      <h1>Dashboard</h1>
+      <% #@itunes_song_data %>
 
-<h1>Dashboard</h1>
 
-<% #@itunes_song_data.each do |k, v| %>
-    <%  #v['Name'] %>
-<% #end %>
 
-<% if @database_input_errors %>
-    <% @database_input_errors.each do |error| %>
-      <%= error %>
-    <% end %>
+      <% #@itunes_song_data.each do |k, v| %>
+          <%  #v['Name'] %>
+      <% #end %>
+
+      <% if @database_input_errors %>
+          <% @database_input_errors.each do |error| %>
+            <%= error %>
+          <% end %>
+      <% end %>
+
+      <%= link_to 'Dump and Update Song Database', flush_path, method: :post %>
+    </div>
 <% end %>
-
-<%= link_to 'Dump and Update Song Database', flush_path, method: :post %>

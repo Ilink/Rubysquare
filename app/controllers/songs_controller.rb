@@ -229,7 +229,7 @@ class SongsController < ApplicationController
   #GET /songs/dashboard
   def dashboard
     #@itunes_song_data = itunes_parser('app/assets/itunes_xml.xml')
-    
+    @initial_view = self.initial_view 'dashboard'
   end
 
   #POST /songs/flush
