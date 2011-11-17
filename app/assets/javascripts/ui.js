@@ -46,6 +46,10 @@ rubysquare.ui.Table_highlight = function(settings){
                 class_to_add = settings['music_highlight_class']; // fallback on the settings if it's not provided explicitly
             }
 
+            if(action_json['unique'] === true){
+                $('tr').removeClass(class_to_add); //todo this is kind of brittle, what if the UI uses a non-table layout?
+            }
+
             if(action_json['action'] === 'add') {
                 $(container + ' .playlist_container[playlist_index='+playlist_index+'] tr[id='+song_index+']').addClass(class_to_add);
             }
@@ -53,6 +57,8 @@ rubysquare.ui.Table_highlight = function(settings){
                 $(container + ' .playlist_container[playlist_index='+playlist_index+'] tr[id='+song_index+']').removeClass(class_to_add);
                 console.log($(container + ' .playlist_container[playlist_index='+playlist_index+'] tr[id='+song_index+']'));
             }
+
+
         }
     }
     else return new rubysquare.ui.Table_highlight(settings);

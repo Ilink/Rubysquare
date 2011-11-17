@@ -62,19 +62,19 @@ rubysquare.music_bridge = function( settings, playlist_manager, ui_state, ui_eff
             if (settings['shuffle']){
 				//shuffle logic here
                 console.log('shuffle next goes here');  //todo add shuffle
-                next_callback();
+//                next_callback();
                 song.play();
 			}
             else {
                 console.log(ui_state['currently_playing'].song_index);
-                ui_effects.highlight(ui_state['currently_playing'].song_index, ui_state['currently_playing'].playlist_index, ui_state['currently_playing'].container, {'action':'remove'});
+//                ui_effects.highlight(ui_state['currently_playing'].song_index, ui_state['currently_playing'].playlist_index, ui_state['currently_playing'].container, {'action':'remove'});
                 if ( typeof playlist[ ui_state['currently_playing'].song_index + 1 ] !== 'undefined' ) {
                     ui_state['currently_playing'].song_index = ui_state['currently_playing'].song_index + 1;
                     if ( playlist[ui_state['currently_playing'].song_index].hasOwnProperty('location') )
                         this.set_song( playlist[ui_state['currently_playing'].song_index].location );
                     song.play();
 
-                    ui_effects.highlight(ui_state['currently_playing'].song_index, ui_state['currently_playing'].playlist_index, ui_state['currently_playing'].container, {'action':'add'});
+                    ui_effects.highlight(ui_state['currently_playing'].song_index, ui_state['currently_playing'].playlist_index, ui_state['currently_playing'].container, {'action':'add', 'unique':true});
                 }
             }
 		}
@@ -86,6 +86,7 @@ rubysquare.music_bridge = function( settings, playlist_manager, ui_state, ui_eff
                 console.log(ui_state['currently_playing'].song_index);
                 this.set_song(playlist[ui_state['currently_playing'].song_index].location);
                 song.play();
+                ui_effects.highlight(ui_state['currently_playing'].song_index, ui_state['currently_playing'].playlist_index, ui_state['currently_playing'].container, {'action':'add', 'unique':true});
             }
 		}
 

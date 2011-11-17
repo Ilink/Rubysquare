@@ -40,6 +40,11 @@ rubysquare.helpers = function(){
         });
     }
 
+    that.song_click_binding = function(){
+
+//        rubysquare.ui.table_highlight.highlight(song_index, playlist_index, '#songs_view', {"action":"add", "unique": true});
+    }
+
     that.parse_json = function(selector){
         var text = $(selector).text();
         if ( text !== '' )    // TODO: this typecheck isnt right, fix it

@@ -26,6 +26,7 @@ rubysquare.ui.songs_bindings = [
             var playlist_index = $(this).parents('.playlist_container').attr('playlist_index');
             console.log(playlist_index);
             rubysquare.helpers.play_from_available(rubysquare.music, song_index, rubysquare.playlists.all_on_page[0], rubysquare.playlists.now_playing, playlist_index, '#songs_view', rubysquare.ui_state);
+            rubysquare.ui.table_highlight.highlight(song_index, playlist_index, '#songs_view', {"action":"add", "unique": true});
         }
     }
 ];
@@ -37,7 +38,8 @@ rubysquare.ui.search_bindings = [
         'func' : function() {
             var song_index = Number($(this).parent('tr').attr('id'));
             var playlist_index = $(this).parents('.playlist_container').attr('playlist_index');
-            rubysquare.helpers.play_from_available(rubysquare.music, song_index, rubysquare.playlists.all_on_page[0], rubysquare.playlists.now_playing, playlist_index);
+
+            rubysquare.ui.table_highlight.highlight(song_index, playlist_index, '#search_view', {"action":"add", "unique": true});
         }
     }
 ];
@@ -51,7 +53,8 @@ rubysquare.ui.playlist_bindings = [
             var playlist_index = $(this).parents('.playlist_container').attr('playlist_index');
             console.log("playlist:" + playlist_index);
             var song_index = Number($(this).parent('tr').attr('id'));
-            rubysquare.helpers.play_from_available(rubysquare.music, song_index, rubysquare.playlists.all_on_page[playlist_index], rubysquare.playlists.now_playing, playlist_index);
+            rubysquare.helpers.play_from_available(rubysquare.music, song_index, rubysquare.playlists.all_on_page[0], rubysquare.playlists.now_playing, playlist_index, '#playlists_view', rubysquare.ui_state);
+            rubysquare.ui.table_highlight.highlight(song_index, playlist_index, '#playlists_view', {"action":"add", "unique": true});
 
         }
     }
@@ -151,7 +154,7 @@ rubysquare.ui.common_bindings = [
 
 //~ View Objects, these reference above JSON (for now) ~//
 
-rubysquare.views.views_manager = rubysquare.view_manager();
+rubysquare.views.views_manager = rubysquare.view_manager(rubysquare.ui_state, rubysquare.ui.table_highlight);
 //rubysquare.views.songs = rubysquare.view(rubysquare.ui.songs_bindings, '#songs_view', '/songs.xml', rubysquare.playlists.songs_on_page.playlist);  // temp, hardcoded, needs to be flexible
 //rubysquare.views.playlists = rubysquare.view(rubysquare.ui.playlist_bindings, '#playlists_view', '/playlists.xml', rubysquare.playlists.songs_on_page.playlist);
 //rubysquare.views.now_playing = rubysquare.view(rubysquare.ui.now_playing_bindings, '#now_playing_view', '/songs/now_playing.xml', rubysquare.playlists.songs_on_page.playlist);
@@ -202,7 +205,9 @@ $(document).ready(function(){
     //todo: move me into the helper class
     var initial_view = rubysquare.helpers.parse_json(rubysquare.settings.nodes.initial_page);
     initial_view = initial_view.initial_view;
-    if(initial_view === 'songs') rubysquare.views.views_manager.init( rubysquare.views.songs );
+    if(initial_view === 'songs')  {
+        rubysquare.views.views_manager.init( rubysquare.views.songs );
+    }
     else if(initial_view === 'playlist') { rubysquare.views.views_manager.init( rubysquare.views.playlists ); console.log('playlist view');}
     else if(initial_view === 'search') { rubysquare.views.views_manager.init( rubysquare.views.search ); console.log('search view'); }
     else if(initial_view === 'now_playing') { rubysquare.views.views_manager.init( rubysquare.views.now_playing ); console.log('now playing view')}

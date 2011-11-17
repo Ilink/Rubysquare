@@ -11,11 +11,16 @@
     }
 */
 
-rubysquare.view_manager = function(){
+//these arguments are temporary, will need something more robust when there are more callbacks
+rubysquare.view_manager = function( ui_state, ui_effects ){
     if(this instanceof rubysquare.view_manager){
         //Private
 		var views = [];	// not sure if this should really keep a list of available views, might be too complicated for initial functionality
 		var current_view;
+
+        var on_success_callback = function(){
+            ui_effects.highlight(ui_state['currently_playing'].song_index, ui_state['currently_playing'].playlist_index, ui_state['currently_playing'].container, {'action':'add'});
+        }
 
         //Public
         this.switch_view = function( view, data ){
@@ -25,7 +30,7 @@ rubysquare.view_manager = function(){
                     current_view.hide();
                     view.show();
                     current_view = view;
-                    view.load_content( data );
+                    view.load_content( data, on_success_callback );
 
                     // TODO: need to change the URL to reflect the AJAX-loaded path
                 }
@@ -43,29 +48,22 @@ rubysquare.view_manager = function(){
             current_view = view;
         }
 
-        this.load = function( data ){
-            current_view.load( data );
+        this.load = function( data, on_success_callback ){
+            current_view.load( data, on_success_callback );
         }
-
-        // this feels kinda redundent
-//        this.init_view = function( view ){
-//            if (typeof view !== 'undefined' && view.hasOwnProperty('bind')){  // TODO improve typechecking
-//                if(typeof current_view !== 'undefined') {
-//                    current_view.bind();
-//                }
-//                else throw 'the view manager was not initialized, please initialize it before trying to initialize a view';
-//                // if init wasn't called, then the viewmanager has no knowledge of what the current view is
-//            }
-//            else throw 'The supplied argument is not a view object! Please supply a view object.';
-//        }
 
         this.init = function( view ){
             // TODO add typechecking to this
             current_view = view;
             current_view.bind();
+            if(ui_state['currently_playing'].song_index !== '' &&
+               ui_state['currently_playing'].playlist_index !== '' &&
+               ui_state['currently_playing'].container !== ''){
+                    ui_effects.highlight(ui_state['currently_playing'].song_index, ui_state['currently_playing'].playlist_index, ui_state['currently_playing'].container, {'action':'add'});
+            }
         }
     }
-    else return new rubysquare.view_manager();
+    else return new rubysquare.view_manager( ui_state, ui_effects );
 }
 
 /*
@@ -123,7 +121,7 @@ rubysquare.view = function( _binds, container_selector, ajax_url, playlist_to_up
             // self.bind_ui_modules();
         }
 
-        this.load_content = function( data ){
+        this.load_content = function( data, on_success_callback ){
             console.log(typeof playlist_to_update);
             $.ajax({
                 url : ajax_url,
@@ -140,7 +138,6 @@ rubysquare.view = function( _binds, container_selector, ajax_url, playlist_to_up
                     $(container_selector).empty().append(data);
                     self.init();
 
-
                     //TODO this is still kinda brittle
                     if( $(container_selector + " " + rubysquare.settings.nodes.song_json).length > 0 ){    // only try to update "available json" if the view actually has any
                         //TODO move this so it can be re-used during initialization
@@ -150,6 +147,8 @@ rubysquare.view = function( _binds, container_selector, ajax_url, playlist_to_up
                             console.log(playlist_to_update[index].playlist);
                         });
                     }
+
+                    on_success_callback();
                 }
             });
         }
@@ -161,23 +160,3 @@ rubysquare.view = function( _binds, container_selector, ajax_url, playlist_to_up
     }
     else return new rubysquare.view( _binds, container_selector, ajax_url, playlist_to_update );
 }
-
-
-
-/*
-    sample usage, so far:
-    ----------------------------------
-    instaniate some views:
-        rubysquare.views.playlist = rubysquare.view({
-			'selector':'#help',
-			'bind_to':'click',
-			'func':function(){
-				console.log('help'p)
-			}
-		});
-
-
-    first, get the current page, from rendered (by rails) json:
-        var view_info = JSON.parse( $('#view_info').text() );
-        view_manager.current_page = view_info.current_page;
- */
