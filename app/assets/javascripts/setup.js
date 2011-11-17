@@ -25,6 +25,15 @@ rubysquare.settings = {
         'song_json' : '.song_json',
         'main_container' : '#container',
         'initial_page' : '#initial_view_json'
+    },
+    'music_highlight_class' : 'grey_background'
+}
+
+rubysquare.ui_state = {
+    'currently_playing' : {
+        'song_index':'',
+        'playlist_index':'',
+        'container':''
     }
 }
 

@@ -6,8 +6,8 @@ rubysquare.playlists.now_playing = rubysquare.playlist();
 rubysquare.playlists.all_on_page = [];
 
 //~ Objects ~//
-rubysquare.ui.table_highlight = rubysquare.ui.Table_highlight();
-rubysquare.music = rubysquare.music_bridge(rubysquare.settings, rubysquare.playlists.now_playing, rubysquare.ui.table_highlight);
+rubysquare.ui.table_highlight = rubysquare.ui.Table_highlight(rubysquare.settings);
+rubysquare.music = rubysquare.music_bridge(rubysquare.settings, rubysquare.playlists.now_playing, rubysquare.ui_state, rubysquare.ui.table_highlight);
 rubysquare.ajax = rubysquare.ajax_manager();
 rubysquare.seek_bar = rubysquare.ui.slider('#seek_bar')
 
@@ -25,7 +25,7 @@ rubysquare.ui.songs_bindings = [
             console.log(song_index);
             var playlist_index = $(this).parents('.playlist_container').attr('playlist_index');
             console.log(playlist_index);
-            rubysquare.helpers.play_from_available(rubysquare.music, song_index, rubysquare.playlists.all_on_page[0], rubysquare.playlists.now_playing, playlist_index, '#songs_view');
+            rubysquare.helpers.play_from_available(rubysquare.music, song_index, rubysquare.playlists.all_on_page[0], rubysquare.playlists.now_playing, playlist_index, '#songs_view', rubysquare.ui_state);
         }
     }
 ];
@@ -66,7 +66,6 @@ rubysquare.ui.now_playing_bindings = [
             var song_index = Number($(this).parent('tr').attr('id'));
             var playlist_index = $(this).parents('.playlist_container').attr('playlist_index');
             rubysquare.helpers.play_from_available(rubysquare.music, song_index, rubysquare.playlists.all_on_page[0], rubysquare.playlists.now_playing, playlist_index);
-
         }
     }
 ];

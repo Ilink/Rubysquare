@@ -19,7 +19,7 @@
 			function previous()
 */
 
-rubysquare.music_bridge = function( settings, playlist_manager, ui_effects) {
+rubysquare.music_bridge = function( settings, playlist_manager, ui_state, ui_effects) {
     if (this instanceof rubysquare.music_bridge) {
         // Private
 		var song = soundManager.createSound({
@@ -27,13 +27,16 @@ rubysquare.music_bridge = function( settings, playlist_manager, ui_effects) {
 			url: ''
 		});
         var self = this;
+        var has_highlight_object = false;
+
+        console.log(ui_state);
+
+        if(typeof ui_effects !== 'undefined'){
+            has_highlight_object = true;
+        }
 
         // Public
-
-
-        this.current_song_index;
-        this.current_playlist_index;
-        this.current_container;
+//        this.current_song_index = ;
 
         this.set_song = function( url ) {
 			if (typeof url !== 'string') throw 'Exepected resource (URL) to be a string';
@@ -55,6 +58,7 @@ rubysquare.music_bridge = function( settings, playlist_manager, ui_effects) {
 		this.next = function( settings ) {
             var playlist = playlist_manager.get_playlist(); // This is neccesary because of the way JS references work. References do not refer to other references, they refer to data itself.
                                                             // Therefore, when we make a copy of the playlist within a playlist manager, the pointer within this object would still point to the old data.
+
             if (settings['shuffle']){
 				//shuffle logic here
                 console.log('shuffle next goes here');  //todo add shuffle
@@ -62,23 +66,25 @@ rubysquare.music_bridge = function( settings, playlist_manager, ui_effects) {
                 song.play();
 			}
             else {
-                console.log(this.current_song_index);
-                if ( typeof playlist[this.current_song_index + 1] !== 'undefined' ) {
-                    this.current_song_index = this.current_song_index + 1;
-                    if ( playlist[this.current_song_index].hasOwnProperty('location') )
-                        this.set_song( playlist[this.current_song_index].location );
+                console.log(ui_state['currently_playing'].song_index);
+                ui_effects.highlight(ui_state['currently_playing'].song_index, ui_state['currently_playing'].playlist_index, ui_state['currently_playing'].container, {'action':'remove'});
+                if ( typeof playlist[ ui_state['currently_playing'].song_index + 1 ] !== 'undefined' ) {
+                    ui_state['currently_playing'].song_index = ui_state['currently_playing'].song_index + 1;
+                    if ( playlist[ui_state['currently_playing'].song_index].hasOwnProperty('location') )
+                        this.set_song( playlist[ui_state['currently_playing'].song_index].location );
                     song.play();
-                    ui_effects.highlight(self.current_song_index, self.current_playlist_index, self.current_container);
+
+                    ui_effects.highlight(ui_state['currently_playing'].song_index, ui_state['currently_playing'].playlist_index, ui_state['currently_playing'].container, {'action':'add'});
                 }
             }
 		}
 		
 		this.previous = function( settings ) { // this should never shuffle - previous song is always fixed
             var playlist = playlist_manager.get_playlist();
-            if (this.current_song_index - 1 > -1) {
-                this.current_song_index = this.current_song_index - 1;
-                console.log(this.current_song_index);
-                this.set_song(playlist[this.current_song_index].location);
+            if (ui_state['currently_playing'].song_index - 1 > -1) {
+                ui_state['currently_playing'].song_index = ui_state['currently_playing'].song_index - 1;
+                console.log(ui_state['currently_playing'].song_index);
+                this.set_song(playlist[ui_state['currently_playing'].song_index].location);
                 song.play();
             }
 		}
@@ -113,7 +119,7 @@ rubysquare.music_bridge = function( settings, playlist_manager, ui_effects) {
 		}
 		
     }
-    else return new rubysquare.music_bridge( settings, playlist_manager, ui_effects );
+    else return new rubysquare.music_bridge( settings, playlist_manager, ui_state, ui_effects );
 }
 
 

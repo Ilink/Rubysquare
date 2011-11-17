@@ -3,12 +3,12 @@ rubysquare.helpers = function(){
     var that = {};
 
     // TODO: find the best place for this function, i dont know if it belongs as a helper or part of the music class itself
-    that.play_from_available = function( music_manager, song_index, available_playlist, now_playing_playlist, playlist_index, container ){
+    that.play_from_available = function( music_manager, song_index, available_playlist, now_playing_playlist, playlist_index, container, ui_state ){
         now_playing_playlist.copy_from( available_playlist.playlist );
         console.log("attempting to play song at location: " + now_playing_playlist.playlist[song_index].location);
-        music_manager.current_song_index = song_index;
-        music_manager.current_playlist_index = playlist_index;
-        music_manager.current_container = container;
+        ui_state['currently_playing'].song_index = song_index;
+        ui_state['currently_playing'].playlist_index = playlist_index;
+        ui_state['currently_playing'].container = container;
         music_manager.set_song( now_playing_playlist.playlist[song_index].location );
 
         that.update_now_playing_db_entries( now_playing_playlist.get_playlist() );
