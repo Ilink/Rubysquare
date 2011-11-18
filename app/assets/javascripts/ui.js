@@ -10,18 +10,70 @@ rubysquare.ui.Module = function(container, bind_to){
 
 rubysquare.ui.module = rubysquare.ui.Module();
 
-rubysquare.ui.slider = function(container, bind_to){
+rubysquare.ui.slider = function(slider_width, handle, bind_to, callback){
     if(this instanceof rubysquare.ui.slider){
+        //Private
+        var self = this;
 
         //Public
         this.init = function(){
 
         }
     }
-    else return new rubysquare.ui.slider(container, bind_to);
+    else return new rubysquare.ui.slider(slider_width, handle, bind_to, callback);
 }
 // inherits the bind function
 rubysquare.ui.slider.prototype.bind = rubysquare.ui.module.bind;
+
+
+//~~ Singleton ~~//
+rubysquare.ui.dialog = function(){
+    // Private
+    var that = {};
+    var copied_content;
+    var open = false;
+
+    var close_dialog = function(content_to_close){
+        $(content_to_close).remove();
+    }
+
+    // Public
+    that.show_dialog = function(content_selector, placement_selector, position, close_button_selector){
+        if(open === true) {
+            close_dialog(copied_content);
+            open = false;
+            return false
+        }
+
+        open = true; //this system will go nuts if i have someone trying to open more than one dialog at a time. Couldl make it a regular object instead of a singleton
+        copied_content = $(content_selector).clone();
+
+        //TODO add more positions
+        if (position === 'above'){
+            var selector_height = $(placement_selector).height();
+            var selector_width = $(placement_selector).width();
+
+            $(copied_content).css('opacity', '0'); // dont display it yet, but outerWidth and outerHeight dont work on hidden elements
+            $(placement_selector).parent().append( $(copied_content) );
+
+            $(copied_content).css({
+               'position' : 'absolute',
+               'display':'block !important',
+               'z-index':'10',
+               'left' : $(placement_selector).position().left + (selector_width/2)  - ($(copied_content).outerWidth() / 2),
+               'top' : $(placement_selector).position().top - (selector_height * 2.5) - ($(copied_content).outerHeight() / 2)
+            });
+        }
+        $(copied_content).css('opacity', '100'); // display it now that the CSS has been calculated
+
+        $(copied_content).children(close_button_selector).click( function(){
+            close_dialog(copied_content);
+        });
+    }
+    return that;
+}();
+
+
 
 /*
     This class is called during several aspects of music player interaction. For example, setting a new song
@@ -34,8 +86,6 @@ rubysquare.ui.slider.prototype.bind = rubysquare.ui.module.bind;
  */
 rubysquare.ui.Table_highlight = function(settings){
     if (this instanceof rubysquare.ui.Table_highlight){
-
-
 
         this.test = function(song_index, playlist_index, container){
             console.log('test highlight fired');

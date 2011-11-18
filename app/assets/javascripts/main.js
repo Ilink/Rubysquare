@@ -7,6 +7,7 @@ rubysquare.playlists.all_on_page = [];
 
 //~ Objects ~//
 rubysquare.ui.table_highlight = rubysquare.ui.Table_highlight(rubysquare.settings);
+//Todo add a callback that moves the seek bar
 rubysquare.music = rubysquare.music_bridge(rubysquare.settings, rubysquare.playlists.now_playing, rubysquare.ui_state, rubysquare.ui.table_highlight);
 rubysquare.ajax = rubysquare.ajax_manager();
 rubysquare.seek_bar = rubysquare.ui.slider('#seek_bar')
@@ -27,6 +28,14 @@ rubysquare.ui.songs_bindings = [
             console.log(playlist_index);
             rubysquare.helpers.play_from_available(rubysquare.music, song_index, rubysquare.playlists.all_on_page[0], rubysquare.playlists.now_playing, playlist_index, '#songs_view', rubysquare.ui_state);
             rubysquare.ui.table_highlight.highlight(song_index, playlist_index, '#songs_view', {"action":"add", "unique": true});
+        }
+    },
+    {
+        'selector' : '.new_playlist_link',
+        'bind_to' : 'click',
+        'func' : function(){
+            rubysquare.ui.dialog.show_dialog('#new_playlist_dialog', $(this), "above", '.close');
+            return false;
         }
     }
 ];

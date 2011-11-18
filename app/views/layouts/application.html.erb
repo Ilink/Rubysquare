@@ -5,7 +5,7 @@
   <%= stylesheet_link_tag "application" %>
   <%= csrf_meta_tags %>
   <%= javascript_include_tag 'application' %>
-  <%= javascript_include_tag "bind_from_json", "soundmanager/script/soundmanager2.js", "setup", "helpers", "log","views", "ajax_manager", "ui", "music", "history", "fling", "commands", "obs",  "main" %>
+  <%= javascript_include_tag "bind_from_json", "soundmanager/script/soundmanager2-jsmin.js", "setup", "helpers", "log","views", "ajax_manager", "ui", "music", "history", "fling", "commands", "obs",  "main" %>
 </head>
 <body>
 <div id="page_wrapper">
@@ -26,6 +26,11 @@
   <% flash.each do |name, msg| %>
       <%= content_tag :div, msg, :id => "flash_#{name}" %>
   <% end %>
+</div>
+
+<div class="hidden" id="new_playlist_dialog">
+  <div class="close pointer">X</div>
+  Add new playlist
 </div>
 
 <%= render 'layouts/music_player' %>

@@ -19,7 +19,7 @@
 			function previous()
 */
 
-rubysquare.music_bridge = function( settings, playlist_manager, ui_state, ui_effects) {
+rubysquare.music_bridge = function( settings, playlist_manager, ui_state, ui_effects, callbacks) {
     if (this instanceof rubysquare.music_bridge) {
         // Private
 		var song = soundManager.createSound({
@@ -51,6 +51,11 @@ rubysquare.music_bridge = function( settings, playlist_manager, ui_state, ui_eff
                 url: url,
                 onfinish: function(){
                     self.next( settings );
+                },
+                whileplaying:function(){
+                    console.log(this.position);
+                    if(typeof callbacks['seek'] !== 'undefined')
+                        callbacks['seek'].seek(this.position);
                 }
 			});
         }
@@ -73,7 +78,6 @@ rubysquare.music_bridge = function( settings, playlist_manager, ui_state, ui_eff
                     if ( playlist[ui_state['currently_playing'].song_index].hasOwnProperty('location') )
                         this.set_song( playlist[ui_state['currently_playing'].song_index].location );
                     song.play();
-
                     ui_effects.highlight(ui_state['currently_playing'].song_index, ui_state['currently_playing'].playlist_index, ui_state['currently_playing'].container, {'action':'add', 'unique':true});
                 }
             }
@@ -84,7 +88,8 @@ rubysquare.music_bridge = function( settings, playlist_manager, ui_state, ui_eff
             if (ui_state['currently_playing'].song_index - 1 > -1) {
                 ui_state['currently_playing'].song_index = ui_state['currently_playing'].song_index - 1;
                 console.log(ui_state['currently_playing'].song_index);
-                this.set_song(playlist[ui_state['currently_playing'].song_index].location);
+                if ( playlist[ui_state['currently_playing'].song_index].hasOwnProperty('location') )
+                    this.set_song(playlist[ui_state['currently_playing'].song_index].location);
                 song.play();
                 ui_effects.highlight(ui_state['currently_playing'].song_index, ui_state['currently_playing'].playlist_index, ui_state['currently_playing'].container, {'action':'add', 'unique':true});
             }
@@ -120,7 +125,7 @@ rubysquare.music_bridge = function( settings, playlist_manager, ui_state, ui_eff
 		}
 		
     }
-    else return new rubysquare.music_bridge( settings, playlist_manager, ui_state, ui_effects );
+    else return new rubysquare.music_bridge( settings, playlist_manager, ui_state, ui_effects, callbacks );
 }
 
 

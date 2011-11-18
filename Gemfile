@@ -5,7 +5,6 @@ gem 'rails', '3.1.0'
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 gem 'sqlite3'
-#gem 'mysql2', '0.3.7'
 gem 'bcrypt-ruby'
 gem 'devise', '1.4.7'
 gem "nokogiri"
@@ -25,9 +24,6 @@ end
 
 gem 'jquery-rails'
 
-# Use unicorn as the web server
-# gem 'unicorn'
-
 # Deploy with Capistrano
 # gem 'capistrano'
 
@@ -42,6 +38,6 @@ end
 gem "thin"
 gem 'mongrel', "~> 1.2.0.pre2"
 gem 'daemons', "~> 1.0.10"
-#gem 'pg'
+gem 'pg'
 
 gem "sunspot_rails"

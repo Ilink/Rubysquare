@@ -26,7 +26,11 @@ rubysquare.settings = {
         'main_container' : '#container',
         'initial_page' : '#initial_view_json'
     },
-    'music_highlight_class' : 'grey_background'
+    'music_highlight_class' : 'grey_background',
+    'links' : {
+        'new_playlist' : '/playlists/new'
+        // todo add more important links here for future use
+    }
 }
 
 rubysquare.ui_state = {
@@ -52,4 +56,5 @@ rubysquare.now_playing = {};
 
 //~Soundmanager setup~//
 soundManager.url = '/assets/soundmanager2.swf'
-soundManager.useHTML5Audio = true;
+soundManager.useHTML5Audio = true; // this is partially an HTML5 experiment, plus HTML5 performs better than flash for playing music
+soundManager.debugMode = false;

@@ -6,3 +6,4 @@ tmp/
 .idea/*
 .idea/rubysquare.iml
 .idea/workspace.xml
+config/database.yml

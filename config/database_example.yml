@@ -26,7 +26,7 @@ development:
   encoding: unicode
   database: rubysquare_dev
   pool: 5
-  username: admin
+  username:
   password:
 
 # SQLite Environment
@@ -51,7 +51,7 @@ test:
   encoding: unicode
   database: rubysquare_test
   pool: 5
-  username: admin
+  username:
   password:
 
 production:
