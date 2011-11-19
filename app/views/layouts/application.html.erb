@@ -33,12 +33,18 @@
   Add new playlist
 </div>
 
+<!-- Only show authenticated users the controls -->
+<% if user_signed_in? %>
 <%= render 'layouts/music_player' %>
     <%= yield :controls %>
     <div id="main_container">
         <%= yield :content %>
         <%= yield %>
     </div>
+<% else %>
+    <%= yield %>
+<% end %>
+
 </div>
 </body>
 </html>
