@@ -1,7 +1,8 @@
 Rubysquare::Application.routes.draw do
 
+  match "/users/guest_sign_in" => "users#guest_sign_in", :as => "guest_sign_in", :via => :get
   devise_for :users
-  root :to => "songs#index"
+  root :to => "songs#index", :as => "root_url"
 
   match "/songs/now_playing" => "songs#now_playing", :as => "now_playing", :via => :get
   match "/songs/filter" => "songs#filter", :as => "filter", :via => :get
