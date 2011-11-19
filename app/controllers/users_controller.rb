@@ -6,6 +6,6 @@ class UsersController < ApplicationController
     user = User.create_guest_user
     user.save!(validate: false)
     sign_in :user, user
-    redirect_to :root_url
+    redirect_to root_url
   end
 end
