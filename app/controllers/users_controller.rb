@@ -1,19 +1,11 @@
 class UsersController < ApplicationController
-  def new
-    @user = User.new
-  end
 
-  def create
-    #@user = User.new!(params[:user])
-    #@user = User.create!(params[:user])
-    #if @user.save
-    #  redirect_to root_url, :notice => "Signed up!"
-    #else
-    #  render "new"
-    #end
-  end
-
-  def delete
-    
+  before_filter :authenticate_user!, :except => [:guest_sign_in] # don't authenticate this method
+  def guest_sign_in
+    return if user_signed_in?
+    user = User.create_guest_user
+    user.save!(validate: false)
+    sign_in :user, user
+    redirect_to :root_url
   end
 end

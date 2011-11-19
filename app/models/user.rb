@@ -20,4 +20,10 @@ class User < ActiveRecord::Base
     user.playlists.create(:title => '__now_playing__')
   end
 
+  def self.create_guest_user
+    token = SecureRandom.base64(15).tr('+/=', 'xyz')
+    user = ::User.new(email: "#{token}@example.net", password: token, password_confirmation: token)
+    user
+  end
+
 end
