@@ -13,27 +13,27 @@
 /* I use Andale Mono myself since it's awesome. However, if you don't have a liscense feel free to use something else */
 
 /* Order matters, bold must come AFTER normal */
-@font-face {
-    font-family: 'AndaleMonoMT';
-    src: url('<%= asset_path 'andalemonomtstd-webfont.eot'%>');
-    src: url('<%= asset_path 'andalemonomtstd-webfont.eot?#iefix'%>') format('embedded-opentype'),
-         url('<%= asset_path 'andalemonomtstd-webfont.woff'%>') format('woff'),
-         url('<%= asset_path 'andalemonomtstd-webfont.ttf'%>') format('truetype'),
-         url('<%= asset_path 'andalemonomtstd-webfont.svg#AndaleMonoMTStdRegular'%>') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
+/*@font-face {*/
+    /*font-family: 'AndaleMonoMT';*/
+    /*src: url('<%= asset_path 'andalemonomtstd-webfont.eot'%>');*/
+    /*src: url('<%= asset_path 'andalemonomtstd-webfont.eot?#iefix'%>') format('embedded-opentype'),*/
+         /*url('<%= asset_path 'andalemonomtstd-webfont.woff'%>') format('woff'),*/
+         /*url('<%= asset_path 'andalemonomtstd-webfont.ttf'%>') format('truetype'),*/
+         /*url('<%= asset_path 'andalemonomtstd-webfont.svg#AndaleMonoMTStdRegular'%>') format('svg');*/
+    /*font-weight: normal;*/
+    /*font-style: normal;*/
+/*}*/
 
-@font-face {
-    font-family: 'AndaleMonoMT';
-    src: url('<%= asset_path 'andalemonomtstd-bold-webfont.eot' %>');
-    src: url('<%= asset_path 'andalemonomtstd-bold-webfont.eot?#iefix' %>') format('embedded-opentype'),
-         url('<%= asset_path 'andalemonomtstd-bold-webfont.woff'%>') format('woff'),
-         url('<%= asset_path 'andalemonomtstd-bold-webfont.ttf'%>') format('truetype'),
-         url('<%= asset_path 'andalemonomtstd-bold-webfont.svg#AndaleMonoMTStdBold'%>') format('svg');
-    font-weight: bold;
-    font-style: normal;
-}
+/*@font-face {*/
+    /*font-family: 'AndaleMonoMT';*/
+    /*src: url('<%= asset_path 'andalemonomtstd-bold-webfont.eot' %>');*/
+    /*src: url('<%= asset_path 'andalemonomtstd-bold-webfont.eot?#iefix' %>') format('embedded-opentype'),*/
+         /*url('<%= asset_path 'andalemonomtstd-bold-webfont.woff'%>') format('woff'),*/
+         /*url('<%= asset_path 'andalemonomtstd-bold-webfont.ttf'%>') format('truetype'),*/
+         /*url('<%= asset_path 'andalemonomtstd-bold-webfont.svg#AndaleMonoMTStdBold'%>') format('svg');*/
+    /*font-weight: bold;*/
+    /*font-style: normal;*/
+/*}*/
 
 
 body{
@@ -82,6 +82,16 @@ ul, li{
     width:1060px;
     margin:10px auto;
 
+}
+
+.column_left{
+    width:500px;
+    float:left;
+}
+
+.column_right{
+    width:500px;
+    float:right;
 }
 
 /*~~ Tables ~~*/
@@ -139,3 +149,19 @@ th.actions_long{
     font-size:18px;
     font-weight:bold;
 }
+
+#slider_container{
+    border:2px solid black;
+    width:300px;
+    height:30px;
+}
+
+.handle{
+    background:black;
+    height:30px;
+    width:30px;
+    position:relative;
+    left:100px;
+    cursor:pointer;
+}
+
