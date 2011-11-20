@@ -17,6 +17,7 @@ rubysquare.view_manager = function( ui_state, ui_effects ){
         //Private
 		var views = [];	// not sure if this should really keep a list of available views, might be too complicated for initial functionality
 		var current_view;
+        var self = this;
 
         var on_success_callback = function(){
             ui_effects.highlight(ui_state['currently_playing'].song_index, ui_state['currently_playing'].playlist_index, ui_state['currently_playing'].container, {'action':'add'});
@@ -50,6 +51,10 @@ rubysquare.view_manager = function( ui_state, ui_effects ){
 
         this.load = function( data, on_success_callback ){
             current_view.load( data, on_success_callback );
+        }
+
+        this.reload = function(data){
+            self.switch_view(current_view, data);
         }
 
         this.init = function( view ){
