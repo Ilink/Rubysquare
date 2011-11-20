@@ -30,7 +30,8 @@
 
 <div class="hidden" id="new_playlist_dialog">
   <div class="close pointer">X</div>
-  Add new playlist
+    <% if(@playlist.nil?); @playlist = Playlist.new; end  %>
+    <%= render :partial => "playlists/form" %>
 </div>
 
 <!-- Only show authenticated users the controls -->
