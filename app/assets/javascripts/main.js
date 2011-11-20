@@ -11,9 +11,12 @@ rubysquare.ui.table_highlight = rubysquare.ui.Table_highlight(rubysquare.setting
 rubysquare.music = rubysquare.music_bridge(rubysquare.settings, rubysquare.playlists.now_playing, rubysquare.ui_state, rubysquare.ui.table_highlight);
 rubysquare.ajax = rubysquare.ajax_manager();
 rubysquare.seek_bar = rubysquare.ui.slider('#seek_bar')
-
+rubysquare.song_manager = rubysquare.soundmanager_song_manager();
 
 rubysquare.seek_bar.bind();
+rubysquare.views.views_manager = rubysquare.view_manager(rubysquare.ui_state, rubysquare.ui.table_highlight);
+
+rubysquare.test_slider = rubysquare.ui.slider(300, '#slider_container .handle', 'mousedown');
 
 //~ JSON for bindings, for Songs view, TEMP ~//
 // TODO refactor these bindings, they are very very repetitive
@@ -163,21 +166,22 @@ rubysquare.ui.common_bindings = [
 
 //~ View Objects, these reference above JSON (for now) ~//
 
-rubysquare.views.views_manager = rubysquare.view_manager(rubysquare.ui_state, rubysquare.ui.table_highlight);
-//rubysquare.views.songs = rubysquare.view(rubysquare.ui.songs_bindings, '#songs_view', '/songs.xml', rubysquare.playlists.songs_on_page.playlist);  // temp, hardcoded, needs to be flexible
-//rubysquare.views.playlists = rubysquare.view(rubysquare.ui.playlist_bindings, '#playlists_view', '/playlists.xml', rubysquare.playlists.songs_on_page.playlist);
-//rubysquare.views.now_playing = rubysquare.view(rubysquare.ui.now_playing_bindings, '#now_playing_view', '/songs/now_playing.xml', rubysquare.playlists.songs_on_page.playlist);
-//rubysquare.views.search = rubysquare.view(rubysquare.ui.search_bindings, '#search_view', '/songs/search.xml', rubysquare.playlists.songs_on_page.playlist );
 
-rubysquare.views.songs = rubysquare.view(rubysquare.ui.songs_bindings, '#songs_view', '/songs.xml', rubysquare.playlists.all_on_page );  // temp, hardcoded, needs to be flexible
+
+rubysquare.views.songs = rubysquare.view(rubysquare.ui.songs_bindings, '#songs_view', '/songs.xml', rubysquare.playlists.all_on_page );
 rubysquare.views.playlists = rubysquare.view(rubysquare.ui.playlist_bindings, '#playlists_view', '/playlists.xml', rubysquare.playlists.all_on_page );
 rubysquare.views.now_playing = rubysquare.view(rubysquare.ui.now_playing_bindings, '#now_playing_view', '/songs/now_playing.xml', rubysquare.playlists.all_on_page );
 rubysquare.views.search = rubysquare.view(rubysquare.ui.search_bindings, '#search_view', '/songs/search.xml', rubysquare.playlists.all_on_page );
 
 
-
-
 $(document).ready(function(){
+
+    // I dont know where to put this yet. I'm sure I will have more places where the view needs to get reloaded
+    $('form#new_playlist').live('ajax:complete', function(xhr, status) {
+        rubysquare.views.views_manager.reload();
+        $(this).parent().append('Added new playlist');
+    });
+
     //~Temp Binds~//
     $('#shuffle').click(function(){
         if(rubysquare.settings['shuffle']) {
@@ -223,6 +227,10 @@ $(document).ready(function(){
     else if(initial_view === 'now_playing') { rubysquare.views.views_manager.init( rubysquare.views.now_playing ); console.log('now playing view')}
 
 
+
+
+    /* Test slider */
+    rubysquare.test_slider.init();
 
 
      //hardcode current view for now
@@ -287,7 +295,7 @@ $(document).ready(function(){
 //    rubysquare.history.logger();
 
 
-    $("#fling").click(flingable);
+   // $("#fling").click(flingable);
 
 
 });

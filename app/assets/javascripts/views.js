@@ -109,6 +109,7 @@ rubysquare.view = function( _binds, container_selector, ajax_url, playlist_to_up
             else $(container_selector).show();
         }
 
+        //currently unused
         this.attach_ui_module = function( module ){
             ui_modules.push(module);
         }

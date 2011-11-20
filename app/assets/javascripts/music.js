@@ -1,4 +1,3 @@
-//~Quack Quack!~//
 /*
     //Calling this a bridge because its implementation is in terms of a music player API (such as SoundManager)
     //this will help if we ever need a different music player library
@@ -129,6 +128,66 @@ rubysquare.music_bridge = function( settings, playlist_manager, ui_state, ui_eff
 }
 
 
+rubysquare.music_wrapper = function(){
+    if (this instanceof rubysquare.music_wrapper) {
+
+        // Public
+        this.load_song = function(){
+
+        }
+
+        this.play = function( song ) {
+            rubysquare.song_manager.get_song.pause();
+        }
+
+        this.pause = function( song ) {
+            rubysquare.song_manager.get_song.pause();
+        }
+    }
+    else return new rubysquare.music_wrapper();
+}
+
+rubysquare.soundmanager_song_manager = function(){
+    if (this instanceof rubysquare.soundmanager_song_manager){
+        // Private
+        var self = this;
+        var song;
+
+        // Public
+        /* Callbacks example:
+            {
+                while_playing : [
+                    func1, func2, func3
+                ],
+                on_finish : [ ... ]
+            }
+         */
+        this.new_song = function(url, callbacks){
+//            if (typeof callbacks === "undefined") callbacks = rubysquare.default_song_callbacks;
+            song = soundManager.createSound({
+                id: 'song',
+//				url: '/'+url, //for now i need to use external urls, which dont need that slash
+                url: url,
+                onfinish: function(){
+                    if(typeof callbacks['on_finish'] !== 'undefined') {
+                        $.each(callbacks['on_finish'], function(index, value){
+                            value();
+                        });
+                    }
+                },
+                whileplaying:function(){
+                    if(typeof callbacks['while_playing'] !== 'undefined') {
+                        $.each(callbacks['while_playing'], function(index, value){
+                            value();
+                        });
+                    }
+                }
+            });
+        }
+    }
+    else return new rubysquare.soundmanager_song_manager();
+}
+
 
 /*
     abstract class playlist() {
@@ -158,7 +217,7 @@ rubysquare.playlist = function( json ){
         }
 
         this.copy_from = function( to_copy ){
-            this.playlist = $.extend( {}, to_copy ); // essentially this merges argument with a blank object and returns a new one
+            this.playlist = $.extend( {}, to_copy );
         }
 
 	}

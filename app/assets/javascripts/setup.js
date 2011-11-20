@@ -41,6 +41,8 @@ rubysquare.ui_state = {
     }
 }
 
+rubysquare.default_song_callbacks = {};
+
 /*
     public interface settings
         public:

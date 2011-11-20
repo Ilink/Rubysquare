@@ -15,9 +15,29 @@ rubysquare.ui.slider = function(slider_width, handle, bind_to, callback){
         //Private
         var self = this;
 
+        var handle_slide = function(){
+            if(bind_to !== 'mousedown') throw 'only mousedown supported at the moment';
+            var timer;
+            $(handle).bind(bind_to, function(e){
+                var x;
+                var parent_offset = $(handle).parent().offset();
+                timer = setInterval(function(){
+                    x = e.pageX - parent_offset.left;
+                }, 500);
+
+                $(handle).css('left','')
+                return false;
+            });
+
+            $(document).mouseup(function(){
+                clearInterval(timer);
+                return false;
+            });
+        }
+
         //Public
         this.init = function(){
-
+            handle_slide();
         }
     }
     else return new rubysquare.ui.slider(slider_width, handle, bind_to, callback);
@@ -30,44 +50,41 @@ rubysquare.ui.slider.prototype.bind = rubysquare.ui.module.bind;
 rubysquare.ui.dialog = function(){
     // Private
     var that = {};
-    var copied_content;
     var open = false;
 
     var close_dialog = function(content_to_close){
-        $(content_to_close).remove();
+        $(content_to_close).hide();
+        open = false;
     }
 
     // Public
     that.show_dialog = function(content_selector, placement_selector, position, close_button_selector){
-        if(open === true) {
-            close_dialog(copied_content);
-            open = false;
-            return false
-        }
+//        if(open === true) {
+//            close_dialog(content_selector);
+//            return false
+//        }
 
-        open = true; //this system will go nuts if i have someone trying to open more than one dialog at a time. Couldl make it a regular object instead of a singleton
-        copied_content = $(content_selector).clone();
+        open = true;
 
         //TODO add more positions
         if (position === 'above'){
-            var selector_height = $(placement_selector).height();
-            var selector_width = $(placement_selector).width();
+            var placement_selector_height = $(placement_selector).outerHeight();
+            var placement_selector_width = $(placement_selector).width();
 
-            $(copied_content).css('opacity', '0'); // dont display it yet, but outerWidth and outerHeight dont work on hidden elements
-            $(placement_selector).parent().append( $(copied_content) );
+            var content_height = $(content_selector).outerHeight();
 
-            $(copied_content).css({
+            $(content_selector).css({
                'position' : 'absolute',
-               'display':'block !important',
+               'display':'block',
                'z-index':'10',
-               'left' : $(placement_selector).position().left + (selector_width/2)  - ($(copied_content).outerWidth() / 2),
-               'top' : $(placement_selector).position().top - (selector_height * 2.5) - ($(copied_content).outerHeight() / 2)
+                'left' : $(placement_selector).offset().left - ($(content_selector).outerWidth() / 2) + (placement_selector_width / 2),
+                'top' : $(placement_selector).offset().top - content_height - placement_selector_height
             });
         }
-        $(copied_content).css('opacity', '100'); // display it now that the CSS has been calculated
+        $('body').append( $(content_selector) );
 
-        $(copied_content).children(close_button_selector).click( function(){
-            close_dialog(copied_content);
+        $(content_selector).children(close_button_selector).click( function(){
+            close_dialog(content_selector);
         });
     }
     return that;
