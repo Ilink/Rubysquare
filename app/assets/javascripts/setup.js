@@ -25,7 +25,9 @@ rubysquare.settings = {
         'song_json' : '.song_json',
         'main_container' : '#container',
         'initial_page' : '#initial_view_json',
-        'controls' : ''
+        'controls' : '',
+        'now_playing_info':"#now_playing_info",
+        'seek_slider':"#seek_slider"
     },
     'music_highlight_class' : 'song_highlight',
     'links' : {

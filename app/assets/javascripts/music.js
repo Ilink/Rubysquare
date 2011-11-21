@@ -44,6 +44,11 @@ rubysquare.music_bridge = function( settings, playlist_manager, ui_state, ui_eff
 				song.destruct();
 				rubysquare.log("song destroyed");
 			}
+            if (typeof callbacks['now_playing'] !=='undefined'){
+                var current_playlist = playlist_manager.get_playlist();
+                var current_song = current_playlist[ui_state.song_index];
+                callbacks.now_playing(current_playlist);
+            }
 			else rubysquare.log("no current song, making a new song...");
 			song = soundManager.createSound({
 				id: 'song',
@@ -54,7 +59,7 @@ rubysquare.music_bridge = function( settings, playlist_manager, ui_state, ui_eff
                 },
                 whileplaying:function(){
                     if(typeof callbacks['seek'] !== 'undefined')
-                        var percent_position
+                        var percent_position;
                         if(this.loaded) {
                             percent_position = (this.position / this.duration) * 100;
                         } else {

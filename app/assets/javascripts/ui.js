@@ -149,3 +149,16 @@ rubysquare.ui.make_sticky = function(selector, location, threshold){
             });
     })();
 }
+
+//~Singleton~//
+rubysquare.ui.now_playing_info = (function(){
+    var that = {};
+    that.show = function(json_to_show){
+        var node = rubysquare.settings.nodes.now_playing_info;
+        $(rubysquare.settings.nodes.seek_slider).show();
+        $(node).empty();
+        $(node).append(json_to_show.title + "<br/>");
+        $(node).append(json_to_show.album + ", " + json_to_show.artist);
+    }
+    return that;
+})();

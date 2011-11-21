@@ -153,8 +153,8 @@ rubysquare.view = function( _binds, container_selector, ajax_url, playlist_to_up
                             console.log(playlist_to_update[index].playlist);
                         });
                     }
-
-                    on_success_callback();
+                    if(typeof on_success_callback !== 'undefined')
+                        on_success_callback();
                 }
             });
         }

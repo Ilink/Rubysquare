@@ -3,7 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 #music_player_controls li, #music_player_controls div{
-    font-size:20px !important;
+    font-size:20px;
     &:hover{
 
     }
@@ -38,7 +38,7 @@
 #controls_left{
     float:left;
     width:30%;
-    border-right:2px solid grey;
+    /*border-right:2px solid grey;*/
     margin-right:10px;
 }
 
@@ -46,7 +46,7 @@
     float:right;
     width:30%;
     margin-left:10px;
-    border-left:2px solid grey;
+    /*border-left:2px solid grey;*/
 }
 
 #controls_center{
@@ -54,6 +54,7 @@
     width:35%;
     margin-left:10px;
     margin-right:10px;
+    margin-top:8px;
 }
 
 /*~~ Music Player UI Bells and Whistles ~~*/
@@ -117,8 +118,6 @@
 #volume_slider.ui-slider .ui-slider-handle, #seek_slider.ui-slider .ui-slider-handle {
     position: absolute; z-index: 2; width: 22px; height: 22px; cursor: default; background:#DEDEDE;
     -moz-border-radius: 15px;
-
-
     border-radius: 15px;
 }
 
@@ -157,4 +156,10 @@
 #music_player_controls{
     border-bottom:2px solid #E3E3E3;
     padding-bottom:20px;
+}
+
+/*~~~~~~~~~ Now Playing Info ~~~~~~~~~*/
+#now_playing_info{
+    font-size:13px !important;
+    text-align: center;
 }

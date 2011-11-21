@@ -8,10 +8,16 @@ rubysquare.playlists.all_on_page = [];
 //~ Callbacks ~//
 rubysquare.music_callbacks = {
     'seek':function( seek_val ){
-        console.log(seek_val);
+//        console.log(seek_val);
         $('#seek_slider').slider({ 'value': seek_val });
+    },
+    'now_playing':function(song_info_json){
+        console.log(song_info_json);
+        rubysquare.ui.now_playing_info.show(song_info_json);
     }
 }
+
+
 
 //~ Objects ~//
 rubysquare.ui.table_highlight = rubysquare.ui.Table_highlight(rubysquare.settings);
@@ -59,8 +65,16 @@ rubysquare.ui.search_bindings = [
         'func' : function() {
             var song_index = Number($(this).parent('tr').attr('id'));
             var playlist_index = $(this).parents('.playlist_container').attr('playlist_index');
-
             rubysquare.ui.table_highlight.highlight(song_index, playlist_index, '#search_view', {"action":"add", "unique": true});
+            rubysquare.helpers.play_from_available(rubysquare.music, song_index, rubysquare.playlists.all_on_page[0], rubysquare.playlists.now_playing, playlist_index, '#playlists_view', rubysquare.ui_state);
+        }
+    },
+    {
+        'selector' : '.new_playlist_link',
+        'bind_to' : 'click',
+        'func' : function(){
+            rubysquare.ui.dialog.show_dialog('#new_playlist_dialog', $(this), "above", '.close');
+            return false;
         }
     }
 ];
@@ -74,9 +88,16 @@ rubysquare.ui.playlist_bindings = [
             var playlist_index = $(this).parents('.playlist_container').attr('playlist_index');
             console.log("playlist:" + playlist_index);
             var song_index = Number($(this).parent('tr').attr('id'));
-            rubysquare.helpers.play_from_available(rubysquare.music, song_index, rubysquare.playlists.all_on_page[0], rubysquare.playlists.now_playing, playlist_index, '#playlists_view', rubysquare.ui_state);
+            rubysquare.helpers.play_from_available(rubysquare.music, song_index, rubysquare.playlists.all_on_page[playlist_index], rubysquare.playlists.now_playing, playlist_index, '#playlists_view', rubysquare.ui_state);
             rubysquare.ui.table_highlight.highlight(song_index, playlist_index, '#playlists_view', {"action":"add", "unique": true});
-
+        }
+    },
+    {
+        'selector' : '.new_playlist_link',
+        'bind_to' : 'click',
+        'func' : function(){
+            rubysquare.ui.dialog.show_dialog('#new_playlist_dialog', $(this), "above", '.close');
+            return false;
         }
     }
 ];
@@ -90,6 +111,14 @@ rubysquare.ui.now_playing_bindings = [
             var song_index = Number($(this).parent('tr').attr('id'));
             var playlist_index = $(this).parents('.playlist_container').attr('playlist_index');
             rubysquare.helpers.play_from_available(rubysquare.music, song_index, rubysquare.playlists.all_on_page[0], rubysquare.playlists.now_playing, playlist_index);
+        }
+    },
+    {
+        'selector' : '.new_playlist_link',
+        'bind_to' : 'click',
+        'func' : function(){
+            rubysquare.ui.dialog.show_dialog('#new_playlist_dialog', $(this), "above", '.close');
+            return false;
         }
     }
 ];
@@ -211,11 +240,15 @@ $(document).ready(function(){
 
     rubysquare.ui.make_sticky('#music_player_controls', 'top', $('#music_player_controls').offset().top);
 
+    // Reloads the current view when we make a new playlist
     // I dont know where to put this yet. I'm sure I will have more places where the view needs to get reloaded
     $('form#new_playlist').live('ajax:complete', function(xhr, status) {
         rubysquare.views.views_manager.reload();
         $(this).parent().append('Added new playlist');
     });
+
+    //~ Rails UJS AJAX Messages ~//
+
 
     //~Temp Binds~//
     $('#shuffle').click(function(){
@@ -238,7 +271,7 @@ $(document).ready(function(){
     //~ Assign all JSON sent by the server to a playlist ~//
     $(rubysquare.settings.nodes.song_json).each(function(index, value){
        rubysquare.playlists.all_on_page[index] = rubysquare.playlist();
-       console.log("first playlist loop "+index);
+       console.log("Added playlist #"+index);
        rubysquare.playlists.all_on_page[index].playlist = rubysquare.helpers.parse_json(value);
        console.log(rubysquare.playlists.all_on_page[index].playlist);
     });
@@ -264,16 +297,8 @@ $(document).ready(function(){
 
 
 
-    /* Test slider */
-//    rubysquare.test_slider.init();
 
 
-
-     //hardcode current view for now
-
-
-//    rubysquare.views.views_manager.init_view( rubysquare.views.songs);
-//    rubysquare.views.views_manager.switch_view( rubysquare.views.playlists );
 
 
 

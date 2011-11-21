@@ -13,6 +13,8 @@ rubysquare.helpers = function(){
 
         that.update_now_playing_db_entries( now_playing_playlist.get_playlist() );
 
+
+
         rubysquare.music.play();
         console.log("now playing playlist:" + now_playing_playlist.playlist);
         // TODO: should update the DB "now playing" playlist at this point

@@ -25,7 +25,7 @@
             <%= collection_select('playlist', 'id', @playlists, :id, :title) %>
             <%= submit_tag("Add to playlist") %>
             ||||||||||
-            <%= link_to 'New Playlist', new_playlist_path %>
+            <%= link_to 'New Playlist', new_playlist_path, :class => 'new_playlist_link' %>
               <% playlist.songs.each_with_index do |song, index| %>
                 <tr id="<%= index %>">
                     <td class="song_title"><%= song.title %></td>
