@@ -27,7 +27,7 @@ rubysquare.settings = {
         'initial_page' : '#initial_view_json',
         'controls' : ''
     },
-    'music_highlight_class' : 'grey_background',
+    'music_highlight_class' : 'song_highlight',
     'links' : {
         'new_playlist' : '/playlists/new'
         // todo add more important links here for future use

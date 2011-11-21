@@ -112,6 +112,10 @@ tr{
     text-align: left;
 }
 
+tr:nth-child(even){
+    background-color:#F3F2FF;
+}
+
 td{
     padding-right:15px;
 }
@@ -119,6 +123,10 @@ td{
 table {
     width: 100%;
     table-layout:fixed;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
 }
 
 th.song_locations {

@@ -15,6 +15,12 @@ song_locations = [
   'http://www.podtrac.com/pts/redirect.mp3/downloads.newyorker.com/mp3/fiction/110819_fiction_rushdie.mp3'
 ]
 
+song_locations2 = [
+    {
+      "title" => ''
+    }
+]
+
 Song.delete_all
 for i in 1..100
   Song.create(
