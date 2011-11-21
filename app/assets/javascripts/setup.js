@@ -24,7 +24,8 @@ rubysquare.settings = {
         'pause_button' : '#pause',
         'song_json' : '.song_json',
         'main_container' : '#container',
-        'initial_page' : '#initial_view_json'
+        'initial_page' : '#initial_view_json',
+        'controls' : ''
     },
     'music_highlight_class' : 'grey_background',
     'links' : {

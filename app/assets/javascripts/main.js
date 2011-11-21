@@ -5,10 +5,18 @@ rubysquare.playlists.songs_on_page = rubysquare.playlist();
 rubysquare.playlists.now_playing = rubysquare.playlist();
 rubysquare.playlists.all_on_page = [];
 
+//~ Callbacks ~//
+rubysquare.music_callbacks = {
+    'seek':function( seek_val ){
+        console.log(seek_val);
+        $('#seek_slider').slider({ 'value': seek_val });
+    }
+}
+
 //~ Objects ~//
 rubysquare.ui.table_highlight = rubysquare.ui.Table_highlight(rubysquare.settings);
 //Todo add a callback that moves the seek bar
-rubysquare.music = rubysquare.music_bridge(rubysquare.settings, rubysquare.playlists.now_playing, rubysquare.ui_state, rubysquare.ui.table_highlight);
+rubysquare.music = rubysquare.music_bridge(rubysquare.settings, rubysquare.playlists.now_playing, rubysquare.ui_state, rubysquare.ui.table_highlight, rubysquare.music_callbacks);
 rubysquare.ajax = rubysquare.ajax_manager();
 rubysquare.seek_bar = rubysquare.ui.slider('#seek_bar')
 rubysquare.song_manager = rubysquare.soundmanager_song_manager();
@@ -25,6 +33,7 @@ rubysquare.ui.songs_bindings = [
         'selector' : '#songs_view .song_location, #songs_view .song_title', // This is temporary since i have to figure out the UI before i know what the strucutre of the links will be
         'bind_to' : 'dblclick',
         'func' : function() {
+
             var song_index = Number($(this).parent('tr').attr('id'));
             console.log(song_index);
             var playlist_index = $(this).parents('.playlist_container').attr('playlist_index');
@@ -176,6 +185,32 @@ rubysquare.views.search = rubysquare.view(rubysquare.ui.search_bindings, '#searc
 
 $(document).ready(function(){
 
+    $('#volume_slider').slider({
+        'max':100,
+        'min':0,
+        'value':75,
+        'change':function(event, ui){
+            rubysquare.music.set_volume(ui.value);
+        },
+        'slide':function(event,ui){
+            rubysquare.music.set_volume(ui.value);
+        }
+    });
+
+    $('#seek_slider').slider({
+        'max':100,
+        'min':0,
+        'slide':function(event, ui){
+            var val = ui.value;
+            var temp = this.change;
+            this.change = '';   // don't let the music player seek while the user is using the slider
+            rubysquare.music.seek(val);
+            this.change = temp;
+        }
+    });
+
+    rubysquare.ui.make_sticky('#music_player_controls', 'top', $('#music_player_controls').offset().top);
+
     // I dont know where to put this yet. I'm sure I will have more places where the view needs to get reloaded
     $('form#new_playlist').live('ajax:complete', function(xhr, status) {
         rubysquare.views.views_manager.reload();
@@ -230,7 +265,8 @@ $(document).ready(function(){
 
 
     /* Test slider */
-    rubysquare.test_slider.init();
+//    rubysquare.test_slider.init();
+
 
 
      //hardcode current view for now

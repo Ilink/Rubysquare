@@ -21,8 +21,9 @@
 rubysquare.music_bridge = function( settings, playlist_manager, ui_state, ui_effects, callbacks) {
     if (this instanceof rubysquare.music_bridge) {
         // Private
+        var song_id = 'song';
 		var song = soundManager.createSound({
-			id: 'song',
+			id: song_id,
 			url: ''
 		});
         var self = this;
@@ -52,9 +53,14 @@ rubysquare.music_bridge = function( settings, playlist_manager, ui_state, ui_eff
                     self.next( settings );
                 },
                 whileplaying:function(){
-                    console.log(this.position);
                     if(typeof callbacks['seek'] !== 'undefined')
-                        callbacks['seek'].seek(this.position);
+                        var percent_position
+                        if(this.loaded) {
+                            percent_position = (this.position / this.duration) * 100;
+                        } else {
+                            percent_position = (this.position / this.durationEstimate) * 100;
+                        }
+                        callbacks.seek(percent_position);
                 }
 			});
         }
@@ -97,10 +103,10 @@ rubysquare.music_bridge = function( settings, playlist_manager, ui_state, ui_eff
         this.seek = function( percentage ){
             var pos;
             if(song.loaded){
-                pos = percentage * song.duration;   // value is truncated if the song isnt loaded
+                pos = (percentage/100) * song.duration;   // value is truncated if the song isnt loaded
             }
             else {
-                pos = percentage * song.durationEstimate;
+                pos = (percentage/100) * song.durationEstimate;
             }
 
             song.setPosition( pos );
@@ -122,11 +128,22 @@ rubysquare.music_bridge = function( settings, playlist_manager, ui_state, ui_eff
 		this.resume = function() {
 			song.resume();
 		}
+
+        this.set_volume = function( volume ){
+            if(typeof volume !== 'number') throw "Requires number";
+            if(volume > 100 || volume < 0) throw "Argument out of range - requires 0 to 100";
+            if (soundManager.getSoundById(song_id)){
+                soundManager.setVolume( song_id, volume );
+                console.log(volume + " is the volume for currently playing")
+            } else {
+                song['volume'] = volume;
+                console.log(volume + " is the volume for prepared song")
+            }
+        }
 		
     }
     else return new rubysquare.music_bridge( settings, playlist_manager, ui_state, ui_effects, callbacks );
 }
-
 
 rubysquare.music_wrapper = function(){
     if (this instanceof rubysquare.music_wrapper) {

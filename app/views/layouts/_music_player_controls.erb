@@ -1,18 +1,31 @@
 <div id="music_player_controls">
-    <ul class="playback">
-      <li id="prev" class="pointer">Previous</li>
-      <li id="next" class="pointer">Next</li>
-      <li id="pause" class="pointer">Pause</li>
-      <li id="test" class="pointer hidden">Test</li>
+  <div id="controls_left">
+    <ul class="controls">
+      <li id="prev" class="pointer bw_hover">Previous</li>
+      <li id="next" class="pointer bw_hover">Next</li>
+      <li id="pause" class="pointer bw_hover">Pause</li>
+      <div class="clearfix"></div>
+      <li>
+        <div class="float_left volume_icon">-</div>
+            <div id="volume_slider_wrapper"><div id="volume_slider"></div></div>
+        <div class="float_left volume_icon">+</div>
+      </li>
     </ul>
-    <div id="shuffle" class="pointer">Shuffle</div>
-    <div id="seekbar" class="pointer" id="seek_bar"></div>
-    <ul>
-      <li id="undo" class="pointer">Undo</li>
-      <li id="redo" class="pointer">Redo</li>
+  </div>
+  <div id="controls_center">
+    <div id="now_playing_info">
+      <div class="bold" id="now_playing_title"></div>
+      <div id="now_playing_artist_album"></div>
+    </div>
+    <div id="seek_slider"></div>
+  </div>
+  <div id="controls_right">
+    <ul class="controls">
+      <li id="shuffle" class="pointer bw_hover float_right">Shuffle</li>
+       <li id="undo" class="pointer bw_hover float_right">Undo</li>
+       <li id="redo" class="pointer bw_hover float_right">Redo</li>
     </ul>
-</div>
+  </div>
 
-<div id="slider_container">
-  <div class="handle">&nbsp;</div>
 </div>
+<div class="clearfix"></div>

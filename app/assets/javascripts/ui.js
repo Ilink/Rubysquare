@@ -124,9 +124,28 @@ rubysquare.ui.Table_highlight = function(settings){
                 $(container + ' .playlist_container[playlist_index='+playlist_index+'] tr[id='+song_index+']').removeClass(class_to_add);
                 console.log($(container + ' .playlist_container[playlist_index='+playlist_index+'] tr[id='+song_index+']'));
             }
-
-
         }
     }
     else return new rubysquare.ui.Table_highlight(settings);
+}
+
+rubysquare.ui.make_sticky = function(selector, location, threshold){
+    (function(){ //the extra closure is for these variables
+        var former_position = $(selector).css('position');
+        var former_top = $(selector).css('top');
+        $(window).scroll(function () {
+                if($(this).scrollTop() > threshold){
+                    $(selector).css({
+                        "position" : "fixed",
+                        "top" : '0px'
+                    });
+                }
+                if ($(this).scrollTop() < threshold){
+                    $(selector).css({
+                        "position" : former_position,
+                        "top" : former_top
+                    });
+                }
+            });
+    })();
 }

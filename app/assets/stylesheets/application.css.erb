@@ -36,6 +36,7 @@
 /*}*/
 
 
+
 body{
     padding:0;
     margin:0;
@@ -44,6 +45,10 @@ body{
     color: #333;
     font-size: 13px;
     line-height: 18px;
+}
+
+.clearfix{
+    clear:both;
 }
 
 #menu ul, li{
@@ -68,6 +73,13 @@ ul, li{
     display:none;
 }
 
+.float_right{
+    float:right;
+}
+
+.float_left{
+    float:left;
+}
 
 .header{
     font-size:18px;
@@ -131,37 +143,7 @@ th.actions_long{
     border:2px solid grey;
 }
 
-/*~~ Music Player UI Bells and Whistles ~~*/
-.grey_background {
-    background:grey;
-}
-
-#new_playlist_dialog{
-    border:2px solid #DEDEDE;
-    padding:20px;
-    background:white;
-}
-
-#new_playlist_dialog .close{
-    position:absolute;
-    top:0px;
-    right:0px;
-    font-size:18px;
+/*~~ Type ~~*/
+.bold{
     font-weight:bold;
 }
-
-#slider_container{
-    border:2px solid black;
-    width:300px;
-    height:30px;
-}
-
-.handle{
-    background:black;
-    height:30px;
-    width:30px;
-    position:relative;
-    left:100px;
-    cursor:pointer;
-}
-

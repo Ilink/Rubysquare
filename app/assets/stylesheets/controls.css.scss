@@ -1,0 +1,126 @@
+// Place all the styles related to the songs controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#music_player_controls li, #music_player_controls div{
+    font-size:20px !important;
+    &:hover{
+
+    }
+}
+
+.bw_hover {
+  &:hover{
+     background-color: black;
+     color:white;
+  }
+}
+
+#music_player_controls .controls{
+
+}
+
+
+/*~~Controls Structure~~*/
+
+#music_player_controls{
+    background:white;
+    width:1060px;
+}
+
+#controls_left{
+    float:left;
+    width:30%;
+}
+
+#controls_right{
+    float:right;
+     width:30%;
+}
+
+#controls_center{
+    float:left;
+     width:30%;
+}
+
+/*~~ Music Player UI Bells and Whistles ~~*/
+.grey_background {
+    background:grey;
+}
+
+#new_playlist_dialog{
+    border:2px solid #DEDEDE;
+    padding:20px;
+    background:white;
+}
+
+#new_playlist_dialog .close{
+    position:absolute;
+    top:0px;
+    right:0px;
+    font-size:18px;
+    font-weight:bold;
+}
+
+
+                /*~~Sliders~~*/
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+/* TODO: condense these */
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default { border: 1px solid #666666; background: #555555 url(images/ui-bg_glass_20_555555_1x400.png) 50% 50% repeat-x; font-weight: bold; color: #eeeeee; }
+.ui-state-default a, .ui-state-default a:link, .ui-state-default a:visited { color: #eeeeee; text-decoration: none; }
+.ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus { border: 1px solid #59b4d4; background: #0078a3 url(images/ui-bg_glass_40_0078a3_1x400.png) 50% 50% repeat-x; font-weight: bold; color: #ffffff; }
+.ui-state-hover a, .ui-state-hover a:hover { color: #ffffff; text-decoration: none; }
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active { border: 1px solid #ffaf0f; background: #f58400 url(images/ui-bg_inset-soft_30_f58400_1x100.png) 50% 50% repeat-x; font-weight: bold; color: #ffffff; }
+.ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited { color: #ffffff; text-decoration: none; }
+.ui-widget :active, .ui-state-focus { outline: none; }
+
+.ui-slider-horizontal { height: .8em; }
+.ui-slider-horizontal .ui-slider-range { top: 0; height: 100%; }
+.ui-slider-horizontal .ui-slider-range-min { left: 0; }
+.ui-slider-horizontal .ui-slider-range-max { right: 0; }
+.ui-slider-vertical .ui-slider-range-min { bottom: 0; }
+.ui-slider-vertical .ui-slider-range-max { top: 0; }
+
+/*Volume*/
+
+#volume_slider_wrapper{
+    width:200px;
+    float:left;
+}
+
+#volume_slider.ui-slider .ui-slider-range { position: absolute; z-index: 1; display: block; border: 0; background-position: 0 0; }
+
+#volume_slider.ui-slider, #seek_slider.ui-slider {
+    position: relative; text-align: left; border:1px solid #211F1F; margin:5px 0px 5px 0px;
+    -moz-box-shadow: inset 0 0 5px 1px #888;
+    -webkit-box-shadow: inset 0 0 5px 1px#888;
+    box-shadow: inset 0 0 5px 1px #888;
+    background-color:#8C8C8C;
+}
+
+#volume_slider.ui-slider .ui-slider-handle, #seek_slider.ui-slider .ui-slider-handle {
+    position: absolute; z-index: 2; width: 22px; height: 22px; cursor: default; background:#DEDEDE;
+    -moz-border-radius: 15px;
+    border:2px solid #545454;
+    border-radius: 15px;
+}
+
+#volume_slider.ui-slider-horizontal .ui-slider-handle { top: -5px; margin-left: -.6em; }
+
+#volume_slider.ui-slider-vertical, #seek_slider.ui-slider-vertical  { height: 100px; }
+#volume_slider.ui-slider-vertical .ui-slider-handle, #seek_slider.ui-slider-vertical .ui-slider-handle{ left: -.3em; margin-left: 0; margin-bottom: -.6em; }
+#volume_slider.ui-slider-vertical .ui-slider-range, #seek_slider.ui-slider-vertical .ui-slider-range{ left: 0; }
+
+/*Seek*/
+#seek_slider.ui-slider-horizontal .ui-slider-handle { top: -5px; margin-left: -.6em; }
+
+
+
+
+
+.volume_icon{
+    font-weight:20px;
+    margin:3px 5px 0px 5px;
+    font-weight:bold;
+}
