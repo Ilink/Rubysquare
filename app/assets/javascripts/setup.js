@@ -27,6 +27,8 @@ rubysquare.settings = {
         'initial_page' : '#initial_view_json',
         'controls' : '',
         'now_playing_info':"#now_playing_info",
+        'now_playing_title':"#now_playing_title",
+        'now_playing_artist_album':"#now_playing_artist_album",
         'seek_slider':"#seek_slider"
     },
     'music_highlight_class' : 'song_highlight',

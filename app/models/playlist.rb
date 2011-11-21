@@ -4,6 +4,14 @@ class Playlist < ActiveRecord::Base
   
   validates :title, :presence => true
 
-  #@playlists = Playlist.all
-  #@playlists = Playlist.find_all_by_user_id(current_user.id)
+  scope :not_now_playing, lambda { |user_id|
+      where("user_id = ? AND ID NOT IN (1)", user_id )
+  }
+
+  scope :now_playing, lambda { |user_id|
+    where("user_id = ? AND ID = (1)", user_id )
+  }
+
+  scope :current_user, where("user_id = 1")
+
 end

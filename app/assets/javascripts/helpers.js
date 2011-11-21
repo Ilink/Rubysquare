@@ -9,7 +9,7 @@ rubysquare.helpers = function(){
         ui_state['currently_playing'].song_index = song_index;
         ui_state['currently_playing'].playlist_index = playlist_index;
         ui_state['currently_playing'].container = container;
-        music_manager.set_song( now_playing_playlist.playlist[song_index].location );
+        music_manager.set_song( now_playing_playlist.playlist[song_index] );
 
         that.update_now_playing_db_entries( now_playing_playlist.get_playlist() );
 

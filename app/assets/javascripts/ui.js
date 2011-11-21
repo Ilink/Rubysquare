@@ -154,6 +154,13 @@ rubysquare.ui.make_sticky = function(selector, location, threshold){
 rubysquare.ui.now_playing_info = (function(){
     var that = {};
     that.show = function(json_to_show){
+
+        if (typeof json_to_show.title === 'undefined' ||
+            typeof json_to_show.album === 'undefined' ||
+            typeof json_to_show.artist === 'undefined'){
+                throw 'Argument does not provide artist/title/album properties'
+        }
+
         var node = rubysquare.settings.nodes.now_playing_info;
         $(rubysquare.settings.nodes.seek_slider).show();
         $(node).empty();

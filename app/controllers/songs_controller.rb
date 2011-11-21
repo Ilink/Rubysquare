@@ -7,7 +7,7 @@ class SongsController < ApplicationController
     @initial_view = self.initial_view 'songs'
     @songs = Song.all
     @songs_json = @songs.to_json
-    @playlists = Playlist.find_all_by_user_id current_user.id
+    @playlists = Playlist.not_now_playing(current_user.id)
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @songs.to_json}
@@ -17,7 +17,8 @@ class SongsController < ApplicationController
 
   def now_playing
     @initial_view = self.initial_view 'now_playing'
-    @playlists = Playlist.where("title = ? AND user_id = ?", '__now_playing__', current_user.id )
+    #@playlists = Playlist.where("title = ? AND user_id = ?", '__now_playing__', current_user.id )
+    @playlists = Playlist.now_playing(current_user.id)
     @songs = []
     @playlists[0].songs.each do |song|
       @songs.push song
@@ -207,29 +208,3 @@ class SongsController < ApplicationController
 
 
 end
-
-  #
-  #def index
-  #  #render('songs/temp') #render file views/temp.html.erb
-  #end
-  #
-  #def show
-  #  @id = params['id']
-  #  @page = params['page']
-  #  render('songs/temp')
-  #end
-  #
-
-  #
-  #private
-  #def search_db
-  #  @seach_results = Song.all;
-  #
-  #  if @search_results
-  #    @search_results
-  #  else
-  #    nil
-  #  end
-  #end
-
-

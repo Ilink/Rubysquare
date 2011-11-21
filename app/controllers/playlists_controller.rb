@@ -3,7 +3,8 @@ class PlaylistsController < ApplicationController
   # GET /playlists.json
   def index
     @initial_view = self.initial_view 'playlist'
-    @playlists = Playlist.find_all_by_user_id(current_user.id)
+    #@playlists = Playlist.find_all_by_user_id(current_user.id)
+    @playlists = Playlist.not_now_playing(current_user.id)
     @songs = []
     @playlists.each_with_index do |playlist, index|
       @songs[index] = []

@@ -38,17 +38,19 @@ rubysquare.music_bridge = function( settings, playlist_manager, ui_state, ui_eff
         // Public
 //        this.current_song_index = ;
 
-        this.set_song = function( url ) {
+        this.set_song = function( song_json ) {
+            if(typeof song_json.location === 'undefined') throw "argument has no location url"
+            var url = song_json.location;
 			if (typeof url !== 'string') throw 'Exepected resource (URL) to be a string';
             if( song ) {
 				song.destruct();
 				rubysquare.log("song destroyed");
 			}
+
             if (typeof callbacks['now_playing'] !=='undefined'){
-                var current_playlist = playlist_manager.get_playlist();
-                var current_song = current_playlist[ui_state.song_index];
-                callbacks.now_playing(current_playlist);
+                callbacks.now_playing(song_json);
             }
+
 			else rubysquare.log("no current song, making a new song...");
 			song = soundManager.createSound({
 				id: 'song',
@@ -86,7 +88,7 @@ rubysquare.music_bridge = function( settings, playlist_manager, ui_state, ui_eff
                 if ( typeof playlist[ ui_state['currently_playing'].song_index + 1 ] !== 'undefined' ) {
                     ui_state['currently_playing'].song_index = ui_state['currently_playing'].song_index + 1;
                     if ( playlist[ui_state['currently_playing'].song_index].hasOwnProperty('location') )
-                        this.set_song( playlist[ui_state['currently_playing'].song_index].location );
+                        this.set_song( playlist[ui_state['currently_playing'].song_index] );
                     song.play();
                     ui_effects.highlight(ui_state['currently_playing'].song_index, ui_state['currently_playing'].playlist_index, ui_state['currently_playing'].container, {'action':'add', 'unique':true});
                 }
@@ -99,7 +101,7 @@ rubysquare.music_bridge = function( settings, playlist_manager, ui_state, ui_eff
                 ui_state['currently_playing'].song_index = ui_state['currently_playing'].song_index - 1;
                 console.log(ui_state['currently_playing'].song_index);
                 if ( playlist[ui_state['currently_playing'].song_index].hasOwnProperty('location') )
-                    this.set_song(playlist[ui_state['currently_playing'].song_index].location);
+                    this.set_song(playlist[ui_state['currently_playing'].song_index]);
                 song.play();
                 ui_effects.highlight(ui_state['currently_playing'].song_index, ui_state['currently_playing'].playlist_index, ui_state['currently_playing'].container, {'action':'add', 'unique':true});
             }
