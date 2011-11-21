@@ -7,3 +7,4 @@ tmp/
 .idea/rubysquare.iml
 .idea/workspace.xml
 config/database.yml
+solr/data/
