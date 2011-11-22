@@ -8,15 +8,19 @@ Features Currently Under Development
 *	Importing iTunes libraries (XML parsing powered by the incredible [Nokogiri](https://github.com/tenderlove/nokogiri))
 *	Playlist creation and management
 *	Hopefully an awesome UI
-*	Album artwork
-*	Search (not sure what engine I will be using)
+*	Podcast management
+*	Search ([Sunspot](http://outoftime.github.com/sunspot/))
+*   AJAX Powered - If you want the user to have a pleasant listening experience, you cannot interupt their music. Most everything must be requested/delivered using AJAX. [Rails UJS](https://github.com/rails/jquery-ujs) as well as a central AJAX Page system are used to manage this.
 
 Future Features
 --------------
-*	Podcast management
+*	Album artwork
 *	Audiobook support
 *	Improved integration with iTunes (it's a one-way street right now)
 
 Usage
 --------------
-Most features are currently under heavy development. If this doesn't stop you, you're going to need Ruby on Rails 3.1, along with all the gems specified in the Gemfile.
+While many features are under heavy development, you can feel free to experiment with the project. Just make sure you have all the gems in the gemfile.
+You can use either nginx or Mongrel (I use mongrel for testing) but make sure that you have Sunspot running.
+
+Adjusting the front-end significantly would be difficult at the moment as I am in the middle of refactoring the AJAX Views system and the Music Player classes.
