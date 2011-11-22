@@ -7,6 +7,7 @@ Features Currently Under Development
 --------------
 *	Plays music, either through HTML5 or Flash (based on [Soundmanager2](https://github.com/scottschiller/SoundManager2))
 *	Importing iTunes libraries (XML parsing powered by the incredible [Nokogiri](https://github.com/tenderlove/nokogiri))
+    ** Available as a gem from [here](https://github.com/Ilink/iparse)
 *	Playlist creation and management
 *	Sophisticated UI
 *	Podcast management
