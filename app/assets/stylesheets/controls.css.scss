@@ -2,6 +2,17 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+$dark_grey: #2E2E2E;
+$light_grey: #E3E3E3;
+
+#nav_dashboard a{
+    color: $dark_grey;
+}
+
+#nav_dashboard a:hover{
+    color:white;
+}
+
 #music_player_controls li, #music_player_controls div{
     font-size:20px;
     &:hover{
@@ -9,7 +20,12 @@
     }
 }
 
-.bw_hover {
+
+.title_type{
+    color: $dark_grey;
+}
+
+.bw_hover, .bw_hover a {
   &:hover{
      background-color: black;
      color:white;
@@ -27,7 +43,7 @@
     background:white;
     width:1060px;
     overflow: hidden;
-
+    border-top: 2px solid $light_grey;
 }
 
 #controls_left, #controls_right, #controls_center{
@@ -119,6 +135,7 @@
     position: absolute; z-index: 2; width: 22px; height: 22px; cursor: default; background:#DEDEDE;
     -moz-border-radius: 15px;
     border-radius: 15px;
+    box-shadow: rgb(136, 136, 136) 0px 0px 3px;
 }
 
 #volume_slider.ui-slider-horizontal .ui-slider-handle { top: -4px; margin-left: -.6em; }
@@ -136,13 +153,13 @@
 
 .volume_icon{
     font-weight:20px;
-    margin:3px 5px 0px 5px;
+    margin:6px 5px 0px 5px;
     font-weight:bold;
 }
 
 /*~~~~~~~~~Search~~~*/
 #search{
-    margin-left:20px;
+    margin-left:17px;
 }
 
 #search #query{

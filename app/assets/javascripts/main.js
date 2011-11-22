@@ -259,6 +259,7 @@ $(document).ready(function(){
 
     rubysquare.ui.make_sticky('#music_player_controls', 'top', $('#music_player_controls').offset().top);
 
+
     // Reloads the current view when some UJS action is taken
     // I dont know where to put this yet. I'm sure I will have more places where the view needs to get reloaded
     $('form#new_playlist, .add_to_playlist').live('ajax:complete', function(xhr, status) {

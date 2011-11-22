@@ -39,7 +39,7 @@ SimpleNavigation::Configuration.run do |navigation|
       primary.item :key_1, 'Songs', songs_path, :id => "nav_songs"
       primary.item :key_2, 'Playlists', playlists_path, :id => "nav_playlist"
       primary.item :key_3, 'Now Playing', '/songs/now_playing', :id => "nav_now_playing" #TODO un-hardcode this url
-      primary.item :key_4, 'Dashboard', songs_dashboard_path, :id => "nav_dashboard"
+      primary.item :key_4, 'Dashboard', songs_dashboard_path, :id => "nav_dashboard", :class => "bw_hover"
     end
 
     #if user_signed_in?
