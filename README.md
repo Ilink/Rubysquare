@@ -12,7 +12,7 @@ Features Currently Under Development
 *	Podcast management
 *	Search ([Sunspot](http://outoftime.github.com/sunspot/))
 *   AJAX Powered - If you want the user to have a pleasant listening experience, you cannot interupt their music. Most everything must be requested/delivered using AJAX. [Rails UJS](https://github.com/rails/jquery-ujs) as well as a central AJAX Page system are used to manage this.
-*   User authentican / management [devise](https://github.com/plataformatec/devise) Also includes an optional Guest user feature.
+*   User authentican / management ([devise](https://github.com/plataformatec/devise)) Also includes an optional Guest user feature.
 
 Future Features
 --------------
