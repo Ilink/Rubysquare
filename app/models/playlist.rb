@@ -5,13 +5,15 @@ class Playlist < ActiveRecord::Base
   validates :title, :presence => true
 
   scope :not_now_playing, lambda { |user_id|
-      where("user_id = ? AND ID NOT IN (1)", user_id )
+    where("user_id = ? AND now_playing = false", user_id )
   }
 
   scope :now_playing, lambda { |user_id|
-    where("user_id = ? AND ID = (1)", user_id )
+    where("user_id = ? AND now_playing = true", user_id )
   }
 
-  scope :current_user, where("user_id = 1")
+  scope :current_user, lambda{ |user_id|
+    where("user_id = ?", user_id)
+  }
 
 end

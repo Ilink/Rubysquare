@@ -16,19 +16,28 @@ class SongsController < ApplicationController
   end
 
   def now_playing
-    @initial_view = self.initial_view 'now_playing'
-    #@playlists = Playlist.where("title = ? AND user_id = ?", '__now_playing__', current_user.id )
-    @playlists = Playlist.now_playing(current_user.id)
-    @songs = []
-    @playlists[0].songs.each do |song|
-      @songs.push song
+      @initial_view = self.initial_view 'now_playing'
+      #@playlists = Playlist.where("title = ? AND user_id = ?", '__now_playing__', current_user.id )
+      @playlists = Playlist.now_playing(current_user.id)
+      @songs = []
+
+      @playlists.each do |playlist|
+        playlist.songs.each do |song|
+          @songs.push song
+        end
+      end
+
+      @songs_json = @songs.to_json
+      respond_to do |format|
+        if(@playlists[0].songs[0].nil?) # todo: fix this incredibly bad check
+          format.html
+          format.xml { render :partial => 'songs/nothing_playing' }
+        else
+          format.html
+          format.xml { render :partial => 'songs/list_music', :locals => { :title => "Now Playing" } }
+        end
+      end
     end
-    @songs_json = @songs.to_json
-    respond_to do |format|
-      format.html
-      format.xml { render :partial => 'songs/list_music', :locals => { :title => "Now Playing" }}
-    end
-  end
 
   # GET /songs/1
   # GET /songs/1.json
@@ -92,8 +101,11 @@ class SongsController < ApplicationController
 
   #POST /songs/update_now_playing
   def update_now_playing
-    @playlist = Playlist.find_by_title(params[:playlist][:title])
-    @playlist.songs = [] # clear old now playing playlist
+    #@playlist = Playlist.currentPlaylist.find_by_title(params[:playlist][:title])
+    @playlist = Playlist.now_playing(current_user.id)[0]
+    if !@playlist.blank?
+      @playlist.songs = [] # clear old now playing playlist
+    end
 
     @playlist.transaction do |record|
       begin

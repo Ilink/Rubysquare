@@ -19,30 +19,70 @@
     /*font-weight:bold;*/
 /*}*/
 
+/*~~ Type ~~*/
 
+/*@font-face{*/
+    /*font-family: 'Univers';*/
+    /*src: url('<%#= asset_path 'Univers/Univers.otf'%>');*/
+/*}*/
+
+/*@font-face{*/
+    /*font-family: 'Univers';*/
+    /*src: url('<%#= asset_path 'Univers/univers_bold'%>');*/
+    /*font-weight:bold;*/
+/*}*/
+
+
+/* I use Andale Mono myself since it's awesome. However, if you don't have a liscense feel free to use something else */
+
+/* Order matters, bold must come AFTER normal */
+/*@font-face {*/
+    /*font-family: 'AndaleMonoMT';*/
+    /*src: url('<%= asset_path 'andalemonomtstd-webfont.eot'%>');*/
+    /*src: url('<%= asset_path 'andalemonomtstd-webfont.eot?#iefix'%>') format('embedded-opentype'),*/
+         /*url('<%= asset_path 'andalemonomtstd-webfont.woff'%>') format('woff'),*/
+         /*url('<%= asset_path 'andalemonomtstd-webfont.ttf'%>') format('truetype'),*/
+         /*url('<%= asset_path 'andalemonomtstd-webfont.svg#AndaleMonoMTStdRegular'%>') format('svg');*/
+    /*font-weight: normal;*/
+    /*font-style: normal;*/
+/*}*/
+
+/*@font-face {*/
+    /*font-family: 'AndaleMonoMT';*/
+    /*src: url('<%= asset_path 'andalemonomtstd-bold-webfont.eot' %>');*/
+    /*src: url('<%= asset_path 'andalemonomtstd-bold-webfont.eot?#iefix' %>') format('embedded-opentype'),*/
+         /*url('<%= asset_path 'andalemonomtstd-bold-webfont.woff'%>') format('woff'),*/
+         /*url('<%= asset_path 'andalemonomtstd-bold-webfont.ttf'%>') format('truetype'),*/
+         /*url('<%= asset_path 'andalemonomtstd-bold-webfont.svg#AndaleMonoMTStdBold'%>') format('svg');*/
+    /*font-weight: bold;*/
+    /*font-style: normal;*/
+/*}*/
 
 @font-face {
     font-family: 'Univers';
-    src: url('<%= asset_path 'univers.eot'%>');
-    src: url('<%= asset_path 'univers.eot'%>?#iefix') format('embedded-opentype'),
-         url('<%= asset_path 'univers.woff'%>') format('woff'),
-         url('<%= asset_path 'univers.ttf'%>') format('truetype'),
-         url('<%= asset_path 'univers.svg'%>#UniversLTRegular') format('svg');
+    src: url('<%= asset_path 'Univers_web/univers.eot'%>');
+    src: url('<%= asset_path 'Univers_web/univers.eot'%>?#iefix') format('embedded-opentype'),
+         url('<%= asset_path 'Univers_web/univers.woff'%>') format('woff'),
+         url('<%= asset_path 'Univers_web/univers.ttf'%>') format('truetype'),
+         url('<%= asset_path 'Univers_web/univers.svg'%>#UniversLTRegular') format('svg');
     font-weight: normal;
     font-style: normal;
+    text-shadow: 0 0 1px rgba(0,0,0,0.3);
+    -webkit-font-smoothing: subpixel-antialiased;
 
 }
 
 @font-face {
     font-family: 'Univers';
-    src: url('<%= asset_path 'univers_bold.eot'%>');
-    src: url('<%= asset_path 'univers_bold.eot'%>?#iefix') format('embedded-opentype'),
-         url('<%= asset_path 'univers_bold.woff'%>') format('woff'),
-         url('<%= asset_path 'univers_bold.ttf'%>') format('truetype'),
-         url('<%= asset_path 'univers_bold.svg#UniversLTBold%'%>') format('svg');
+    src: url('<%= asset_path 'Univers_web/univers_bold.eot'%>');
+    src: url('<%= asset_path 'Univers_web/univers_bold.eot'%>?#iefix') format('embedded-opentype'),
+         url('<%= asset_path 'Univers_web/univers_bold.woff'%>') format('woff'),
+         url('<%= asset_path 'Univers_web/univers_bold.ttf'%>') format('truetype'),
+         url('<%= asset_path 'Univers_web/univers_bold.svg#UniversLTBold%'%>') format('svg');
     font-weight: bold;
     font-style: normal;
-
+    text-shadow: 0 0 1px rgba(0,0,0,0.3);
+    -webkit-font-smoothing: subpixel-antialiased;
 }
 
 
@@ -148,6 +188,10 @@ table {
     -khtml-user-select: none;
     -webkit-user-select: none;
     user-select: none;
+}
+
+th.title {
+    width:35%;
 }
 
 th.song_locations {

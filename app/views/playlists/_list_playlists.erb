@@ -17,7 +17,6 @@
             <th class="title">Title</th>
             <th class="artists">Artist</th>
             <th class="album">Album</th>
-            <th class="song_locations hidden">Location</th>
           </tr>
 
             <%= label_tag('add_to_playlist', 'Add checked to playlist: ') %>
@@ -30,7 +29,7 @@
                     <td class="song_title"><%= song.title %></td>
                     <td class="song_artist"><%= song.artist %></td>
                     <td class="song_album"><%= song.album %></td>
-                    <td class="song_location hidden"><div class="long_td_wrapper"><%= song.location %></div></td>
+
                   <td>
                     <%= check_box_tag "song_ids[]", song.id, false, :id => "song_#{song.id}" %>
                   </td>

@@ -19,7 +19,7 @@ rubysquare.helpers = function(){
     }
 
     that.update_now_playing_db_entries = function( playlist ){
-        var data = "now_playing=true&playlist[title]=__now_playing__";
+        var data = "now_playing=true";
         $.each(playlist, function(index, value){
             data = data + "&song_ids[]="+ playlist[index].id;
         });

@@ -6,15 +6,22 @@ class PlaylistsController < ApplicationController
     #@playlists = Playlist.find_all_by_user_id(current_user.id)
     @playlists = Playlist.not_now_playing(current_user.id)
     @songs = []
-    @playlists.each_with_index do |playlist, index|
-      @songs[index] = []
-      playlist.songs.each do |song|
-        @songs[index].push song
+    if !@playlists.blank?
+      @playlists.each_with_index do |playlist, index|
+        @songs[index] = []
+        playlist.songs.each do |song|
+          @songs[index].push song
+        end
       end
     end
     respond_to do |format|
-      format.html # index.html.erb
-      format.xml { render :partial => 'playlists/list_playlists'}
+      if @playlists.blank?
+        format.html { render :partial => 'playists/no_playlists'}
+        format.xml { render :partial => 'playlists/no_playlists'}
+      else
+        format.html # index.html.erb
+        format.xml { render :partial => 'playlists/list_playlists'}
+      end
     end
   end
 

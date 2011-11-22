@@ -218,6 +218,15 @@ rubysquare.ui.common_bindings = [
         'func' : function(e){
             rubysquare.seek_bar.seek();
         }
+    },
+    {
+        'selector' : '#nav_dashboard',
+        'bind_to' : 'click',
+        'func' : function(){
+            //TODO make sure this is uncommented for production
+//            var bool = confirm("Continuing will stop your currently playing music");
+//            if (!bool) return false;
+        }
     }
 ];
 
