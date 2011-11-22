@@ -4,13 +4,13 @@
   <div playlist_index="<%= index %>" class="playlist_container">
     <%= render :partial => 'layouts/json_on_page_with_index', :locals => {:index => index} %>
       <ul>
-        <li class="header"><%= playlist.title %></li>
-        <li><%= link_to 'Show', playlist %></li>
-        <li><%= link_to 'Edit', edit_playlist_path(playlist) %></li>
-        <li><%= link_to 'Destroy', playlist, confirm: 'Are you sure?', method: :delete %></li>
+        <li class="header playlist_title pointer" data-playlist_index="<%= index %>"><%= playlist.title %></li>
+        <!--<li><%#= link_to 'Show', playlist %></li>-->
+        <!--<li><%#= link_to 'Edit', edit_playlist_path(playlist) %></li>-->
+        <li><%= link_to 'Destroy', playlist, confirm: 'Are you sure?', :remote => "true", method: :delete, :class => "destroy_playlist" %></li>
       </ul>
 
-      <%= form_tag(songs_add_to_playlist_path, :method => "post") do %>
+      <%= form_tag(songs_add_to_playlist_path, :method => "post", :remote => true, :class => 'add_to_playlist') do %>
 
       <table>
           <tr>
@@ -42,4 +42,3 @@
     <% end %>
     <br />
 
-    <%= link_to 'New Playlist', new_playlist_path %>

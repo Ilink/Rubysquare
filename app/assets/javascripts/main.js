@@ -99,6 +99,25 @@ rubysquare.ui.playlist_bindings = [
             rubysquare.ui.dialog.show_dialog('#new_playlist_dialog', $(this), "above", '.close');
             return false;
         }
+    },
+    {
+        'selector':'.playlist_title',
+        'bind_to' : 'dblclick',
+        'func' : function(){
+            var song_index = 0;
+            var playlist_index = $(this).attr('data-playlist_index');
+            rubysquare.ui.table_highlight.highlight(song_index, playlist_index, '#playlists_view', {"action":"add", "unique": true});
+            rubysquare.helpers.play_from_available(rubysquare.music, song_index, rubysquare.playlists.all_on_page[playlist_index], rubysquare.playlists.now_playing, playlist_index, '#playlist_view', rubysquare.ui_state);
+            return false;
+        }
+    },
+    {
+        'selector':'.destroy_playlist',
+        'bind_to' : 'ajax:complete',
+        'func' : function(xhr, status) {
+            rubysquare.views.views_manager.reload();
+            $(this).parent().append('Added new playlist');
+        }
     }
 ];
 
@@ -240,9 +259,9 @@ $(document).ready(function(){
 
     rubysquare.ui.make_sticky('#music_player_controls', 'top', $('#music_player_controls').offset().top);
 
-    // Reloads the current view when we make a new playlist
+    // Reloads the current view when some UJS action is taken
     // I dont know where to put this yet. I'm sure I will have more places where the view needs to get reloaded
-    $('form#new_playlist').live('ajax:complete', function(xhr, status) {
+    $('form#new_playlist, .add_to_playlist').live('ajax:complete', function(xhr, status) {
         rubysquare.views.views_manager.reload();
         $(this).parent().append('Added new playlist');
     });

@@ -10,6 +10,19 @@
 
 
 /*~~ Type ~~*/
+
+@font-face{
+    font-family: 'Univers';
+    src: url('<%= asset_path 'Univers/Univers.otf'%>');
+}
+
+@font-face{
+    font-family: 'Univers';
+    src: url('<%= asset_path 'Univers/univers_bold'%>');
+    font-weight:bold;
+}
+
+
 /* I use Andale Mono myself since it's awesome. However, if you don't have a liscense feel free to use something else */
 
 /* Order matters, bold must come AFTER normal */
@@ -40,7 +53,7 @@
 body{
     padding:0;
     margin:0;
-    font-family:AndaleMonoMT, Verdana, Sans;
+    font-family:Univers, AndaleMonoMT, Verdana, Sans;
     background-color: #fff;
     color: #333;
     font-size: 13px;
