@@ -8,7 +8,7 @@ Features Currently Under Development
 *	Plays music, either through HTML5 or Flash (based on [Soundmanager2](https://github.com/scottschiller/SoundManager2))
 *	Importing iTunes libraries (XML parsing powered by the incredible [Nokogiri](https://github.com/tenderlove/nokogiri))
 *	Playlist creation and management
-*	Hopefully an awesome UI
+*	Sophisticated UI
 *	Podcast management
 *	Search ([Sunspot](http://outoftime.github.com/sunspot/))
 *   AJAX Powered - If you want the user to have a pleasant listening experience, you cannot interupt their music. Most everything must be requested/delivered using AJAX. [Rails UJS](https://github.com/rails/jquery-ujs) as well as a central AJAX Page system are used to manage this.
