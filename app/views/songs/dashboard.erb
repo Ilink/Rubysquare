@@ -16,5 +16,14 @@
       <% end %>
 
       <%= link_to 'Dump and Update Song Database', flush_path, method: :post %>
+      <br/><br/>
+      New Podcast
+      <%= form_tag(:create_podcast, :method => "post", :remote => true, :class => 'create_podcast') do %>
+          Title <%= text_field_tag :title%>
+          <br/>
+          URL <%= text_field_tag :url %>
+          <%= submit_tag("New Podcast!") %>
+      <% end %>
+
     </div>
 <% end %>

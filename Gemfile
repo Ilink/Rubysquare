@@ -41,3 +41,4 @@ gem 'daemons', "~> 1.0.10"
 gem 'pg'
 
 gem "sunspot_rails"
+gem "feedzirra"

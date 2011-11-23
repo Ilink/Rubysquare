@@ -18,6 +18,7 @@ class User < ActiveRecord::Base
   # Hooks
   after_create do |user|
     user.playlists.create(:title => '__now_playing__', :now_playing => true)
+    Music.create(:title => "__main__")
   end
 
   def self.create_guest_user

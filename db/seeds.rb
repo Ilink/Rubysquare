@@ -45,13 +45,25 @@ song_locations = [
   }
 ]
 
+@podcast = Podcast.create(
+    :title => "The New Yorker",
+    :url => "www.newyorker.com"
+)
+
+@music = Music.create(
+    :title => "Library",
+    :url => ""
+)
+
 Song.delete_all
 for i in 1..100
   rand_song = song_locations[rand(6)] # rand goes from 0 to arg-1, so this has a range of 0 to 5
-  Song.create(
+  @song = Song.new(
     :title => rand_song['title'],
     :artist => rand_song['artist'],
     :album => rand_song['album'],
     :location => rand_song['location']
   )
+  @song.audio = @podcast
+  @song.save!
 end

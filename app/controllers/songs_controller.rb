@@ -1,5 +1,6 @@
 class SongsController < ApplicationController
 
+  require 'iparse'
   # GET /songs
   # GET /songs.json
   def index
@@ -191,6 +192,7 @@ class SongsController < ApplicationController
   def dashboard
     #@itunes_song_data = itunes_parser('app/assets/itunes_xml.xml')
     @initial_view = self.initial_view 'dashboard'
+    #@podcast = Podcast.new
   end
 
   #POST /songs/flush

@@ -16,11 +16,11 @@ class PlaylistsController < ApplicationController
     end
     respond_to do |format|
       if @playlists.blank?
-        format.html { render :partial => 'playists/no_playlists'}
-        format.xml { render :partial => 'playlists/no_playlists'}
+        format.html { 'playists/no_playlists' }
+        format.xml { render :partial => 'playlists/no_playlists' }
       else
         format.html # index.html.erb
-        format.xml { render :partial => 'playlists/list_playlists'}
+        format.xml { render :partial => 'playlists/list_playlists' }
       end
     end
   end
