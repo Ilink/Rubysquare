@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111122225443) do
+ActiveRecord::Schema.define(:version => 20111125070406) do
 
   create_table "musics", :force => true do |t|
     t.string   "title",       :null => false
@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(:version => 20111122225443) do
     t.integer  "bitrate"
     t.integer  "track_count"
     t.integer  "audio_id"
+    t.string   "audio_type"
   end
 
   create_table "users", :force => true do |t|

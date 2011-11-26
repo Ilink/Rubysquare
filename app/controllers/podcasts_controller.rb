@@ -37,22 +37,39 @@ class PodcastsController < ApplicationController
     @podcast = Podcast.find(params[:id])
   end
 
+  def parse_feed (url)
+    feed = Feedzirra::Feed.fetch_and_parse(url)
+    feed.sanitize_entries!
+    feed # return feed
+  end
+
   # POST /podcasts
   # POST /podcasts.json
   def create
-    #params[:podcast]
+    feed = parse_feed params[:new_podcast_url]
+    feed.sanitize_entries! # let's make sure this actually makes things usable'
+
+    # Make the podcast entry
     @podcast = Podcast.new(
-      :title => params[:title],
-      :url => params[:url]
+      :title => feed.title,
+      :url => params[:new_podcast_url]
     )
 
+    if @podcast.save
+      feed.entries.each do |entry|
+        song = Song.new("title" => entry.title, "location" => entry.url, "artist" => entry.author, "album" => feed.title)
+        song.audio = @podcast
+        song.save! # TODO add exception handling
+      end
+    end
+
     respond_to do |format|
-      if @podcast.save
+      if @podcast.blank?
+        format.json { render json: @podcast.songs.to_json }
         format.html { redirect_to :songs_dashboard, notice: 'Podcast was successfully created.' }
-        format.json { render json: @podcast, status: :created, location: @podcast }
       else
+        format.json { render json: @podcast.errors }
         format.html { render action: "new" }
-        format.json { render json: @podcast.errors, status: :unprocessable_entity }
       end
     end
   end

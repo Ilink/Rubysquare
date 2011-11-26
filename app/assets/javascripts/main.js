@@ -116,7 +116,15 @@ rubysquare.ui.playlist_bindings = [
         'bind_to' : 'ajax:complete',
         'func' : function(xhr, status) {
             rubysquare.views.views_manager.reload();
-            $(this).parent().append('Added new playlist');
+            $(this).parent().append('Removed playlist');
+        }
+    },
+    {
+        'selector':'#new_playlist',
+        'bind_to' : 'ajax:complete',
+        'func' : function(xhr, status) {
+            console.log('test');
+            rubysquare.ui.brief_message.message('Playlist created!');
         }
     }
 ];

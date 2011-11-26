@@ -90,6 +90,16 @@ rubysquare.ui.dialog = function(){
     return that;
 }();
 
+rubysquare.ui.brief_message = function(container_selector){
+    var that = {};
+    // Public
+    that.message = function(message){
+        var m = $(container_selector).append(message);
+        var t = setTimeout(function(){
+            m.fadeOut('fast', 0);
+        }, 3000)
+    }
+}();
 
 
 /*

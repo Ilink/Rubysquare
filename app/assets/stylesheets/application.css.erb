@@ -96,12 +96,7 @@ body{
     line-height: 18px;
 }
 
-input {
-    /*font-family:Univers, AndaleMonoMT, Verdana, Sans;*/
-    font-size:13px;
-    padding:3px;
-    /*padding-top:10px;*/
-}
+
 
 .clearfix{
     clear:both;
@@ -111,6 +106,14 @@ input {
     list-style-type: none;
     display:inline;
     margin:0px 3px 0px 3px;
+}
+
+#work_in_progress{
+
+    font-weight:bold;
+    font-size:13px;
+    /*margin-left:40px;*/
+    /*text-align:center;*/
 }
 
 ul{
@@ -135,6 +138,10 @@ ul, li{
 
 .float_left{
     float:left;
+}
+
+.clear{
+    clear:both;
 }
 
 .header{
@@ -167,6 +174,17 @@ ul, li{
     margin-bottom:8px;
 }
 
+/*~~ Forms ~~*/
+input:not([type=submit]):not([type=file]) {
+    border:2px solid grey;
+}
+
+input {
+    /*font-family:Univers, AndaleMonoMT, Verdana, Sans;*/
+    font-size:13px;
+    padding:3px;
+    /*padding-top:10px;*/
+}
 /*~~ Tables ~~*/
 
 tr{
@@ -213,10 +231,14 @@ th.actions_long{
 /*~~ Search ~~*/
 #query {
     width:200px;
-    border:2px solid grey;
 }
 
 /*~~ Type ~~*/
 .bold{
     font-weight:bold;
+}
+
+/*~~ Dashboard ~~*/
+#new_podcast_url {
+    width:300px;
 }
