@@ -154,12 +154,9 @@ rubysquare.music_bridge = function( settings, playlist_manager, ui_state, ui_eff
 
 rubysquare.music_wrapper = function(){
     if (this instanceof rubysquare.music_wrapper) {
+        // Private
 
         // Public
-        this.load_song = function(){
-
-        }
-
         this.play = function( song ) {
             rubysquare.song_manager.get_song.pause();
         }
@@ -212,6 +209,32 @@ rubysquare.soundmanager_song_manager = function(){
     else return new rubysquare.soundmanager_song_manager();
 }
 
+/*
+    abstract class maestro(){
+        private:
+        public:
+            function play()
+            function next()
+            function pause()
+            function pause_or_resume()
+
+ */
+
+rubysquare.Maestro = function(song, music_wrapper){
+    if (this instanceof rubysquare.Maestro){
+        // Private
+        var song;
+        var current_song = {};
+
+        // Public
+        this.set_song = function( url ){
+            song.url = url;
+        }
+
+
+    }
+    else return new rubysquare.Maestro()
+}
 
 /*
     abstract class playlist() {
@@ -247,6 +270,8 @@ rubysquare.playlist = function( json ){
 	}
 	else return new rubysquare.playlist( json );
 }
+
+
 
 /*
     This class may or may not get used, it feels redundent
