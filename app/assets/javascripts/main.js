@@ -21,16 +21,17 @@ rubysquare.music_callbacks = {
 
 //~ Objects ~//
 rubysquare.ui.table_highlight = rubysquare.ui.Table_highlight(rubysquare.settings);
-//Todo add a callback that moves the seek bar
 rubysquare.music = rubysquare.music_bridge(rubysquare.settings, rubysquare.playlists.now_playing, rubysquare.ui_state, rubysquare.ui.table_highlight, rubysquare.music_callbacks);
 rubysquare.ajax = rubysquare.ajax_manager();
-rubysquare.seek_bar = rubysquare.ui.slider('#seek_bar')
 rubysquare.song_manager = rubysquare.soundmanager_song_manager();
-
-rubysquare.seek_bar.bind();
 rubysquare.views.views_manager = rubysquare.view_manager(rubysquare.ui_state, rubysquare.ui.table_highlight);
 
-rubysquare.test_slider = rubysquare.ui.slider(300, '#slider_container .handle', 'mousedown');
+rubysquare.music_wrapper = rubysquare.Music_wrapper(soundManager);
+rubysquare.song_manager = rubysquare.soundmanager_song_manager();
+
+//~ Initialize (some) Objects ~//
+rubysquare.song_manager.init
+
 
 //~ JSON for bindings, for Songs view, TEMP ~//
 // TODO refactor these bindings, they are very very repetitive
@@ -221,17 +222,10 @@ rubysquare.ui.common_bindings = [
         }
     },
     {
-        'selector' : '#seek_bar',
-        'bind_to' : 'click',
-        'func' : function(e){
-            rubysquare.seek_bar.seek();
-        }
-    },
-    {
         'selector' : '#nav_dashboard',
         'bind_to' : 'click',
         'func' : function(){
-            //TODO make sure this is uncommented for production
+            // TODO make sure this is uncommented for production
 //            var bool = confirm("Continuing will stop your currently playing music");
 //            if (!bool) return false;
         }

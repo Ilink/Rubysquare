@@ -152,20 +152,53 @@ rubysquare.music_bridge = function( settings, playlist_manager, ui_state, ui_eff
     else return new rubysquare.music_bridge( settings, playlist_manager, ui_state, ui_effects, callbacks );
 }
 
-rubysquare.music_wrapper = function(){
+rubysquare.Music_wrapper = function( sound_manager_object ){
     if (this instanceof rubysquare.music_wrapper) {
         // Private
 
         // Public
         this.play = function( song ) {
-            rubysquare.song_manager.get_song.pause();
+            rubysquare.song_manager.get_song.play();
         }
 
         this.pause = function( song ) {
             rubysquare.song_manager.get_song.pause();
         }
+
+        this.resume = function( song ) {
+            rubysquare.song_manager.get_song.resume();
+        }
+
+        this.pause_or_resume = function( song ) {
+            if (song.paused) song.resume(); // TODO type check this, it throws an error if you hit pause when there is no song queued
+            else song.pause();
+        }
+
+        this.set_volume = function( volume, song ){
+            if(typeof volume !== 'number') throw "Requires number";
+            if(volume > 100 || volume < 0) throw "Argument out of range - requires 0 to 100";
+            if (sound_manager_object.getSoundById(song)){
+                sound_manager_object.setVolume( song, volume );
+                console.log(volume + " is the volume for currently playing")
+            } else {
+                song['volume'] = volume;
+                console.log(volume + " is the volume for prepared song")
+            }
+        }
+
+        this.seek = function( percentage, song ){
+            var pos;
+            if(song.loaded){
+                pos = (percentage/100) * song.duration;   // value is truncated if the song isnt loaded
+            }
+            else {
+                pos = (percentage/100) * song.durationEstimate;
+            }
+
+            song.setPosition( pos );
+        }
     }
-    else return new rubysquare.music_wrapper();
+    else return new rubysquare.Music_wrapper();
 }
 
 rubysquare.soundmanager_song_manager = function(){
@@ -183,12 +216,12 @@ rubysquare.soundmanager_song_manager = function(){
                 on_finish : [ ... ]
             }
          */
-        this.new_song = function(url, callbacks){
+        this.init = function( callbacks ){
 //            if (typeof callbacks === "undefined") callbacks = rubysquare.default_song_callbacks;
             song = soundManager.createSound({
                 id: 'song',
 //				url: '/'+url, //for now i need to use external urls, which dont need that slash
-                url: url,
+                url: '',
                 onfinish: function(){
                     if(typeof callbacks['on_finish'] !== 'undefined') {
                         $.each(callbacks['on_finish'], function(index, value){
@@ -223,12 +256,41 @@ rubysquare.soundmanager_song_manager = function(){
 rubysquare.Maestro = function(song, music_wrapper){
     if (this instanceof rubysquare.Maestro){
         // Private
+        var self = this;
         var song;
-        var current_song = {};
+        var current_song_info = {};
+        var playlist;
+
 
         // Public
+        this.pause = function(){
+            music_wrapper.pause();
+        }
+
+        this.play = function(){
+
+        }
+
+        // Getters and Setters
         this.set_song = function( url ){
             song.url = url;
+        }
+
+        this.get_song = function(){
+            return song;
+        }
+
+        this.get_current_song_info = function(){
+            return current_song_info;
+        }
+
+        this.load_playlist = function(_playlist, playlist_index, song_index, container_selector){
+            playlist = _playlist;
+            current_song_info = {
+                'playlist_index' : playlist_index,
+                'song_index' : song_index,
+                'container_selector' : container_selector
+            }
         }
 
 
