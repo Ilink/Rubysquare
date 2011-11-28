@@ -123,8 +123,8 @@ rubysquare.ui.playlist_bindings = [
         'selector':'#new_playlist',
         'bind_to' : 'ajax:complete',
         'func' : function(xhr, status) {
-            console.log('test');
-            rubysquare.ui.brief_message.message('Playlist created!');
+//            console.log('test');
+//            rubysquare.ui.brief_message.message('Playlist created!');
         }
     }
 ];
