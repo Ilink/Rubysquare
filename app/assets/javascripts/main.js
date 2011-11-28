@@ -6,6 +6,7 @@ rubysquare.playlists.now_playing = rubysquare.playlist();
 rubysquare.playlists.all_on_page = [];
 
 //~ Callbacks ~//
+//This is not used yet
 rubysquare.music_callbacks = {
     'seek':function( seek_val ){
 //        console.log(seek_val);
@@ -17,6 +18,18 @@ rubysquare.music_callbacks = {
     }
 }
 
+rubysquare.music_callback_functions = {
+    'seek' : function(){
+        $('#seek_slider').slider({ 'value': seek_val });
+    }
+}
+
+
+rubysquare.music_callbacks_new = {
+    'seek':[ rubysquare.music_callback_functions.seek ],
+    'now_playing':[]
+}
+
 
 
 //~ Objects ~//
@@ -26,11 +39,15 @@ rubysquare.ajax = rubysquare.ajax_manager();
 rubysquare.song_manager = rubysquare.soundmanager_song_manager();
 rubysquare.views.views_manager = rubysquare.view_manager(rubysquare.ui_state, rubysquare.ui.table_highlight);
 
+// Refactored objects
 rubysquare.music_wrapper = rubysquare.Music_wrapper(soundManager);
 rubysquare.song_manager = rubysquare.soundmanager_song_manager();
 
+
 //~ Initialize (some) Objects ~//
-rubysquare.song_manager.init
+rubysquare.song_manager.init(rubysquare.music_callbacks);
+
+rubysquare.maestro = rubysquare.Maestro(rubysquare.song_manager.get_song(), rubysquare.music_wrapper)
 
 
 //~ JSON for bindings, for Songs view, TEMP ~//
@@ -219,6 +236,13 @@ rubysquare.ui.common_bindings = [
         'bind_to' : 'click',
         'func' : function() {
             rubysquare.helpers.update_now_playing_db_entries( rubysquare.playlists.songs_on_page.get_playlist() );
+        }
+    },
+    {
+        'selector' : '#seek_bar',
+        'bind_to' : 'click',
+        'func' : function(e){
+            rubysquare.seek_bar.seek();
         }
     },
     {

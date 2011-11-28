@@ -153,7 +153,7 @@ rubysquare.music_bridge = function( settings, playlist_manager, ui_state, ui_eff
 }
 
 rubysquare.Music_wrapper = function( sound_manager_object ){
-    if (this instanceof rubysquare.music_wrapper) {
+    if (this instanceof rubysquare.Music_wrapper) {
         // Private
 
         // Public
@@ -197,8 +197,17 @@ rubysquare.Music_wrapper = function( sound_manager_object ){
 
             song.setPosition( pos );
         }
+
+        this.get_present_position = function( song ){
+            var percent_position;
+            if(song.loaded) {
+                percent_position = (song.position / song.duration) * 100;
+            } else {
+                percent_position = (song.position / song.durationEstimate) * 100;
+            }
+        }
     }
-    else return new rubysquare.Music_wrapper();
+    else return new rubysquare.Music_wrapper(sound_manager_object);
 }
 
 rubysquare.soundmanager_song_manager = function(){
@@ -237,6 +246,10 @@ rubysquare.soundmanager_song_manager = function(){
                     }
                 }
             });
+        }
+
+        this.get_song = function(){
+            return song;
         }
     }
     else return new rubysquare.soundmanager_song_manager();
@@ -293,9 +306,13 @@ rubysquare.Maestro = function(song, music_wrapper){
             }
         }
 
+        this.get_present_position = function(song){
+            music_wrapper.get_present_position(song);
+        }
+
 
     }
-    else return new rubysquare.Maestro()
+    else return new rubysquare.Maestro(song, music_wrapper)
 }
 
 /*
