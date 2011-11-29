@@ -1,7 +1,7 @@
 <h1 class="float_left"><%= title %></h1>
 <div id="ajax_messages" class="float_left"></div>
 
-<div class="clear" playlist_index=0 class="playlist_container">
+<div playlist_index=0 class="playlist_container clear">
     <%= render 'layouts/json_on_page' %>
     <%= form_tag(songs_add_to_playlist_path, :method => "post", :remote => true, :class => 'add_to_playlist') do %>
     <table>

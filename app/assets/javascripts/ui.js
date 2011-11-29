@@ -129,6 +129,8 @@ rubysquare.ui.Table_highlight = function(settings){
 
             if(action_json['action'] === 'add') {
                 $(container + ' .playlist_container[playlist_index='+playlist_index+'] tr[id='+song_index+']').addClass(class_to_add);
+                console.log(container + ' .playlist_container[playlist_index='+playlist_index+'] tr[id='+song_index+']');
+                console.log($(container + ' .playlist_container[playlist_index='+playlist_index+'] tr[id='+song_index+']'));
             }
             else if (action_json['action'] === 'remove') {
                 $(container + ' .playlist_container[playlist_index='+playlist_index+'] tr[id='+song_index+']').removeClass(class_to_add);
