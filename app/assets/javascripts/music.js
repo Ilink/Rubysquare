@@ -377,9 +377,28 @@ rubysquare.Maestro = function(song_manager, music_wrapper){
             }
         }
 
-        this.previous = function (settings){
-
+        this.previous = function( settings ) { // this should never shuffle - previous song is always fixed
+            if (current_song_info.song_index - 1 > -1) {
+                current_song_info.song_index = current_song_info.song_index - 1;
+               console.log(current_song_info.song_index);
+               if ( playlist[current_song_info.song_index].hasOwnProperty('location') )
+                   this.set_song(playlist[current_song_info.song_index].location);
+               song.play();
+//               ui_effects.highlight(current_song_info.song_index, ui_state['currently_playing'].playlist_index, ui_state['currently_playing'].container, {'action':'add', 'unique':true});
+            }
         }
+
+//        this.previous = function (settings){
+//            var playlist = playlist_manager.get_playlist();
+//            if (ui_state['currently_playing'].song_index - 1 > -1) {
+//               ui_state['currently_playing'].song_index = ui_state['currently_playing'].song_index - 1;
+//               console.log(ui_state['currently_playing'].song_index);
+//               if ( playlist[ui_state['currently_playing'].song_index].hasOwnProperty('location') )
+//                   this.set_song(playlist[ui_state['currently_playing'].song_index]);
+//               song.play();
+//               ui_effects.highlight(ui_state['currently_playing'].song_index, ui_state['currently_playing'].playlist_index, ui_state['currently_playing'].container, {'action':'add', 'unique':true});
+//            }
+//        }
 
 
     }
