@@ -1,6 +1,6 @@
 class SongsController < ApplicationController
 
-  require 'iparse'
+  #require 'iparse'
   # GET /songs
   # GET /songs.json
   def index
@@ -197,6 +197,7 @@ class SongsController < ApplicationController
 
   #POST /songs/flush
   def flush
+    require "iparse"
     @itunes_song_data = Iparse.parse('app/assets/itunes_xml.xml')
     Song.transaction do
       Song.delete_all

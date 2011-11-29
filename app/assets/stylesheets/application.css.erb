@@ -85,6 +85,9 @@
     -webkit-font-smoothing: subpixel-antialiased;
 }
 
+input:-webkit-autofill {
+    color: #fff !important;
+}
 
 body{
     padding:0;
@@ -96,7 +99,9 @@ body{
     line-height: 18px;
 }
 
-
+h1 a{
+    text-decoration: none;
+}
 
 .clearfix{
     clear:both;
@@ -177,6 +182,11 @@ ul, li{
 /*~~ Forms ~~*/
 input:not([type=submit]):not([type=file]) {
     border:2px solid grey;
+    border-radius: 3px;
+}
+
+input[type=text] {
+
 }
 
 input {
@@ -238,7 +248,16 @@ th.actions_long{
     font-weight:bold;
 }
 
+h1.bigger{
+    font-size:50px;
+}
+
 /*~~ Dashboard ~~*/
 #new_podcast_url {
     width:300px;
+}
+
+/*~~ Borders ~~*/
+.right_border_light_grey_thick {
+    border-right:5px solid lightgray;
 }

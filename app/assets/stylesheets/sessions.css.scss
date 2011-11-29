@@ -1,3 +1,24 @@
 // Place all the styles related to the Sessions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#login_left_column{
+    width:400px;
+}
+
+#login_title{
+    margin-top:-10px;
+    margin-bottom:12px;
+}
+
+#login_header{
+    padding-bottom:30px;
+}
+
+#login_devise_links_container{
+    margin-top:5px;
+}
+
+#login_devise_links_container a{
+    margin-right:20px;
+}

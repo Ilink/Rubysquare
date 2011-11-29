@@ -259,8 +259,10 @@ rubysquare.ui.common_bindings = [
     {
         'selector' : rubysquare.settings.nodes['pause_button'],
         'bind_to' : 'click',
-//        'func' : rubysquare.music.pause_or_resume
-        'func' : rubysquare.maestro.pause_or_resume
+        'func' : function(){
+            rubysquare.maestro.pause_or_resume();
+            $(this).toggleClass('bw_hover_hovered');
+        }
     },
     {
         'selector' : '#query',

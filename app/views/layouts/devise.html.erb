@@ -12,7 +12,6 @@
 <div id="big_menu">
   <%= render_navigation %>
 </div>
-<div id="work_in_progress" class="float_left">Work in Progress!</div>
 <div id="ajax_messages" class="float_left"></div>
 <div id="registration_nav" class="float_right">
     <%= render 'devise/menu/auth_nav' %>
@@ -22,12 +21,6 @@
 <div class="hidden" id="fling">fling</div>
 <div id="menu">
 
-</div>
-
-<div id="message_container">
-  <% flash.each do |name, msg| %>
-      <%= content_tag :div, msg, :id => "flash_#{name}" %>
-  <% end %>
 </div>
 
 <div class="hidden" id="new_playlist_dialog">
@@ -45,7 +38,15 @@
         <%= yield %>
     </div>
 <% else %>
-    <h1><a href="/">CARNIVOROUS</a></h1>
+    <div id="login_header">
+        <h1 class="bigger" id="login_title"><a href="/">CARNIVOROUS</a></h1>
+        <div id="work_in_progress" class="">Work in Progress!</div>
+        <div id="message_container">
+            <% flash.each do |name, msg| %>
+                <%= content_tag :div, msg, :id => "flash_#{name}" %>
+            <% end %>
+        </div>
+    </div>
     <%= yield %>
 <% end %>
 
