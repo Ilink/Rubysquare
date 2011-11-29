@@ -65,7 +65,8 @@ rubysquare.music_callbacks_new = {
     ]
 }
 
-rubysquare.song_manager.init(rubysquare.music_callbacks_new);
+rubysquare.song_manager.set_callbacks(rubysquare.music_callbacks_new);
+rubysquare.song_manager.new_song();
 
 
 
@@ -94,7 +95,7 @@ rubysquare.ui.songs_bindings = [
             var playlist_index = $(this).parents('.playlist_container').attr('playlist_index');
             console.log(playlist_index);
             rubysquare.helpers.play_from_available(rubysquare.maestro, song_index, rubysquare.playlists.all_on_page[0], rubysquare.playlists.now_playing, playlist_index, '#songs_view');
-            rubysquare.ui.table_highlight.highlight(song_index, playlist_index, '#songs_view', {"action":"add", "unique": true});
+//            rubysquare.ui.table_highlight.highlight(song_index, playlist_index, '#songs_view', {"action":"add", "unique": true});
         }
     },
     {
@@ -229,7 +230,8 @@ rubysquare.ui.common_bindings = [
         'bind_to' : 'click',
         'func' : function() {
             if( typeof rubysquare.playlists.now_playing.playlist !== 'undefined'){
-                rubysquare.music.next(rubysquare.settings, rubysquare.playlists.now_playing.playlist);
+//                rubysquare.music.next(rubysquare.settings, rubysquare.playlists.now_playing.playlist);
+                rubysquare.maestro.next(rubysquare.settings);
             }
             else
                 rubysquare.log('no songs specified! please add something to the que')
@@ -240,7 +242,8 @@ rubysquare.ui.common_bindings = [
         'bind_to' : 'click',
         'func' : function() {
             if( typeof rubysquare.playlists.now_playing.playlist !== 'undefined'){
-                rubysquare.music.previous(rubysquare.settings, rubysquare.playlists.now_playing.playlist)
+//                rubysquare.music.previous(rubysquare.settings, rubysquare.playlists.now_playing.playlist);
+                rubysquare.maestro.previous(rubysquare.settings);
             }
             else
                 rubysquare.log('no songs specified! please add something to the que')
@@ -249,7 +252,8 @@ rubysquare.ui.common_bindings = [
     {
         'selector' : rubysquare.settings.nodes['pause_button'],
         'bind_to' : 'click',
-        'func' : rubysquare.music.pause_or_resume
+//        'func' : rubysquare.music.pause_or_resume
+        'func' : rubysquare.maestro.pause_or_resume
     },
     {
         'selector' : '#query',
@@ -301,10 +305,10 @@ $(document).ready(function(){
         'min':0,
         'value':75,
         'change':function(event, ui){
-            rubysquare.music.set_volume(ui.value);
+            rubysquare.music_wrapper.set_volume(ui.value, rubysquare.maestro.get_song());
         },
         'slide':function(event,ui){
-            rubysquare.music.set_volume(ui.value);
+            rubysquare.music_wrapper.set_volume(ui.value, rubysquare.maestro.get_song());
         }
     });
 
