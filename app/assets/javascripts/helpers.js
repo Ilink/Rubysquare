@@ -22,7 +22,7 @@ rubysquare.helpers = function(){
         console.log("attempting to play song at location: " + now_playing_playlist.playlist[song_index].location);
 
         maestro.load_playlist(now_playing_playlist, playlist_index, song_index, container);
-        maestro.set_song(now_playing_playlist.playlist[song_index].location);
+        maestro.set_song(now_playing_playlist.playlist[song_index].location, now_playing_playlist.playlist[song_index]);
         maestro.play();
 
         that.update_now_playing_db_entries( now_playing_playlist.get_playlist() );

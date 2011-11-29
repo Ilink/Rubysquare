@@ -203,9 +203,9 @@ rubysquare.Music_wrapper = function( sound_manager_object ){
         this.get_present_position = function( song ){
             var percent_position;
             if(song.loaded) {
-                percent_position = (song.position / song.duration) * 100;
+                return percent_position = (song.position / song.duration) * 100;
             } else {
-                percent_position = (song.position / song.durationEstimate) * 100;
+                return percent_position = (song.position / song.durationEstimate) * 100;
             }
         }
     }
@@ -261,6 +261,14 @@ rubysquare.soundmanager_song_manager = function(){
 //                            console.log("Registered whileplaying callback")
                         });
                     }
+                },
+                onplay:function(){
+                    if(typeof callbacks['on_play'] !== 'undefined') {
+                        $.each(callbacks['on_play'], function(index, value){
+                            value();
+//                            console.log("Registered whileplaying callback")
+                        });
+                    }
                 }
             });
         }
@@ -299,6 +307,12 @@ rubysquare.Maestro = function(song_manager, music_wrapper){
         var song = song_manager.get_song();
         var current_song_info = {};
         var playlist;
+        var song_meta = {};
+
+        var update_song_meta = function(){
+            song_meta = playlist[current_song_info.song_index];
+            console.log(song_meta);
+        }
 
         // Public
         this.pause = function(){
@@ -314,12 +328,13 @@ rubysquare.Maestro = function(song_manager, music_wrapper){
             music_wrapper.play(song);
         }
 
-        // Getters and Setters
+        //~ Getters and Setters ~//
 
-        this.set_song = function( url ){
-            if(typeof url === 'undefined') throw "argument has no location url"
-            if (typeof url !== 'string') throw 'Exepected resource (URL) to be a string';
-            if( song ) {
+        this.set_song = function( url, _song_meta ){
+            if ( typeof song_meta !== 'undefined' )  song_meta = _song_meta;
+            if ( typeof url === 'undefined' ) throw "argument has no location url"
+            if ( typeof url !== 'string' ) throw 'Exepected resource (URL) to be a string';
+            if ( song ) {
                 song.destruct();
                 rubysquare.log("Song destroyed");
             }
@@ -338,6 +353,10 @@ rubysquare.Maestro = function(song_manager, music_wrapper){
             return current_song_info;
         }
 
+        this.get_song_meta = function(){
+            return song_meta;
+        }
+
         this.load_playlist = function(_playlist, playlist_index, song_index, container_selector){
             playlist = _playlist.playlist;  //this may change, i might need an actual playlist object
 //            playlist = _playlist
@@ -349,7 +368,11 @@ rubysquare.Maestro = function(song_manager, music_wrapper){
         }
 
         this.get_present_position = function(){
-            music_wrapper.get_present_position(song);
+            return music_wrapper.get_present_position(song);
+        }
+
+        this.seek = function(val){
+            music_wrapper.seek(val, song);
         }
 
         this.next = function( settings ){
@@ -369,9 +392,9 @@ rubysquare.Maestro = function(song_manager, music_wrapper){
                     current_song_info.song_index = current_song_info.song_index + 1;
                     if ( playlist[current_song_info.song_index].hasOwnProperty('location') ){
                         this.set_song( playlist[current_song_info.song_index].location );
-                        console.log(playlist[current_song_info.song_index].location);
+                        update_song_meta();
+                        self.play();
                     }
-                    self.play();
                 }
             }
         }
@@ -379,10 +402,12 @@ rubysquare.Maestro = function(song_manager, music_wrapper){
         this.previous = function( settings ) { // this should never shuffle - previous song is always fixed
             if (current_song_info.song_index - 1 > -1) {
                 current_song_info.song_index = current_song_info.song_index - 1;
-               console.log(current_song_info.song_index);
-               if ( playlist[current_song_info.song_index].hasOwnProperty('location') )
-                   this.set_song(playlist[current_song_info.song_index].location);
-               song.play();
+                console.log(current_song_info.song_index);
+                if ( playlist[current_song_info.song_index].hasOwnProperty('location') ){
+                    this.set_song(playlist[current_song_info.song_index].location);
+                }
+                update_song_meta();
+                song.play();
 //               ui_effects.highlight(current_song_info.song_index, ui_state['currently_playing'].playlist_index, ui_state['currently_playing'].container, {'action':'add', 'unique':true});
             }
         }

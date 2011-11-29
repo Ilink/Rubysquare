@@ -39,11 +39,12 @@ rubysquare.music_callback_functions = {
         $('#seek_slider').slider({ 'value': rubysquare.maestro.get_present_position() });
     },
     'show_now_playing_info' : function(){
-        var song = rubysquare.maestro.get_song();
+        var song_meta = rubysquare.maestro.get_song_meta();
+        console.log(song_meta);
         rubysquare.ui.now_playing_info.show({
-            'artist': song.artist,
-            'album': song.album,
-            'title': song.title
+            'artist': song_meta.artist,
+            'album': song_meta.album,
+            'title': song_meta.title
         });
     },
     'move_highlight' : function(){
@@ -51,7 +52,7 @@ rubysquare.music_callback_functions = {
         rubysquare.ui.table_highlight.highlight(song_info.song_index, song_info.playlist_index, song_info.container, {'action':'add', 'unique':true});
     },
     'next' : function(){
-        rubysquare.maestro.next();
+        rubysquare.maestro.next(rubysquare.settings);
     }
 }
 
@@ -62,6 +63,9 @@ rubysquare.music_callbacks_new = {
     'on_finish':[
         rubysquare.music_callback_functions.next,
         rubysquare.music_callback_functions.move_highlight
+    ],
+    'on_play':[
+        rubysquare.music_callback_functions.show_now_playing_info
     ]
 }
 
@@ -322,7 +326,7 @@ $(document).ready(function(){
             var val = ui.value;
             var temp = this.change;
             this.change = '';   // don't let the music player seek while the user is using the slider
-            rubysquare.music.seek(val);
+            rubysquare.maestro.seek(val);
             this.change = temp;
         }
     });
