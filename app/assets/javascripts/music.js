@@ -300,7 +300,6 @@ rubysquare.Maestro = function(song_manager, music_wrapper){
         var current_song_info = {};
         var playlist;
 
-
         // Public
         this.pause = function(){
             music_wrapper.pause(song);
