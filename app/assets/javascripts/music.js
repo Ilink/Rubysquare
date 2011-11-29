@@ -217,6 +217,7 @@ rubysquare.soundmanager_song_manager = function(){
         var song;
 
         // Public
+
         /* Callbacks example:
             {
                 while_playing : [
@@ -225,8 +226,15 @@ rubysquare.soundmanager_song_manager = function(){
                 on_finish : [ ... ]
             }
          */
+
         this.init = function( callbacks ){
-//            if (typeof callbacks === "undefined") callbacks = rubysquare.default_song_callbacks;
+//            if(typeof callbacks['on_finish'] !== 'undefined') {
+//                $.each(callbacks['on_finish'], function(index, value){
+//                    value();
+//                    console.log("Registered onfinish callback")
+//                });
+//            }
+
             song = soundManager.createSound({
                 id: 'song',
 //				url: '/'+url, //for now i need to use external urls, which dont need that slash
@@ -235,6 +243,7 @@ rubysquare.soundmanager_song_manager = function(){
                     if(typeof callbacks['on_finish'] !== 'undefined') {
                         $.each(callbacks['on_finish'], function(index, value){
                             value();
+                            console.log("Registered onfinish callback")
                         });
                     }
                 },
@@ -242,6 +251,7 @@ rubysquare.soundmanager_song_manager = function(){
                     if(typeof callbacks['while_playing'] !== 'undefined') {
                         $.each(callbacks['while_playing'], function(index, value){
                             value();
+                            console.log("Registered whileplaying callback")
                         });
                     }
                 }
@@ -266,11 +276,11 @@ rubysquare.soundmanager_song_manager = function(){
 
  */
 
-rubysquare.Maestro = function(song, music_wrapper){
+rubysquare.Maestro = function(song_manager, music_wrapper){
     if (this instanceof rubysquare.Maestro){
         // Private
         var self = this;
-        var song;
+        var song = song_manager.get_song();
         var current_song_info = {};
         var playlist;
 
@@ -285,7 +295,16 @@ rubysquare.Maestro = function(song, music_wrapper){
         }
 
         // Getters and Setters
+
         this.set_song = function( url ){
+            if(typeof url === 'undefined') throw "argument has no location url"
+            if (typeof url !== 'string') throw 'Exepected resource (URL) to be a string';
+            if( song ) {
+                song.destruct();
+                rubysquare.log("Song destroyed");
+            }
+            else rubysquare.log("No current song, making a new song...");
+            song = song_manager.get_song();
             song.url = url;
         }
 
@@ -306,13 +325,21 @@ rubysquare.Maestro = function(song, music_wrapper){
             }
         }
 
-        this.get_present_position = function(song){
+        this.get_present_position = function(){
             music_wrapper.get_present_position(song);
+        }
+
+        this.next = function( settings ){
+
+        }
+
+        this.previous = function (settings){
+
         }
 
 
     }
-    else return new rubysquare.Maestro(song, music_wrapper)
+    else return new rubysquare.Maestro(song_manager, music_wrapper)
 }
 
 /*

@@ -18,25 +18,12 @@ rubysquare.music_callbacks = {
     }
 }
 
-rubysquare.music_callback_functions = {
-    'seek' : function(){
-        $('#seek_slider').slider({ 'value': seek_val });
-    }
-}
-
-
-rubysquare.music_callbacks_new = {
-    'seek':[ rubysquare.music_callback_functions.seek ],
-    'now_playing':[]
-}
-
 
 
 //~ Objects ~//
 rubysquare.ui.table_highlight = rubysquare.ui.Table_highlight(rubysquare.settings);
 rubysquare.music = rubysquare.music_bridge(rubysquare.settings, rubysquare.playlists.now_playing, rubysquare.ui_state, rubysquare.ui.table_highlight, rubysquare.music_callbacks);
 rubysquare.ajax = rubysquare.ajax_manager();
-rubysquare.song_manager = rubysquare.soundmanager_song_manager();
 rubysquare.views.views_manager = rubysquare.view_manager(rubysquare.ui_state, rubysquare.ui.table_highlight);
 
 // Refactored objects
@@ -45,24 +32,68 @@ rubysquare.song_manager = rubysquare.soundmanager_song_manager();
 
 
 //~ Initialize (some) Objects ~//
-rubysquare.song_manager.init(rubysquare.music_callbacks);
+rubysquare.maestro = rubysquare.Maestro(rubysquare.song_manager, rubysquare.music_wrapper);
 
-rubysquare.maestro = rubysquare.Maestro(rubysquare.song_manager.get_song(), rubysquare.music_wrapper)
+rubysquare.music_callback_functions = {
+    'move_seek_bar' : function(){
+        $('#seek_slider').slider({ 'value': rubysquare.maestro.get_present_position() });
+    },
+    'show_now_playing_info' : function(){
+        var song = rubysquare.maestro.get_song();
+        rubysquare.ui.now_playing_info.show({
+            'artist': song.artist,
+            'album': song.album,
+            'title': song.title
+        });
+    },
+    'move_highlight' : function(){
+        var song_info = rubysquare.maestro.get_current_song_info();
+        rubysquare.ui.table_highlight.highlight(song_info.song_index, song_info.playlist_index, song_info.container, {'action':'add', 'unique':true});
+    },
+    'next' : function(){
+        rubysquare.maestro.next();
+    }
+}
+
+rubysquare.music_callbacks_new = {
+    'while_playing':[
+        rubysquare.music_callback_functions.move_seek_bar
+    ],
+    'on_finish':[
+        rubysquare.music_callback_functions.next,
+        rubysquare.music_callback_functions.move_highlight
+    ]
+}
+
+rubysquare.song_manager.init(rubysquare.music_callbacks_new);
+
 
 
 //~ JSON for bindings, for Songs view, TEMP ~//
 // TODO refactor these bindings, they are very very repetitive
 rubysquare.ui.songs_bindings = [
+//    {
+//        'selector' : '#songs_view .song_location, #songs_view .song_title', // This is temporary since i have to figure out the UI before i know what the strucutre of the links will be
+//        'bind_to' : 'dblclick',
+//        'func' : function() {
+//
+//            var song_index = Number($(this).parent('tr').attr('id'));
+//            console.log(song_index);
+//            var playlist_index = $(this).parents('.playlist_container').attr('playlist_index');
+//            console.log(playlist_index);
+//            rubysquare.helpers.play_from_available(rubysquare.music, song_index, rubysquare.playlists.all_on_page[0], rubysquare.playlists.now_playing, playlist_index, '#songs_view', rubysquare.ui_state);
+//            rubysquare.ui.table_highlight.highlight(song_index, playlist_index, '#songs_view', {"action":"add", "unique": true});
+//        }
+//    },
     {
         'selector' : '#songs_view .song_location, #songs_view .song_title', // This is temporary since i have to figure out the UI before i know what the strucutre of the links will be
         'bind_to' : 'dblclick',
         'func' : function() {
-
             var song_index = Number($(this).parent('tr').attr('id'));
             console.log(song_index);
             var playlist_index = $(this).parents('.playlist_container').attr('playlist_index');
             console.log(playlist_index);
-            rubysquare.helpers.play_from_available(rubysquare.music, song_index, rubysquare.playlists.all_on_page[0], rubysquare.playlists.now_playing, playlist_index, '#songs_view', rubysquare.ui_state);
+            rubysquare.helpers.play_from_available(rubysquare.maestro, song_index, rubysquare.playlists.all_on_page[0], rubysquare.playlists.now_playing, playlist_index, '#songs_view');
             rubysquare.ui.table_highlight.highlight(song_index, playlist_index, '#songs_view', {"action":"add", "unique": true});
         }
     },
@@ -141,8 +172,8 @@ rubysquare.ui.playlist_bindings = [
         'selector':'#new_playlist',
         'bind_to' : 'ajax:complete',
         'func' : function(xhr, status) {
-            console.log('test');
-            rubysquare.ui.brief_message.message('Playlist created!');
+//            console.log('test');
+//            rubysquare.ui.brief_message.message('Playlist created!');
         }
     }
 ];
