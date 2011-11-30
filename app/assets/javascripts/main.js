@@ -315,7 +315,7 @@ $(document).ready(function(){
     $('#volume_slider').slider({
         'max':100,
         'min':0,
-        'value':75,
+        'value':65,
         'change':function(event, ui){
             rubysquare.music_wrapper.set_volume(ui.value, rubysquare.maestro.get_song());
         },
