@@ -6,6 +6,7 @@ rubysquare.playlists.now_playing = rubysquare.playlist();
 rubysquare.playlists.all_on_page = [];
 
 //~ Callbacks ~//
+//This is not used yet
 rubysquare.music_callbacks = {
     'seek':function( seek_val ){
 //        console.log(seek_val);
@@ -18,33 +19,86 @@ rubysquare.music_callbacks = {
 }
 
 
-
 //~ Objects ~//
 rubysquare.ui.table_highlight = rubysquare.ui.Table_highlight(rubysquare.settings);
-//Todo add a callback that moves the seek bar
 rubysquare.music = rubysquare.music_bridge(rubysquare.settings, rubysquare.playlists.now_playing, rubysquare.ui_state, rubysquare.ui.table_highlight, rubysquare.music_callbacks);
 rubysquare.ajax = rubysquare.ajax_manager();
-rubysquare.seek_bar = rubysquare.ui.slider('#seek_bar')
-rubysquare.song_manager = rubysquare.soundmanager_song_manager();
-
-rubysquare.seek_bar.bind();
 rubysquare.views.views_manager = rubysquare.view_manager(rubysquare.ui_state, rubysquare.ui.table_highlight);
 
-rubysquare.test_slider = rubysquare.ui.slider(300, '#slider_container .handle', 'mousedown');
+// Refactored objects
+rubysquare.music_wrapper = rubysquare.Music_wrapper(soundManager);
+rubysquare.song_manager = rubysquare.soundmanager_song_manager();
+
+
+//~ Initialize (some) Objects ~//
+rubysquare.maestro = rubysquare.Maestro(rubysquare.song_manager, rubysquare.music_wrapper);
+
+rubysquare.music_callback_functions = {
+    'move_seek_bar' : function(){
+        $('#seek_slider').slider({ 'value': rubysquare.maestro.get_present_position() });
+    },
+    'show_now_playing_info' : function(){
+        var song_meta = rubysquare.maestro.get_song_meta();
+        console.log(song_meta);
+        rubysquare.ui.now_playing_info.show({
+            'artist': song_meta.artist,
+            'album': song_meta.album,
+            'title': song_meta.title
+        });
+    },
+    'move_highlight' : function(){
+        var song_info = rubysquare.maestro.get_current_song_info();
+        console.log(song_info);
+        rubysquare.ui.table_highlight.highlight(song_info.song_index, song_info.playlist_index, song_info.container_selector, {'action':'add', 'unique':true});
+    },
+    'next' : function(){
+        rubysquare.maestro.next(rubysquare.settings);
+    }
+}
+
+rubysquare.music_callbacks_new = {
+    'while_playing':[
+        rubysquare.music_callback_functions.move_seek_bar
+    ],
+    'on_finish':[
+        rubysquare.music_callback_functions.next,
+        rubysquare.music_callback_functions.move_highlight
+    ],
+    'on_play':[
+        rubysquare.music_callback_functions.show_now_playing_info
+    ]
+}
+
+rubysquare.song_manager.set_callbacks(rubysquare.music_callbacks_new);
+rubysquare.song_manager.new_song();
+
+
 
 //~ JSON for bindings, for Songs view, TEMP ~//
 // TODO refactor these bindings, they are very very repetitive
 rubysquare.ui.songs_bindings = [
+//    {
+//        'selector' : '#songs_view .song_location, #songs_view .song_title', // This is temporary since i have to figure out the UI before i know what the strucutre of the links will be
+//        'bind_to' : 'dblclick',
+//        'func' : function() {
+//
+//            var song_index = Number($(this).parent('tr').attr('id'));
+//            console.log(song_index);
+//            var playlist_index = $(this).parents('.playlist_container').attr('playlist_index');
+//            console.log(playlist_index);
+//            rubysquare.helpers.play_from_available(rubysquare.music, song_index, rubysquare.playlists.all_on_page[0], rubysquare.playlists.now_playing, playlist_index, '#songs_view', rubysquare.ui_state);
+//            rubysquare.ui.table_highlight.highlight(song_index, playlist_index, '#songs_view', {"action":"add", "unique": true});
+//        }
+//    },
     {
         'selector' : '#songs_view .song_location, #songs_view .song_title', // This is temporary since i have to figure out the UI before i know what the strucutre of the links will be
         'bind_to' : 'dblclick',
         'func' : function() {
-
             var song_index = Number($(this).parent('tr').attr('id'));
             console.log(song_index);
-            var playlist_index = $(this).parents('.playlist_container').attr('playlist_index');
+            var playlist_index = Number($(this).parents('.playlist_container').attr('playlist_index'));
             console.log(playlist_index);
-            rubysquare.helpers.play_from_available(rubysquare.music, song_index, rubysquare.playlists.all_on_page[0], rubysquare.playlists.now_playing, playlist_index, '#songs_view', rubysquare.ui_state);
+            rubysquare.helpers.play_from_available(rubysquare.maestro, song_index, rubysquare.playlists.all_on_page[0], rubysquare.playlists.now_playing, playlist_index, '#songs_view');
             rubysquare.ui.table_highlight.highlight(song_index, playlist_index, '#songs_view', {"action":"add", "unique": true});
         }
     },
@@ -64,9 +118,10 @@ rubysquare.ui.search_bindings = [
         'bind_to' : 'dblclick',
         'func' : function() {
             var song_index = Number($(this).parent('tr').attr('id'));
-            var playlist_index = $(this).parents('.playlist_container').attr('playlist_index');
+            var playlist_index = Number($(this).parents('.playlist_container').attr('playlist_index'));
             rubysquare.ui.table_highlight.highlight(song_index, playlist_index, '#search_view', {"action":"add", "unique": true});
-            rubysquare.helpers.play_from_available(rubysquare.music, song_index, rubysquare.playlists.all_on_page[0], rubysquare.playlists.now_playing, playlist_index, '#playlists_view', rubysquare.ui_state);
+//            rubysquare.helpers.play_from_available(rubysquare.music, song_index, rubysquare.playlists.all_on_page[0], rubysquare.playlists.now_playing, playlist_index, '#playlists_view', rubysquare.ui_state);
+            rubysquare.helpers.play_from_available(rubysquare.maestro, song_index, rubysquare.playlists.all_on_page[0], rubysquare.playlists.now_playing, playlist_index, '#search_view');
         }
     },
     {
@@ -85,10 +140,11 @@ rubysquare.ui.playlist_bindings = [
         'selector' : '#playlists_view .song_title, #playlists_view .song_location', // This is temporary since i have to figure out the UI before i know what the strucutre of the links will be
         'bind_to' : 'dblclick',
         'func' : function() {
-            var playlist_index = $(this).parents('.playlist_container').attr('playlist_index');
+            var playlist_index = Number($(this).parents('.playlist_container').attr('playlist_index'));
             console.log("playlist:" + playlist_index);
             var song_index = Number($(this).parent('tr').attr('id'));
-            rubysquare.helpers.play_from_available(rubysquare.music, song_index, rubysquare.playlists.all_on_page[playlist_index], rubysquare.playlists.now_playing, playlist_index, '#playlists_view', rubysquare.ui_state);
+//            rubysquare.helpers.play_from_available(rubysquare.music, song_index, rubysquare.playlists.all_on_page[playlist_index], rubysquare.playlists.now_playing, playlist_index, '#playlists_view', rubysquare.ui_state);
+            rubysquare.helpers.play_from_available(rubysquare.maestro, song_index, rubysquare.playlists.all_on_page[playlist_index], rubysquare.playlists.now_playing, playlist_index, '#playlists_view');
             rubysquare.ui.table_highlight.highlight(song_index, playlist_index, '#playlists_view', {"action":"add", "unique": true});
         }
     },
@@ -107,7 +163,7 @@ rubysquare.ui.playlist_bindings = [
             var song_index = 0;
             var playlist_index = $(this).attr('data-playlist_index');
             rubysquare.ui.table_highlight.highlight(song_index, playlist_index, '#playlists_view', {"action":"add", "unique": true});
-            rubysquare.helpers.play_from_available(rubysquare.music, song_index, rubysquare.playlists.all_on_page[playlist_index], rubysquare.playlists.now_playing, playlist_index, '#playlist_view', rubysquare.ui_state);
+            rubysquare.helpers.play_from_available(rubysquare.music, song_index, rubysquare.playlists.all_on_page[playlist_index], rubysquare.playlists.now_playing, playlist_index, '#playlist_view');
             return false;
         }
     },
@@ -136,8 +192,10 @@ rubysquare.ui.now_playing_bindings = [
         'bind_to' : 'dblclick',
         'func' : function() {
             var song_index = Number($(this).parent('tr').attr('id'));
-            var playlist_index = $(this).parents('.playlist_container').attr('playlist_index');
-            rubysquare.helpers.play_from_available(rubysquare.music, song_index, rubysquare.playlists.all_on_page[0], rubysquare.playlists.now_playing, playlist_index, '#now_playing_view', rubysquare.ui_state);
+            var playlist_index = Number($(this).parents('.playlist_container').attr('playlist_index'));
+            rubysquare.helpers.play_from_available(rubysquare.maestro, song_index, rubysquare.playlists.all_on_page[0], rubysquare.playlists.now_playing, playlist_index, '#now_playing_view');
+            rubysquare.ui.table_highlight.highlight(song_index, playlist_index, '#now_playing_view', {"action":"add", "unique": true});
+//            rubysquare.helpers.play_from_available(rubysquare.music, song_index, rubysquare.playlists.all_on_page[0], rubysquare.playlists.now_playing, playlist_index, '#now_playing_view', rubysquare.ui_state);
         }
     },
     {
@@ -180,7 +238,9 @@ rubysquare.ui.common_bindings = [
         'bind_to' : 'click',
         'func' : function() {
             if( typeof rubysquare.playlists.now_playing.playlist !== 'undefined'){
-                rubysquare.music.next(rubysquare.settings, rubysquare.playlists.now_playing.playlist);
+//                rubysquare.music.next(rubysquare.settings, rubysquare.playlists.now_playing.playlist);
+                rubysquare.maestro.next(rubysquare.settings);
+                rubysquare.music_callback_functions.move_highlight();
             }
             else
                 rubysquare.log('no songs specified! please add something to the que')
@@ -191,7 +251,9 @@ rubysquare.ui.common_bindings = [
         'bind_to' : 'click',
         'func' : function() {
             if( typeof rubysquare.playlists.now_playing.playlist !== 'undefined'){
-                rubysquare.music.previous(rubysquare.settings, rubysquare.playlists.now_playing.playlist)
+//                rubysquare.music.previous(rubysquare.settings, rubysquare.playlists.now_playing.playlist);
+                rubysquare.maestro.previous(rubysquare.settings);
+                rubysquare.music_callback_functions.move_highlight();
             }
             else
                 rubysquare.log('no songs specified! please add something to the que')
@@ -200,7 +262,10 @@ rubysquare.ui.common_bindings = [
     {
         'selector' : rubysquare.settings.nodes['pause_button'],
         'bind_to' : 'click',
-        'func' : rubysquare.music.pause_or_resume
+        'func' : function(){
+            rubysquare.maestro.pause_or_resume();
+            $(this).toggleClass('bw_hover_hovered');
+        }
     },
     {
         'selector' : '#query',
@@ -231,7 +296,7 @@ rubysquare.ui.common_bindings = [
         'selector' : '#nav_dashboard',
         'bind_to' : 'click',
         'func' : function(){
-            //TODO make sure this is uncommented for production
+            // TODO make sure this is uncommented for production
 //            var bool = confirm("Continuing will stop your currently playing music");
 //            if (!bool) return false;
         }
@@ -252,10 +317,10 @@ $(document).ready(function(){
         'min':0,
         'value':75,
         'change':function(event, ui){
-            rubysquare.music.set_volume(ui.value);
+            rubysquare.music_wrapper.set_volume(ui.value, rubysquare.maestro.get_song());
         },
         'slide':function(event,ui){
-            rubysquare.music.set_volume(ui.value);
+            rubysquare.music_wrapper.set_volume(ui.value, rubysquare.maestro.get_song());
         }
     });
 
@@ -266,7 +331,7 @@ $(document).ready(function(){
             var val = ui.value;
             var temp = this.change;
             this.change = '';   // don't let the music player seek while the user is using the slider
-            rubysquare.music.seek(val);
+            rubysquare.maestro.seek(val);
             this.change = temp;
         }
     });

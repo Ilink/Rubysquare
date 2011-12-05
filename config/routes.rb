@@ -7,8 +7,9 @@ Rubysquare::Application.routes.draw do
   devise_for :users
   root :to => "songs#index"
 
-  match "/podcasts/create.json" => "podcasts#create", :as => :create_podcast, :via => :post
-
+  # Podcasts
+  #match "/podcasts/create.json" => "podcasts#create", :as => :create_podcast, :via => :post
+  #match "/podcasts" => "podcasts#index", :as => :podcasts, :via => :get
 
   match "/songs/now_playing" => "songs#now_playing", :via => :get
   match "/songs/filter" => "songs#filter", :as => :filter, :via => :get
@@ -22,6 +23,7 @@ Rubysquare::Application.routes.draw do
 
   resources :playlists
   resources :songs
+  resources :podcasts
 
   #--------------------------------------------------------------------------------------------------------------------------#
   # The priority is based upon order of creation:

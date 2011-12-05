@@ -46,6 +46,7 @@ class PodcastsController < ApplicationController
   # POST /podcasts
   # POST /podcasts.json
   def create
+    require 'feedzirra'
     feed = parse_feed params[:new_podcast_url]
     feed.sanitize_entries! # let's make sure this actually makes things usable'
 

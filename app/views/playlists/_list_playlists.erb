@@ -1,7 +1,7 @@
 <h1>Playlists</h1>
 <%#= render 'layouts/json_on_page' %>
 <% @playlists.each_with_index do |playlist, index| %>
-  <div playlist_index="<%= index %>" class="playlist_container">
+  <div playlist_index=<%= index %> class="playlist_container">
     <%= render :partial => 'layouts/json_on_page_with_index', :locals => {:index => index} %>
       <ul>
         <li class="header playlist_title pointer" data-playlist_index="<%= index %>"><%= playlist.title %></li>

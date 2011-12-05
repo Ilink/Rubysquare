@@ -147,25 +147,69 @@ rubysquare.music_bridge = function( settings, playlist_manager, ui_state, ui_eff
                 console.log(volume + " is the volume for prepared song")
             }
         }
-		
     }
     else return new rubysquare.music_bridge( settings, playlist_manager, ui_state, ui_effects, callbacks );
 }
 
-rubysquare.music_wrapper = function(){
-    if (this instanceof rubysquare.music_wrapper) {
+rubysquare.Music_wrapper = function( sound_manager_object ){
+    if (this instanceof rubysquare.Music_wrapper) {
         // Private
 
         // Public
         this.play = function( song ) {
-            rubysquare.song_manager.get_song.pause();
+            song.play();
+//            rubysquare.song_manager.get_song.play();
         }
 
         this.pause = function( song ) {
-            rubysquare.song_manager.get_song.pause();
+            song.pause();
+//            rubysquare.song_manager.get_song.pause();
+        }
+
+        this.resume = function( song ) {
+//            rubysquare.song_manager.get_song.resume();
+        }
+
+        this.pause_or_resume = function( song ) {
+            if (song.paused) song.resume(); // TODO type check this, it throws an error if you hit pause when there is no song queued
+            else song.pause();
+        }
+
+        this.set_volume = function( volume, song ){
+            if(typeof volume !== 'number') throw "Requires number";
+            if(volume > 100 || volume < 0) throw "Argument out of range - requires 0 to 100";
+//            if (sound_manager_object.getSoundById(song)){
+            if ( song ){
+                sound_manager_object.setVolume( song.sID, volume );
+                console.log(volume + " is the volume for currently playing")
+            } else {
+                song['volume'] = volume;
+                console.log(volume + " is the volume for prepared song")
+            }
+        }
+
+        this.seek = function( percentage, song ){
+            var pos;
+            if(song.loaded){
+                pos = (percentage/100) * song.duration;   // value is truncated if the song isnt loaded
+            }
+            else {
+                pos = (percentage/100) * song.durationEstimate;
+            }
+
+            song.setPosition( pos );
+        }
+
+        this.get_present_position = function( song ){
+            var percent_position;
+            if(song.loaded) {
+                return percent_position = (song.position / song.duration) * 100;
+            } else {
+                return percent_position = (song.position / song.durationEstimate) * 100;
+            }
         }
     }
-    else return new rubysquare.music_wrapper();
+    else return new rubysquare.Music_wrapper(sound_manager_object);
 }
 
 rubysquare.soundmanager_song_manager = function(){
@@ -173,8 +217,10 @@ rubysquare.soundmanager_song_manager = function(){
         // Private
         var self = this;
         var song;
+        var callbacks;
 
         // Public
+
         /* Callbacks example:
             {
                 while_playing : [
@@ -183,16 +229,28 @@ rubysquare.soundmanager_song_manager = function(){
                 on_finish : [ ... ]
             }
          */
-        this.new_song = function(url, callbacks){
-//            if (typeof callbacks === "undefined") callbacks = rubysquare.default_song_callbacks;
+
+        this.set_callbacks = function(_callbacks){
+            callbacks = _callbacks
+        }
+
+        this.new_song = function(){
+//            if(typeof callbacks['on_finish'] !== 'undefined') {
+//                $.each(callbacks['on_finish'], function(index, value){
+//                    value();
+//                    console.log("Registered onfinish callback")
+//                });
+//            }
+
             song = soundManager.createSound({
                 id: 'song',
 //				url: '/'+url, //for now i need to use external urls, which dont need that slash
-                url: url,
+                url: '',
                 onfinish: function(){
                     if(typeof callbacks['on_finish'] !== 'undefined') {
                         $.each(callbacks['on_finish'], function(index, value){
                             value();
+//                            console.log("Registered onfinish callback")
                         });
                     }
                 },
@@ -200,10 +258,32 @@ rubysquare.soundmanager_song_manager = function(){
                     if(typeof callbacks['while_playing'] !== 'undefined') {
                         $.each(callbacks['while_playing'], function(index, value){
                             value();
+//                            console.log("Registered whileplaying callback")
+                        });
+                    }
+                },
+                onplay:function(){
+                    if(typeof callbacks['on_play'] !== 'undefined') {
+                        $.each(callbacks['on_play'], function(index, value){
+                            value();
+//                            console.log("Registered whileplaying callback")
                         });
                     }
                 }
             });
+        }
+
+        this.get_song = function(){
+            if( !song ){
+                console.log('Attempting to make a new song');
+                self.new_song();
+            }
+            return song;
+        }
+
+        this.get_new_song = function(){
+            self.new_song();
+            return song;
         }
     }
     else return new rubysquare.soundmanager_song_manager();
@@ -220,20 +300,133 @@ rubysquare.soundmanager_song_manager = function(){
 
  */
 
-rubysquare.Maestro = function(song, music_wrapper){
+rubysquare.Maestro = function(song_manager, music_wrapper){
     if (this instanceof rubysquare.Maestro){
         // Private
-        var song;
-        var current_song = {};
+        var self = this;
+        var song = song_manager.get_song();
+        var current_song_info = {};
+        var playlist;
+        var song_meta = {};
+
+        var update_song_meta = function(){
+            song_meta = playlist[current_song_info.song_index];
+            console.log(song_meta);
+        }
 
         // Public
-        this.set_song = function( url ){
+        this.pause = function(){
+            music_wrapper.pause(song);
+        }
+
+        this.pause_or_resume = function(){
+            music_wrapper.pause_or_resume(song);
+        }
+
+        this.play = function(){
+            console.log("Attempting to play song");
+            music_wrapper.play(song);
+        }
+
+        //~ Getters and Setters ~//
+
+        this.set_song = function( url, _song_meta ){
+            if ( typeof song_meta !== 'undefined' )  song_meta = _song_meta;
+            if ( typeof url === 'undefined' ) throw "argument has no location url"
+            if ( typeof url !== 'string' ) throw 'Exepected resource (URL) to be a string';
+            if ( song ) {
+                song.destruct();
+                rubysquare.log("Song destroyed");
+            }
+            else rubysquare.log("No current song, making a new song...");
+            song = song_manager.get_new_song();
+            rubysquare.log("New song made");
+            console.log(song);
             song.url = url;
         }
 
+        this.get_song = function(){
+            return song;
+        }
+
+        this.get_current_song_info = function(){
+            return current_song_info;
+        }
+
+        this.get_song_meta = function(){
+            return song_meta;
+        }
+
+        this.load_playlist = function(_playlist, playlist_index, song_index, container_selector){
+            playlist = _playlist.playlist;  //this may change, i might need an actual playlist object
+//            playlist = _playlist
+            current_song_info = {
+                'playlist_index' : playlist_index,
+                'song_index' : song_index,
+                'container_selector' : container_selector
+            }
+        }
+
+        this.get_present_position = function(){
+            return music_wrapper.get_present_position(song);
+        }
+
+        this.seek = function(val){
+            music_wrapper.seek(val, song);
+        }
+
+        this.next = function( settings ){
+//            var playlist = playlist_manager.get_playlist(); // This is neccesary because of the way JS references work. References do not refer to other references, they refer to data itself.
+                                                            // Therefore, when we make a copy of the playlist within a playlist manager, the pointer within this object would still point to the old data.
+
+            if (settings['shuffle']){
+                //shuffle logic here
+                console.log('shuffle next goes here');  //todo add shuffle
+//                next_callback();
+                self.play();
+            }
+            else {
+                console.log(current_song_info.song_index);
+//                ui_effects.highlight(ui_state['currently_playing'].song_index, ui_state['currently_playing'].playlist_index, ui_state['currently_playing'].container, {'action':'remove'});
+                if ( typeof playlist[ current_song_info.song_index + 1 ] !== 'undefined' ) {
+                    current_song_info.song_index = current_song_info.song_index + 1;
+                    if ( playlist[current_song_info.song_index].hasOwnProperty('location') ){
+                        this.set_song( playlist[current_song_info.song_index].location );
+                        update_song_meta();
+                        self.play();
+                    }
+                }
+            }
+        }
+
+        this.previous = function( settings ) { // this should never shuffle - previous song is always fixed
+            if (current_song_info.song_index - 1 > -1) {
+                current_song_info.song_index = current_song_info.song_index - 1;
+                console.log(current_song_info.song_index);
+                if ( playlist[current_song_info.song_index].hasOwnProperty('location') ){
+                    this.set_song(playlist[current_song_info.song_index].location);
+                }
+                update_song_meta();
+                song.play();
+//               ui_effects.highlight(current_song_info.song_index, ui_state['currently_playing'].playlist_index, ui_state['currently_playing'].container, {'action':'add', 'unique':true});
+            }
+        }
+
+//        this.previous = function (settings){
+//            var playlist = playlist_manager.get_playlist();
+//            if (ui_state['currently_playing'].song_index - 1 > -1) {
+//               ui_state['currently_playing'].song_index = ui_state['currently_playing'].song_index - 1;
+//               console.log(ui_state['currently_playing'].song_index);
+//               if ( playlist[ui_state['currently_playing'].song_index].hasOwnProperty('location') )
+//                   this.set_song(playlist[ui_state['currently_playing'].song_index]);
+//               song.play();
+//               ui_effects.highlight(ui_state['currently_playing'].song_index, ui_state['currently_playing'].playlist_index, ui_state['currently_playing'].container, {'action':'add', 'unique':true});
+//            }
+//        }
+
 
     }
-    else return new rubysquare.Maestro()
+    else return new rubysquare.Maestro(song_manager, music_wrapper)
 }
 
 /*

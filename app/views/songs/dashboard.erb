@@ -17,7 +17,7 @@
       <%#= link_to 'Dump and Update Song Database', flush_path, method: :post %>
       <br/><br/>
       <h2>New Podcast</h2>
-      <%= form_tag('/podcasts/create.json', :method => "post", :remote => true, :class => 'create_podcast') do %>
+      <%= form_tag("/podcasts.json", :method => "post", :remote => true, :class => 'create_podcast') do %>
           Feed URL <%= text_field_tag :new_podcast_url, "http://www.newyorker.com/services/mrss/feeds/comment_podcast.xml" %>
           <%= submit_tag("New Podcast!") %>
       <% end %>

@@ -2,21 +2,33 @@
 rubysquare.helpers = function(){
     var that = {};
 
-    // TODO: find the best place for this function, i dont know if it belongs as a helper or part of the music class itself
-    that.play_from_available = function( music_manager, song_index, available_playlist, now_playing_playlist, playlist_index, container, ui_state ){
+//    that.play_from_available = function( music_manager, song_index, available_playlist, now_playing_playlist, playlist_index, container, ui_state ){
+//        now_playing_playlist.copy_from( available_playlist.playlist );
+//        console.log("attempting to play song at location: " + now_playing_playlist.playlist[song_index].location);
+//        ui_state['currently_playing'].song_index = song_index;
+//        ui_state['currently_playing'].playlist_index = playlist_index;
+//        ui_state['currently_playing'].container = container;
+//        music_manager.set_song( now_playing_playlist.playlist[song_index] );
+//
+//        that.update_now_playing_db_entries( now_playing_playlist.get_playlist() );
+//
+//        rubysquare.music.play();
+//        console.log("now playing playlist:" + now_playing_playlist.playlist);
+//    }
+
+    that.play_from_available = function( maestro, song_index, available_playlist, now_playing_playlist, playlist_index, container ){
         now_playing_playlist.copy_from( available_playlist.playlist );
+        console.log(now_playing_playlist.playlist);
         console.log("attempting to play song at location: " + now_playing_playlist.playlist[song_index].location);
-        ui_state['currently_playing'].song_index = song_index;
-        ui_state['currently_playing'].playlist_index = playlist_index;
-        ui_state['currently_playing'].container = container;
-        music_manager.set_song( now_playing_playlist.playlist[song_index] );
+
+        maestro.load_playlist(now_playing_playlist, playlist_index, song_index, container);
+        maestro.set_song(now_playing_playlist.playlist[song_index].location, now_playing_playlist.playlist[song_index]);
+        maestro.play();
 
         that.update_now_playing_db_entries( now_playing_playlist.get_playlist() );
-
-        rubysquare.music.play();
         console.log("now playing playlist:" + now_playing_playlist.playlist);
-        // TODO: should update the DB "now playing" playlist at this point
     }
+
 
     that.update_now_playing_db_entries = function( playlist ){
         var data = "now_playing=true";
