@@ -202,10 +202,22 @@ class SongsController < ApplicationController
     Song.transaction do
       Song.delete_all
       @itunes_song_data.each do |index, song|
-        new_song = Song.new("title" => song['Name'], "artist" => song['Artist'], "album" => song['Album'],
-                            "genre" => song['Genre'], "location" => 'temp', "file_type" => song['Kind'],
-                            "bitrate" => song['Bitrate'], "year" => song['Year'], "track_count" => song["Track Count"],
-                            "size" => song["Size"], "length" => song["Total Time"], "track_number" => song["Track Number"])
+        location = song['Location']
+        # file://localhost/L:%5CMusic%5C%21%21%21%5CMyth%20Takes%5C01%20Myth%20Takes.mp3
+        # strip out the part "file://" part or whatever and then leave a trail to a virtual directory pointing to the root music folder
+        # let's try and find out what that looks like on a mac. Windows / Mac are the only iTunes clients
+        new_song = Song.new("title" => song['Name'],
+                            "artist" => song['Artist'],
+                            "album" => song['Album'],
+                            "genre" => song['Genre'],
+                            "location" => song['Location'],
+                            "file_type" => song['Kind'],
+                            "bitrate" => song['Bitrate'],
+                            "year" => song['Year'],
+                            "track_count" => song["Track Count"],
+                            "size" => song["Size"],
+                            "length" => song["Total Time"],
+                            "track_number" => song["Track Number"])
         new_song.save!
       end
     end
