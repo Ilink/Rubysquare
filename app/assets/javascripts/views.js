@@ -71,6 +71,7 @@ rubysquare.view_manager = function( ui_state, ui_effects ){
     else return new rubysquare.view_manager( ui_state, ui_effects );
 }
 
+
 /*
     abstract class view(binds, container_selector, ajax_url){
         Private:

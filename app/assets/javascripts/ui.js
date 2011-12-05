@@ -77,8 +77,8 @@ rubysquare.ui.dialog = function(){
                'position' : 'absolute',
                'display':'block',
                'z-index':'10',
-                'left' : $(placement_selector).offset().left - ($(content_selector).outerWidth() / 2) + (placement_selector_width / 2),
-                'top' : $(placement_selector).offset().top - content_height - placement_selector_height
+               'left' : $(placement_selector).offset().left - ($(content_selector).outerWidth() / 2) + (placement_selector_width / 2),
+               'top' : $(placement_selector).offset().top - content_height - placement_selector_height
             });
         }
         $('body').append( $(content_selector) );
@@ -142,7 +142,7 @@ rubysquare.ui.Table_highlight = function(settings){
 }
 
 rubysquare.ui.make_sticky = function(selector, location, threshold){
-    (function(){ //the extra closure is for these variables
+    (function(){ // the extra closure is for these variables
         var former_position = $(selector).css('position');
         var former_top = $(selector).css('top');
         $(window).scroll(function () {
