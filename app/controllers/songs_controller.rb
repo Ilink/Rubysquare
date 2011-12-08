@@ -203,9 +203,10 @@ class SongsController < ApplicationController
       Song.delete_all
       @itunes_song_data.each do |index, song|
         location = song['Location']
-        # file://localhost/L:%5CMusic%5C%21%21%21%5CMyth%20Takes%5C01%20Myth%20Takes.mp3
+        # Windows:   file://localhost/L:%5CMusic%5C%21%21%21%5CMyth%20Takes%5C01%20Myth%20Takes.mp3
+        # Mac:       file://localhost/Users/linki/Music/iTunes/iTunes%20Media/Podcasts/NPR_%20All%20Songs%20Considered%20Podcast/01%20Songs%20That%20Make%20You%20Feel%20Good.mp3
         # strip out the part "file://" part or whatever and then leave a trail to a virtual directory pointing to the root music folder
-        # let's try and find out what that looks like on a mac. Windows / Mac are the only iTunes clients
+
         new_song = Song.new("title" => song['Name'],
                             "artist" => song['Artist'],
                             "album" => song['Album'],
