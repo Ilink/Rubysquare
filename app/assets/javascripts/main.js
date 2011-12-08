@@ -490,6 +490,13 @@ $(document).ready(function(){
         }
 
         if(event.shiftKey){
+
+            $.each(selection, function(key, value){
+                value.removeClass(shine);
+            });
+            selection = [];
+            selection.push($(this));
+
             if(!already_clicked){
                 selection.push($(this));
             }
@@ -506,12 +513,14 @@ $(document).ready(function(){
 
             console.log(Math.abs(last_selection_index - current_selection_index));
             for(var i = 0; i < Math.abs(last_selection_index - current_selection_index); i++){
-                console.log($(selector + '#'+ (index + i)));
+                selection.push( $(selector + '#'+ (index + i)) );
+                $(selector + '#'+ (index + i)).addClass(shine);
+                console.log( $(selector + '#'+ (index + i)) );
                 console.log(selector + '#'+ (index + i));
             }
 
 
-            $(this).addClass(shine);
+
         }
 
         else if(event.ctrlKey || event.metaKey){
