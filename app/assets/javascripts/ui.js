@@ -165,6 +165,7 @@ rubysquare.ui.make_sticky = function(selector, location, threshold){
 //~Singleton~//
 rubysquare.ui.now_playing_info = (function(){
     var that = {};
+    var private = 'i am private';
     that.show = function(json_to_show){
 
         if (typeof json_to_show.title === 'undefined' ||
@@ -181,3 +182,26 @@ rubysquare.ui.now_playing_info = (function(){
     }
     return that;
 })();
+
+/*
+Valid arguments:
+args = {
+    'selector':'#jquery_selector_string',
+    'container':'#jquery_selector_string',
+    'selected_class':'__selected__'         // optional
+}
+ */
+
+rubysquare.ui.Shift_select = function(arguments){
+    if(this instanceof rubysquare.ui.Shift_select){
+
+    }
+    else new rubysquare.ui.Shift_select(arguments);
+}
+
+/*
+    Drag and Drop Stuff
+*/
+
+// draggable is on a selector that is only applied to elements currently selected by the mutliselect
+

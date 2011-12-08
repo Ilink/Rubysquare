@@ -452,4 +452,101 @@ $(document).ready(function(){
 
 
 
+
+
+    //~ Drag and Drop Experiments ~//
+
+//  http://stackoverflow.com/questions/3774755/jquery-sortable-select-and-drag-multiple-list-items
+//  http://jsfiddle.net/Nqkek/56/
+
+    var highlight = 'highlight';
+
+    $("#droppable").droppable({
+      drop: function() {
+
+          console.log('dropped, then fire ajax request for form');
+      },
+        activate:function(){
+            $(this).addClass(highlight);
+        },
+        deactivate:function(){
+            $(this).removeClass(highlight);
+        },
+      tolerance: 'touch'
+    });
+
+
+    var shine = 'song_selection_highlight';
+    var selector = 'tr';
+    var selection = [];
+    var last_selection;
+    var container = 'tbody';
+
+    $('tr').click(function(event){
+        var index;
+        var already_clicked = false;
+        if($(this).hasClass(shine)){
+            already_clicked = true;
+        }
+
+        if(event.shiftKey){
+            if(!already_clicked){
+                selection.push($(this));
+            }
+            console.log(selection);
+            console.log('shift click');
+
+            var last_selection_index = Number(last_selection.attr('id'));
+            var current_selection_index = Number($(this).attr('id'));
+            if (current_selection_index < last_selection_index){
+                index = current_selection_index;
+            } else {
+                index = last_selection_index;
+            }
+
+            console.log(Math.abs(last_selection_index - current_selection_index));
+            for(var i = 0; i < Math.abs(last_selection_index - current_selection_index); i++){
+                console.log($(selector + '#'+ (index + i)));
+                console.log(selector + '#'+ (index + i));
+            }
+
+
+            $(this).addClass(shine);
+        }
+
+        else if(event.ctrlKey || event.metaKey){
+            if(!already_clicked){
+                selection.push($(this));
+            }
+
+            console.log(selection);
+            console.log('control click');
+            $(this).addClass(shine);
+        }
+        else {
+            console.log(last_selection);
+            // remove the other highlights since this is a normal click
+            $.each(selection, function(key, value){
+                value.removeClass(shine);
+            });
+
+            $(this).addClass(shine);
+            selection = []; // reset the array
+            selection.push($(this));
+            console.log('no key modifier');
+        }
+
+        last_selection = $(this);
+    }).draggable({
+        appendTo:'body',
+        helper: function( event ) {
+            console.log(selection);
+            var selection_string;
+
+            selection_string = selection.length + " songs selected";
+            return $("<div class='song_selection_information_dragger'>" + selection_string + "</div>" );
+        }
+
+    });
+
 });
