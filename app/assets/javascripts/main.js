@@ -485,11 +485,14 @@ $(document).ready(function(){
     $('tr').click(function(event){
         var index;
         var already_clicked = false;
+        var oldest_click;
+        var previous_click;
         if($(this).hasClass(shine)){
             already_clicked = true;
         }
 
         if(event.shiftKey){
+            var oldest_selection = last_selection;
 
             $.each(selection, function(key, value){
                 value.removeClass(shine);
@@ -503,8 +506,19 @@ $(document).ready(function(){
             console.log(selection);
             console.log('shift click');
 
+//            var last_selection_index = Number(last_selection.attr('id'));
+//            var current_selection_index = Number($(this).attr('id'));
+
+//            if (current_selection_index < last_selection_index){
+//                index = current_selection_index;
+//            } else {
+//                index = last_selection_index;
+//            }
+
+            var oldest_selection_index = Number(oldest_selection.attr('id'));
             var last_selection_index = Number(last_selection.attr('id'));
             var current_selection_index = Number($(this).attr('id'));
+
             if (current_selection_index < last_selection_index){
                 index = current_selection_index;
             } else {

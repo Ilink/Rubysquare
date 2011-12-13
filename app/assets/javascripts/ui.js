@@ -192,11 +192,30 @@ args = {
 }
  */
 
-rubysquare.ui.Shift_select = function(arguments){
-    if(this instanceof rubysquare.ui.Shift_select){
 
+//~ Singleton, Strategy Module ~//
+rubysquare.ui.shift_select = function(selector){
+    var that = {};
+    var selection = [];
+    var temp;
+    that.select = function(root_index, target_index){
+        if(root_index > target_index){
+            temp = root_index;
+            root_index = target_index;
+            target_index = temp;
+        } else {
+
+        }
+
+        for(var i = 0; i < (target_index - root_index); i++){
+            selection.push( $(selector + '#'+ (root_index + i)) );
+//            $(selector + '#'+ (index + i)).addClass(shine); // user can do that afterward
+            console.log( $(selector + '#'+ (root_index + i)) );
+            console.log(selector + '#'+ (root_index + i));
+        }
     }
-    else new rubysquare.ui.Shift_select(arguments);
+
+    return that;
 }
 
 /*
