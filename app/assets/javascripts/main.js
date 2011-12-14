@@ -475,7 +475,6 @@ $(document).ready(function(){
       tolerance: 'touch'
     });
 
-
     var shine = 'song_selection_highlight';
     var selector = 'tr';
     var selection = [];
@@ -485,6 +484,7 @@ $(document).ready(function(){
     $('tr').click(function(event){
         var index;
         var already_clicked = false;
+        var root;
         var oldest_click;
         var previous_click;
         if($(this).hasClass(shine)){
@@ -493,6 +493,9 @@ $(document).ready(function(){
 
         if(event.shiftKey){
             var oldest_selection = last_selection;
+            if (typeof root === 'undefined'){
+                root = $(this);
+            }
 
             $.each(selection, function(key, value){
                 value.removeClass(shine);
@@ -508,14 +511,14 @@ $(document).ready(function(){
 
 //            var last_selection_index = Number(last_selection.attr('id'));
 //            var current_selection_index = Number($(this).attr('id'));
-
+//
 //            if (current_selection_index < last_selection_index){
 //                index = current_selection_index;
 //            } else {
 //                index = last_selection_index;
 //            }
 
-            var oldest_selection_index = Number(oldest_selection.attr('id'));
+            var root_index = Number(root.attr('id'));
             var last_selection_index = Number(last_selection.attr('id'));
             var current_selection_index = Number($(this).attr('id'));
 
@@ -525,19 +528,36 @@ $(document).ready(function(){
                 index = last_selection_index;
             }
 
-            console.log(Math.abs(last_selection_index - current_selection_index));
-            for(var i = 0; i < Math.abs(last_selection_index - current_selection_index); i++){
-                selection.push( $(selector + '#'+ (index + i)) );
-                $(selector + '#'+ (index + i)).addClass(shine);
-                console.log( $(selector + '#'+ (index + i)) );
-                console.log(selector + '#'+ (index + i));
+            var range = last_selection_index - root_index;
+            console.log(range);
+
+            if (range > 0){
+                for(var i = 0; i < range; i++){
+                    selection.push( $(selector + '#'+ (index + i)) );
+                    $(selector + '#'+ (index + i)).addClass(shine);
+                }
+            }
+            else {
+                for(var i = Math.abs(range); i > 0; i--){
+                    selection.push( $(selector + '#'+ (index + i)) );
+                    $(selector + '#'+ (index + i)).addClass(shine);
+                }
             }
 
 
+            root = $(this);
 
+//            for(var i = 0; i < Math.abs(last_selection_index - current_selection_index); i++){
+//                selection.push( $(selector + '#'+ (index + i)) );
+//                $(selector + '#'+ (index + i)).addClass(shine);
+//
+//                console.log( $(selector + '#'+ (index + i)) );
+//                console.log(selector + '#'+ (index + i));
+//            }
         }
 
         else if(event.ctrlKey || event.metaKey){
+            root = $(this);
             if(!already_clicked){
                 selection.push($(this));
             }
@@ -546,7 +566,8 @@ $(document).ready(function(){
             console.log('control click');
             $(this).addClass(shine);
         }
-        else {
+        else { // ordinary click
+            root = $(this);
             console.log(last_selection);
             // remove the other highlights since this is a normal click
             $.each(selection, function(key, value){
